@@ -1,11 +1,23 @@
 Package: brainflowprobes
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Helpful plots and annotation for choosing BrainFlow target probe sequence 
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: person("Amanda", "Price", email = "hadley@rstudio.com", 
+  role = c("aut", "cre"))
+Maintainer: Amanda Price <amanda.joy.price@gmail.com>
+Description: Use these functions to characterize potential genomic regions for BrainFlow target probe design.
+License: CC0
 Encoding: UTF-8
 LazyData: true
+Imports:
+    Biostrings (>= 2.52.0),
+    BSgenome.Hsapiens.UCSC.hg19 (>= 1.4.0),
+    bumphunter (>= 1.26.0),
+    cowplot (>= 0.9.4),
+    derfinder (>= 1.18.1),
+    derfinderPlot (>= 1.18.1),
+    GenomicRanges (>= 1.36.0),
+    ggplot2 (>= 3.1.1),
+    gridExtra (>= 2.3),
+    RColorBrewer (>= 1.1)
+RoxygenNote: 6.1.1

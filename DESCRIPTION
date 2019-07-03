@@ -19,5 +19,6 @@ Imports:
     GenomicRanges (>= 1.36.0),
     ggplot2 (>= 3.1.1),
     gridExtra (>= 2.3),
-    RColorBrewer (>= 1.1)
+    RColorBrewer (>= 1.1),
+    rtracklayer (>= 1.44.0)
 RoxygenNote: 6.1.1

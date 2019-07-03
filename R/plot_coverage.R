@@ -49,10 +49,6 @@
 
 plot_coverage <- function(REGION, PATH="Default") {
 
-  load("./data/probe_design_four_plot_phenotype_data.rda")
-  load("./data/region_info_objects.rda")
-  load("./data/plot_coverage_objects.rda")
-
   gr <- GenomicRanges::GRanges(REGION)
   nearestAnnotation <- bumphunter::matchGenes(x = gr, subject = genes)
   annotatedRegions <- derfinder::annotateRegions(regions = gr,

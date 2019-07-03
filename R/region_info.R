@@ -50,7 +50,6 @@
 
 region_info <- function(REGION, CSV=TRUE, SEQ=TRUE, PATH="Default") {
 
-  load("./data/region_info_objects.rda")
   gr = GenomicRanges::GRanges(REGION)
   nearestAnnotation = bumphunter::matchGenes(x = gr, subject = genes)
   nearestAnnotation = nearestAnnotation[,which(colnames(nearestAnnotation)!="strand")]

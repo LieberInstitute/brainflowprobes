@@ -64,6 +64,7 @@
 #'
 #' four_panels("chr20:10286777-10288069:+", PATH = "/path/to/directory")
 #' }
+#' @export
 
 
 four_panels <- function(REGION, PATH="Default", JUNCTIONS=FALSE) {
@@ -73,20 +74,10 @@ four_panels <- function(REGION, PATH="Default", JUNCTIONS=FALSE) {
 
   pd <- list(Sep = pdSep, Deg = pdDeg, Cell = pdCell, Sort = pdSort)
 
-  files <- list(Sep = derfinder::rawFiles(datadir='/dcl01/lieber/ajaffe/Amanda/BigWigs/Sep',
-                                          samplepatt='*.bw$', fileterm=NULL),
-                Deg = derfinder::rawFiles(datadir='/dcl01/lieber/ajaffe/Amanda/BigWigs/Deg',
-                                          samplepatt='*.bw$', fileterm=NULL),
-                Cell = derfinder::rawFiles(datadir='/dcl01/lieber/ajaffe/Amanda/BigWigs/Cell',
-                                           samplepatt='*.bw$', fileterm=NULL),
-                Sort = derfinder::rawFiles(datadir='/dcl01/lieber/ajaffe/Amanda/BigWigs/Sort',
-                                           samplepatt='*.bw$', fileterm=NULL))
-  files <- mapply(function(bw, mpd) bw[match(mpd$BigWig, names(bw))], files, pd, SIMPLIFY = F)
-
-  regionCov <- mapply(function(bw, mpd) derfinder::getRegionCoverage(
-                                           regions = gr, totalMapped = mpd$sumMapped,
-                                           files = bw),
-                      files, pd, SIMPLIFY = F)
+  regionCov <- lapply(pd, function(x) derfinder::getRegionCoverage(
+                                                    regions = gr,
+                                                    totalMapped = x$sumMapped,
+                                                    files = x$files))
 
   if (JUNCTIONS!=FALSE) {
 

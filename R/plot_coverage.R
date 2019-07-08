@@ -45,6 +45,7 @@
 #'
 #' plot_coverage("chr20:10286777-10288069:+", PATH = "/path/to/directory")
 #' }
+#' @export
 
 
 plot_coverage <- function(REGION, PATH="Default") {
@@ -54,11 +55,8 @@ plot_coverage <- function(REGION, PATH="Default") {
   annotatedRegions <- derfinder::annotateRegions(regions = gr,
                                                  genomicState = gs, minoverlap = 1)
 
-  files <- derfinder::rawFiles(datadir = '/dcl01/lieber/ajaffe/Amanda/BigWigs/Sep',
-                               samplepatt = '*.bw$', fileterm = NULL)
-  files <- files[match(pdSep$BigWig, names(files))]
   regionCov <- derfinder::getRegionCoverage(regions = gr,
-                                            totalMapped = pdSep$sumMapped, files = files)
+                                            totalMapped = pdSep$sumMapped, files = pdSep$files)
 
   if (PATH=="Default") {
 

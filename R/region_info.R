@@ -46,6 +46,7 @@
 #'
 #' \dontrun{
 #' region_info("chr20:10286777-10288069:+", PATH = "/path/to/directory") }
+#' @export
 
 
 region_info <- function(REGION, CSV=TRUE, SEQ=TRUE, PATH="Default") {

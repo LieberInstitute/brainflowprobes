@@ -10,4 +10,4 @@ gs = GenomicState.Hsapiens.ensembl.GRCh37.p12$fullGenome
 genes = bumphunter::annotateTranscripts(
   txdb = TxDb.Hsapiens.UCSC.hg19.knownGene::TxDb.Hsapiens.UCSC.hg19.knownGene)
 
-devtools::use_data(genes, gs, pdCell, pdDeg, pdSep, pdSort, internal = TRUE)
+devtools::use_data(genes, gs, pdCell, pdDeg, pdSep, pdSort, internal = FALSE)

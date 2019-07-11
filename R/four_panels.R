@@ -84,19 +84,27 @@ four_panels <- function(REGION, PATH="Default", JUNCTIONS=FALSE) {
     regionCov <- lapply(regionCov, function(x) list(do.call(rbind, x)))
     covMat <- lapply(regionCov, function(x) t(sapply(x, colSums)/100))
 
-    bg <- lapply(covMat, function(x) matrix(sum(width(gr)), nc = ncol(x), nr = nrow(x))/1e3)
+    bg <- lapply(covMat, function(x) matrix(sum(GenomicRanges::width(gr)),
+                                            nc = ncol(x), nr = nrow(x))/1e3)
 
-    coords <- paste0(seqnames(gr)[1], ":", min(start(gr)),"-", max(end(gr)), ":", strand(gr)[1])
-    mains <- paste0(coords, " (", sum(width(gr)), " bp)\n", nearestAnnotation$name)
+    coords <- paste0(GenomicRanges::seqnames(gr)[1], ":",
+                     min(GenomicRanges::start(gr)),"-",
+                     max(GenomicRanges::end(gr)), ":",
+                     GenomicRanges::strand(gr)[1])
+    mains <- paste0(coords, " (", sum(GenomicRanges::width(gr)),
+                    " bp)\n", nearestAnnotation$name)
 
   } else {
 
     covMat <- lapply(regionCov, function(x) t(sapply(x, colSums)/100))
 
-    bg <- lapply(covMat, function(x) matrix(width(gr), nc = ncol(x), nr = nrow(x))/1e3)
+    bg <- lapply(covMat, function(x) matrix(GenomicRanges::width(gr),
+                                            nc = ncol(x), nr = nrow(x))/1e3)
 
-    coords <- paste0(seqnames(gr), ":", start(gr),"-", end(gr), ":", strand(gr))
-    mains <- paste0(coords, " (", width(gr), " bp)\n", nearestAnnotation$name)
+    coords <- paste0(GenomicRanges::seqnames(gr), ":", GenomicRanges::start(gr),
+                     "-", GenomicRanges::end(gr), ":", GenomicRanges::strand(gr))
+    mains <- paste0(coords, " (", GenomicRanges::width(gr),
+                    " bp)\n", nearestAnnotation$name)
 
   }
 
@@ -118,7 +126,7 @@ four_panels <- function(REGION, PATH="Default", JUNCTIONS=FALSE) {
 
     SepDat <- data.frame(Cov = covMat$Sep[j,], LabelFrac = pdSep$LabelFrac,
                          Shortlabels = pdSep$Shortlabels)
-    Sep <- ggplot(SepDat, aes(x = LabelFrac, y = Cov)) +
+    Sep <- ggplot2::ggplot(SepDat, aes(x = LabelFrac, y = Cov)) +
       theme_bw() +
       geom_boxplot(outlier.shape = NA) +
       geom_jitter(size = 2, aes(fill = Shortlabels), pch=21, color="black") +
@@ -139,7 +147,8 @@ four_panels <- function(REGION, PATH="Default", JUNCTIONS=FALSE) {
 
     DegDat <- data.frame(Cov = covMat$Deg[j,], DegradationTime = pdDeg$DegradationTime,
                          LibraryProtocol = pdDeg$LibraryProtocol, BrNum = pdDeg$BrNum)
-    Deg <- ggplot(DegDat, aes(x = DegradationTime, y = Cov, fill = BrNum, color = BrNum)) +
+    Deg <- ggplot2::ggplot(DegDat, aes(x = DegradationTime, y = Cov,
+                                       fill = BrNum, color = BrNum)) +
       theme_bw() +
       geom_line(aes(linetype = LibraryProtocol), lwd = 1.3) +
       geom_point(cex = 2, pch = 21, aes(fill = BrNum), color="black") +
@@ -159,7 +168,7 @@ four_panels <- function(REGION, PATH="Default", JUNCTIONS=FALSE) {
 
     SortDat <- data.frame(Cov = covMat$Sort[j,],
                          Label = gsub(":", "\n", levels(factor(pdSort$Label))))
-    Sort <- ggplot(SortDat, aes(x = Label, y = Cov)) +
+    Sort <- ggplot2::ggplot(SortDat, aes(x = Label, y = Cov)) +
       theme_bw() +
       geom_boxplot(outlier.shape = NA) +
       geom_jitter(size = 2, aes(fill = Label), pch=21, color="black") +
@@ -173,7 +182,7 @@ four_panels <- function(REGION, PATH="Default", JUNCTIONS=FALSE) {
 
 
     CellDat <- data.frame(Cov = covMat$Cell[j,], Cell_type = pdCell$Cell_type)
-    Cell <- ggplot(CellDat, aes(x = Cell_type, y = Cov)) +
+    Cell <- ggplot2::ggplot(CellDat, aes(x = Cell_type, y = Cov)) +
       theme_bw() +
       geom_boxplot(outlier.shape = NA) +
       geom_jitter(aes(fill = Cell_type), pch=21, color="black") +
@@ -187,9 +196,9 @@ four_panels <- function(REGION, PATH="Default", JUNCTIONS=FALSE) {
       guides(fill=FALSE) +
       ggtitle("Single Cells")
 
-    p <- plot_grid(Sep, Deg, Sort, Cell, ncol = 2, align = "hv")
-    title <- ggdraw() + draw_label(mains[j], fontface='bold', size = 22)
-    g <- plot_grid(title, p, ncol=1, rel_heights=c(0.1, 1))
+    p <- cowplot::plot_grid(Sep, Deg, Sort, Cell, ncol = 2, align = "hv")
+    title <- cowplot::ggdraw() + cowplot::draw_label(mains[j], fontface='bold', size = 22)
+    g <- cowplot::plot_grid(title, p, ncol=1, rel_heights=c(0.1, 1))
     print(g)
 
   }

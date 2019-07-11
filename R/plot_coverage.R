@@ -56,7 +56,8 @@ plot_coverage <- function(REGION, PATH="Default") {
                                                  genomicState = gs, minoverlap = 1)
 
   regionCov <- derfinder::getRegionCoverage(regions = gr,
-                                            totalMapped = pdSep$sumMapped, files = pdSep$files)
+                                            totalMapped = pdSep$sumMapped,
+                                            files = pdSep$files)
 
   if (PATH=="Default") {
 
@@ -71,7 +72,7 @@ plot_coverage <- function(REGION, PATH="Default") {
     p <- derfinderPlot::plotRegionCoverage(regions = gr,
                                            regionCoverage = regionCov,
                                            groupInfo = pdSep$Shortlabels,
-                                           colors = brewer.pal(8,"Paired"),
+                                           colors = RColorBrewer::brewer.pal(8,"Paired"),
                                            nearestAnnotation = nearestAnnotation,
                                            annotatedRegions = annotatedRegions,
                                            whichRegions = 1:length(gr),

@@ -122,7 +122,7 @@ four_panels <- function(REGION, PATH="Default", JUNCTIONS=FALSE) {
       theme_bw() +
       geom_boxplot(outlier.shape = NA) +
       geom_jitter(size = 2, aes(fill = Shortlabels), pch=21, color="black") +
-      scale_fill_manual(values = brewer.pal(8,"Paired")) +
+      scale_fill_manual(values = RColorBrewer::brewer.pal(8,"Paired")) +
       labs(fill="") +
       ylim(theRanges) +
       ylab("Log2(Adj Read/kb)") + xlab("") +
@@ -143,8 +143,8 @@ four_panels <- function(REGION, PATH="Default", JUNCTIONS=FALSE) {
       theme_bw() +
       geom_line(aes(linetype = LibraryProtocol), lwd = 1.3) +
       geom_point(cex = 2, pch = 21, aes(fill = BrNum), color="black") +
-      scale_color_manual(values = brewer.pal(5,"Dark2")) +
-      scale_fill_manual(values = brewer.pal(5,"Dark2")) +
+      scale_color_manual(values = RColorBrewer::brewer.pal(5,"Dark2")) +
+      scale_fill_manual(values = RColorBrewer::brewer.pal(5,"Dark2")) +
       ylim(theRanges) +
       ylab("") + xlab("") +
       theme(text = element_text(size = 20),

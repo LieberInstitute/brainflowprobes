@@ -22,3 +22,7 @@ Imports:
     RColorBrewer (>= 1.1),
     rtracklayer (>= 1.44.0)
 RoxygenNote: 6.1.1
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

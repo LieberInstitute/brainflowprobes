@@ -6,12 +6,9 @@
 #' junctions, the plot will include the introns. A good candidate sequence will
 #' be highly and evenly expressed in nuclear RNA.
 #'
-#' @param REGION Either a single hg19 genomic sequence including the chromosome,
-#'   start, end, and optionally strand separated by colons (e.g.,
-#'   "chr20:10199446-10288068:+"), or a string of sequences. Must be character.
-#'   Chromosome must be proceeded by "chr".
-#' @param PATH This parameter indicates the path where the plot(s) should be
-#'   saved. "Default" indicated the file will be saved in the working directory.
+#' @param PDF The path and name of the PDF file. Defaults to
+#' \code{regionCoverage_fractionedData.pdf}.
+#' @inheritParams four_panels
 #' @return \code{plot_coverage} plots all input sequences using
 #'   \code{\link[derfinderPlot]{plotRegionCoverage}}. It returns a plot for each
 #'   input candidate sequence listed in REGION. Each plot includes coverage of
@@ -24,63 +21,105 @@
 #'   Each plot also shows the overlapping genes beneath the coverage, and the
 #'   genomic location. The title lists the nearest gene, the position of the
 #'   sequence relative to the gene's canonical transcriptional start site (TSS),
-#'   and further annotation information as described in the "region" column from
+#'   and further annotation information as described in the 'region' column from
 #'   \code{\link[bumphunter]{matchGenes}}.
 #'
 #'   \code{plot_coverage} saves the results as regionCoverage_fractionedData.pdf
 #'   in the working directory unless otherwise specified in PATH.
 #' @examples
-#' plot_coverage("chr20:10286777-10288069:+")
 #'
-#' plot_coverage(c("chr20:10286777-10288069:+",
-#'                 "chr18:74690788-74692427:-",
-#'                 "chr19:49932861-49933829:-"))
+#' ## Here we use the pre-saved example coverage data such that this example
+#' ## will run fast!
+#' plot_coverage('chr20:10286777-10288069:+',
+#'     COVERAGE = four_panels_example_cov)
 #'
-#' candidates <- c("chr20:10286777-10288069:+",
-#'                 "chr18:74690788-74692427:-",
-#'                 "chr19:49932861-49933829:-")
-#' plot_coverage(candidates, PATH = "/path/to/directory/")
+#' ## Without using COVERAGE, this function reads BigWig files from the web
+#' ## using rtracklayer and this functionality is not supported on Windows
+#' ## machines.
+#' if(.Platform$OS.type != 'windows') {
+#'     plot_coverage('chr20:10286777-10288069:+',
+#'         PDF = 'regionCoverage_fractionedData_fromScratch.pdf')
+#' }
 #'
 #' \dontrun{
 #'
-#' plot_coverage("chr20:10286777-10288069:+", PATH = "/path/to/directory")
+#' ## These examples will take a few minutes to run!
+#' plot_coverage(c('chr20:10286777-10288069:+',
+#'                 'chr18:74690788-74692427:-',
+#'                 'chr19:49932861-49933829:-'))
+#'
+#' candidates <- c('chr20:10286777-10288069:+',
+#'                 'chr18:74690788-74692427:-',
+#'                 'chr19:49932861-49933829:-')
+#'
+#' ## General syntax:
+#' plot_coverage(candidates, PDF = '/path/to/directory/PDF_file.pdf')
+#'
+#' plot_coverage('chr20:10286777-10288069:+',
+#'     PDF = '/path/to/directory/PDF_file.pdf')
 #' }
 #' @export
+#' @import GenomicRanges bumphunter derfinder derfinderPlot RColorBrewer
+#' @importFrom utils browseURL
+#' @importFrom grDevices pdf dev.off
+#' @author Amanda J Price
 
 
-plot_coverage <- function(REGION, PATH="Default") {
+plot_coverage <- function(REGION,
+    PDF = "regionCoverage_fractionedData.pdf",
+    COVERAGE = NULL,
+    VERBOSE = TRUE) {
 
-  gr <- GenomicRanges::GRanges(REGION)
-  nearestAnnotation <- bumphunter::matchGenes(x = gr, subject = genes)
-  annotatedRegions <- derfinder::annotateRegions(regions = gr,
-                                                 genomicState = gs, minoverlap = 1)
+    pdf_file <- PDF
+    if (!grepl("pdf$",
+        tolower(PDF)))
+        pdf_file <- paste0(PDF,
+            ".pdf")
+    if (file.exists(pdf_file))
+        stop(paste("The file",
+            pdf_file,
+            "already exists! Rename or erase it before proceeding."))
 
-  regionCov <- derfinder::getRegionCoverage(regions = gr,
-                                            totalMapped = pdSep$sumMapped,
-                                            files = pdSep$files)
+    gr <- GenomicRanges::GRanges(REGION)
+    nearestAnnotation <- bumphunter::matchGenes(x = gr,
+        subject = brainflowprobes::genes)
+    annotatedRegions <- derfinder::annotateRegions(regions = gr,
+        genomicState = brainflowprobes::gs,
+        minoverlap = 1)
 
-  if (PATH=="Default") {
+    if(is.null(COVERAGE)) {
+        regionCov <- brainflowprobes_cov(
+            REGION = REGION,
+            PD = brainflowprobes::pd['Sep'],
+            VERBOSE = VERBOSE
+        )
+    } else {
+        stopifnot(is.list(COVERAGE))
+        stopifnot('Sep' %in% names(COVERAGE))
+        regionCov <- COVERAGE
+    }
+    regionCov <- regionCov$Sep
 
-    pdf("./regionCoverage_fractionedData.pdf", h = 8, w = 8)
+    grDevices::pdf(pdf_file, height = 8,
+        width = 8, useDingbats = FALSE)
 
-  } else {
+    derfinderPlot::plotRegionCoverage(regions = gr,
+        regionCoverage = regionCov,
+        groupInfo = brainflowprobes::pd$Sep$Shortlabels,
+        colors = RColorBrewer::brewer.pal(8,
+            "Paired"),
+        nearestAnnotation = nearestAnnotation,
+        annotatedRegions = annotatedRegions,
+        whichRegions = seq_len(length(gr)),
+        ask = FALSE,
+        verbose = FALSE)
+    grDevices::dev.off()
 
-    pdf(paste0(PATH, "regionCoverage_fractionedData.pdf"), h = 8, w = 8)
 
-  }
 
-    p <- derfinderPlot::plotRegionCoverage(regions = gr,
-                                           regionCoverage = regionCov,
-                                           groupInfo = pdSep$Shortlabels,
-                                           colors = RColorBrewer::brewer.pal(8,"Paired"),
-                                           nearestAnnotation = nearestAnnotation,
-                                           annotatedRegions = annotatedRegions,
-                                           whichRegions = 1:length(gr),
-                                           ask = FALSE, verbose = FALSE)
-    print(p)
-    dev.off()
-
-    return("Completed! Check for regionCoverage_fractionedData.pdf
-           in your working directory unless otherwise specified in PATH.")
-
+    message("Completed! Check for ",
+        pdf_file, " in your working directory unless otherwise specified.")
+    if (interactive())
+        utils::browseURL(pdf_file)
+    return(invisible(pdf_file))
 }

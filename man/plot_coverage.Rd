@@ -4,16 +4,27 @@
 \alias{plot_coverage}
 \title{Plot coverage in nuclear and cytoplasmic RNA for candidate probe sequences.}
 \usage{
-plot_coverage(REGION, PATH = "Default")
+plot_coverage(REGION, PDF = "regionCoverage_fractionedData.pdf",
+  COVERAGE = NULL, VERBOSE = TRUE)
 }
 \arguments{
 \item{REGION}{Either a single hg19 genomic sequence including the chromosome,
 start, end, and optionally strand separated by colons (e.g.,
-"chr20:10199446-10288068:+"), or a string of sequences. Must be character.
-Chromosome must be proceeded by "chr".}
+'chr20:10199446-10288068:+'), or a string of sequences. Must be character.
+Chromosome must be proceeded by 'chr'.}
 
-\item{PATH}{This parameter indicates the path where the plot(s) should be
-saved. "Default" indicated the file will be saved in the working directory.}
+\item{PDF}{The path and name of the PDF file. Defaults to
+\code{regionCoverage_fractionedData.pdf}.}
+
+\item{COVERAGE}{The output of \link{brainflowprobes_cov} for the input
+\code{REGION}. Defaults to \code{NULL} but it can be pre-computed and saved
+separately since this is the step that takes the longest to run. Also, this
+is the only step that depends on rtracklayer's functionality for reading
+BigWig files which does not run on Windows OS. So it could be run on a
+non-Windows machine, saved, and then shared with Windows users.}
+
+\item{VERBOSE}{A logical value indicating whether to print updates from the
+process of loading the data from the BigWig files.}
 }
 \value{
 \code{plot_coverage} plots all input sequences using
@@ -28,7 +39,7 @@ saved. "Default" indicated the file will be saved in the working directory.}
   Each plot also shows the overlapping genes beneath the coverage, and the
   genomic location. The title lists the nearest gene, the position of the
   sequence relative to the gene's canonical transcriptional start site (TSS),
-  and further annotation information as described in the "region" column from
+  and further annotation information as described in the 'region' column from
   \code{\link[bumphunter]{matchGenes}}.
 
   \code{plot_coverage} saves the results as regionCoverage_fractionedData.pdf
@@ -42,19 +53,38 @@ junctions, the plot will include the introns. A good candidate sequence will
 be highly and evenly expressed in nuclear RNA.
 }
 \examples{
-plot_coverage("chr20:10286777-10288069:+")
 
-plot_coverage(c("chr20:10286777-10288069:+",
-                "chr18:74690788-74692427:-",
-                "chr19:49932861-49933829:-"))
+## Here we use the pre-saved example coverage data such that this example
+## will run fast!
+plot_coverage('chr20:10286777-10288069:+',
+    COVERAGE = four_panels_example_cov)
 
-candidates <- c("chr20:10286777-10288069:+",
-                "chr18:74690788-74692427:-",
-                "chr19:49932861-49933829:-")
-plot_coverage(candidates, PATH = "/path/to/directory/")
+## Without using COVERAGE, this function reads BigWig files from the web
+## using rtracklayer and this functionality is not supported on Windows
+## machines.
+if(.Platform$OS.type != 'windows') {
+    plot_coverage('chr20:10286777-10288069:+',
+        PDF = 'regionCoverage_fractionedData_fromScratch.pdf')
+}
 
 \dontrun{
 
-plot_coverage("chr20:10286777-10288069:+", PATH = "/path/to/directory")
+## These examples will take a few minutes to run!
+plot_coverage(c('chr20:10286777-10288069:+',
+                'chr18:74690788-74692427:-',
+                'chr19:49932861-49933829:-'))
+
+candidates <- c('chr20:10286777-10288069:+',
+                'chr18:74690788-74692427:-',
+                'chr19:49932861-49933829:-')
+
+## General syntax:
+plot_coverage(candidates, PDF = '/path/to/directory/PDF_file.pdf')
+
+plot_coverage('chr20:10286777-10288069:+',
+    PDF = '/path/to/directory/PDF_file.pdf')
 }
+}
+\author{
+Amanda J Price
 }

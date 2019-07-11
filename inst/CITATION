@@ -1,0 +1,18 @@
+pkgVer <- function(pkg) {
+    if (!exists("meta") || is.null(meta)) meta <- packageDescription(pkg)
+    ver <- meta$Version
+    paste0('https://github.com/LieberInstitute/', pkg, ' - R package version ', ver)
+}
+
+c(
+    bibentry(bibtype="manual",
+        title = "Helpful plots and annotation for choosing BrainFlow target probe sequence",
+        author = personList(
+            as.person("Amanda J Price")
+        ),
+        year = format(Sys.Date(), "%Y"),
+        url = "http://www.bioconductor.org/packages/brainflowprobes",
+        note = pkgVer('brainflowprobes'),
+        doi = '10.18129/B9.bioc.brainflowprobes'
+    )
+)

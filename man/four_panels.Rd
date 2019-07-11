@@ -4,19 +4,30 @@
 \alias{four_panels}
 \title{Plot expression coverage in four datasets for candidate probe sequences.}
 \usage{
-four_panels(REGION, PATH = "Default", JUNCTIONS = FALSE)
+four_panels(REGION, PDF = "four_panels.pdf", JUNCTIONS = FALSE,
+  COVERAGE = NULL, VERBOSE = TRUE)
 }
 \arguments{
 \item{REGION}{Either a single hg19 genomic sequence including the chromosome,
 start, end, and optionally strand separated by colons (e.g.,
-"chr20:10199446-10288068:+"), or a string of sequences. Must be character.
-Chromosome must be proceeded by "chr".}
+'chr20:10199446-10288068:+'), or a string of sequences. Must be character.
+Chromosome must be proceeded by 'chr'.}
 
-\item{PATH}{This parameter indicates the path where the plot(s) should be
-saved. "Default" indicated the file will be saved in the working directory.}
+\item{PDF}{The path and name of the PDF file. Defaults to
+\code{four_panels.pdf}.}
 
 \item{JUNCTIONS}{A logical value indicating if the candidate probe sequence
 spans splice junctions (Default=FALSE).}
+
+\item{COVERAGE}{The output of \link{brainflowprobes_cov} for the input
+\code{REGION}. Defaults to \code{NULL} but it can be pre-computed and saved
+separately since this is the step that takes the longest to run. Also, this
+is the only step that depends on rtracklayer's functionality for reading
+BigWig files which does not run on Windows OS. So it could be run on a
+non-Windows machine, saved, and then shared with Windows users.}
+
+\item{VERBOSE}{A logical value indicating whether to print updates from the
+process of loading the data from the BigWig files.}
 }
 \value{
 \code{four_panels} first annotates the input candidate probe
@@ -61,20 +72,40 @@ fourth plot (Single Cells) shows the expression coverage in single cells
 isolated from human temporal lobe.
 }
 \examples{
-four_panels("chr20:10286777-10288069:+")
 
-four_panels(c("chr20:10286777-10288069:+",
-              "chr18:74690788-74692427:-",
-              "chr19:49932861-49933829:-"))
-
-PENK_exons <- c("chr8:57353587-57354496:-",
-                "chr8:57358375-57358515:-",
-                "chr8:57358985-57359040:-",
-                "chr8:57359128-57359292:-")
-four_panels(PENK_exons, JUNCTIONS=TRUE, PATH = "/path/to/directory/")
+## Here we use the pre-saved example coverage data such that this example
+## will run fast!
+four_panels('chr20:10286777-10288069:+',
+    COVERAGE = four_panels_example_cov)
 
 \dontrun{
-
-four_panels("chr20:10286777-10288069:+", PATH = "/path/to/directory")
+## Without using COVERAGE, this function reads BigWig files from the web
+## using rtracklayer and this functionality is not supported on Windows
+## machines.
+if(.Platform$OS.type != 'windows') {
+    ## This example takes 10 minutes to run!
+    four_panels('chr20:10286777-10288069:+')
 }
+
+## These examples will take several minutes to run depending on your
+## internet connection
+four_panels(c('chr20:10286777-10288069:+',
+              'chr18:74690788-74692427:-',
+              'chr19:49932861-49933829:-'))
+
+PENK_exons <- c('chr8:57353587-57354496:-',
+                'chr8:57358375-57358515:-',
+                'chr8:57358985-57359040:-',
+                'chr8:57359128-57359292:-')
+
+## General syntax
+four_panels(PENK_exons, JUNCTIONS=TRUE,
+    PDF = '/path/to/directory/PDF_file.pdf')
+
+four_panels('chr20:10286777-10288069:+',
+    PDF = '/path/to/directory/PDF_file.pdf')
+}
+}
+\author{
+Amanda J Price
 }

@@ -1,0 +1,7 @@
+CHANGES IN VERSION 0.99.0
+-------------------------
+
+NEW FEATURES
+
+    o Created the four_panels(), region_info() and plot_coverage() functions.
+    o My first R/Bioconductor package! ^^

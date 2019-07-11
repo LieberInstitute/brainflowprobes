@@ -1,28 +1,40 @@
 Package: brainflowprobes
 Type: Package
 Title: Helpful plots and annotation for choosing BrainFlow target probe sequence 
-Version: 0.1.0
-Author: person("Amanda", "Price", email = "hadley@rstudio.com", 
-  role = c("aut", "cre"))
-Maintainer: Amanda Price <amanda.joy.price@gmail.com>
-Description: Use these functions to characterize potential genomic regions for BrainFlow target probe design.
-License: CC0
+Version: 0.99.0
+Authors@R: c(person("Amanda", "Price", email = "amanda.joy.price@gmail.com", 
+  role = c("aut", "cre"), comment = c(ORCID = "0000-0001-7352-3732")),
+  person("Leonardo", "Collado-Torres", role = c("ctb"), 
+  email = "lcolladotor@gmail.com", comment = c(ORCID = "0000-0003-2140-308X")))
+Description: Use these functions to characterize potential genomic regions for
+  BrainFlow target probe design.
+License: Artistic-2.0
 Encoding: UTF-8
 LazyData: true
+Depends:
+    R (>= 3.6.0)
 Imports:
     Biostrings (>= 2.52.0),
     BSgenome.Hsapiens.UCSC.hg19 (>= 1.4.0),
     bumphunter (>= 1.26.0),
-    cowplot (>= 0.9.4),
+    cowplot (>= 1.0.0),
     derfinder (>= 1.18.1),
     derfinderPlot (>= 1.18.1),
     GenomicRanges (>= 1.36.0),
     ggplot2 (>= 3.1.1),
-    gridExtra (>= 2.3),
     RColorBrewer (>= 1.1),
-    rtracklayer (>= 1.44.0)
+    utils,
+    grDevices
 RoxygenNote: 6.1.1
 Suggests: 
+    BiocStyle,
+    knitcitations,
     knitr,
-    rmarkdown
+    rmarkdown,
+    sessioninfo,
+    testthat (>= 2.1.0)
 VignetteBuilder: knitr
+URL: https://github.com/LieberInstitute/brainflowprobes
+BugReports: https://support.bioconductor.org/t/brainflowprobes/
+biocViews: Coverage, Visualization, ExperimentalDesign, Transcriptomics, 
+    FlowCytometry, GeneTarget

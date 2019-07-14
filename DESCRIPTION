@@ -1,12 +1,12 @@
 Package: brainflowprobes
 Type: Package
-Title: Helpful plots and annotation for choosing BrainFlow target probe sequence 
+Title: Plots and annotation for choosing BrainFlow target probe sequence 
 Version: 0.99.0
 Authors@R: c(person("Amanda", "Price", email = "amanda.joy.price@gmail.com", 
   role = c("aut", "cre"), comment = c(ORCID = "0000-0001-7352-3732")),
   person("Leonardo", "Collado-Torres", role = c("ctb"), 
   email = "lcolladotor@gmail.com", comment = c(ORCID = "0000-0003-2140-308X")))
-Description: Use these functions to characterize potential genomic regions for
+Description: Use these functions to characterize genomic regions for
   BrainFlow target probe design.
 License: Artistic-2.0
 Encoding: UTF-8

@@ -63,7 +63,7 @@ write.bibtex(bib, file = 'brainflowprobes_ref.bib')
 
 `R` is an open-source statistical environment which can be easily modified to enhance its functionality via packages. `r Biocpkg('brainflowprobes')` is an `R` package available via the [Bioconductor](http://bioconductor/packages/brainflowprobes) repository for packages. `R` can be installed on any operating system from [CRAN](https://cran.r-project.org/) after which you can install `r Biocpkg('brainflowprobes')` by using the following commands in your `R` session:
 
-```{r 'installDer', eval = FALSE}
+```{r 'install', eval = FALSE}
 install.packages("BiocManager")
 BiocManager::install("brainflowprobes")
 
@@ -90,17 +90,17 @@ We hope that `r Biocpkg('brainflowprobes')` will be useful for your research. Pl
 citation('brainflowprobes')
 ```
 
-# Introduction `r Biocpkg('brainflowprobes')`
+# Introduction
 
-`r Biocpkg('brainflowprobes')` is an R package that contains four functions to aid in designing probes to target specific RNA sequence in nuclei isolated from human postmortem brain using flow cytometry. `r Biocpkg('brainflowprobes')` was made to support the method described in the BrainFlow publication.
+`r Biocpkg('brainflowprobes')` is an R package that contains four functions to aid in designing probes to target RNA sequences in nuclei isolated from human postmortem brain using flow cytometry. `r Biocpkg('brainflowprobes')` was made to support the method described in the BrainFlow publication, which is based on the Invitrogen PrimeFlow&#174 RNA kit.
 
-# Notes before starting
+## Notes before starting
 
-This package is only compatible with hg19 sequences. Also, because of the type of data used, the plotting functions `plot_coverage()` and `four_panels()` do not work on Windows machines. To plot the data, please use `R` installed on either Mac or Linux operating systems. The `region_info()` function can still be used on Windows machines for creating an annotated `.csv` file to send to Thermo Fisher for custom probe synthesis.
+This package is currently only compatible with hg19 sequences. Also, because of the type of data used, the plotting functions `plot_coverage()` and `four_panels()` do not work on Windows machines. To visualize the data, please use `R` installed on either Mac or Linux operating systems. The `region_info()` function can still be used on Windows machines for creating an annotated `.csv` file to get the information required for custom probe synthesis.
 
 # Choosing candidate RNA sequences
 
-Which genes you choose to target will ultimately depend on the purpose of your experiment. BrainFlow can be used to isolate specific cell populations for downstream sequencing, for instance, or to assess the coexpression of up to four transcripts at a time at single-nucleus resolution. For the highest probability of success, however, several parameters should be considered when choosing a sequence to target. Target sequences are more likely to be successful if they:
+Which genes you choose to target will ultimately depend on the purpose of your experiment. BrainFlow can be used to isolate specific cell populations for downstream sequencing, for instance, or to assess the coexpression of up to four transcripts at a time at single-nucleus resolution. For the highest probability of success, however, several parameters should be considered when choosing a sequence to target, no matter the purpose. Target sequences are more likely to be successful if they:
 
 * Are at least 1kb of contiguously expressed sequence (mandatory)
 * Are as highly expressed a target as possible (within the cell population of interest)
@@ -113,7 +113,7 @@ More details about probe design and each of these considerations can be found in
 
 # Annotating a candidate sequence
 
-Let's say you want to design a probe to target deep layer pyramidal neurons in the prefrontal cortex. You choose TBR1 because of its role in neuronal identity specification in these cells, and you want to see if the last exon of this gene, a ~2.5 Kb sequence, would make for a good probe target. You find that the HG19 coordinates for this exon are `chr2:162279880-162282378:+` using the UCSC Genome browser (for instance), where `chr2` stands for chromosome 2, `162279880-162282378` is the start and end of the exon, and `+` means that it is on the plus strand.
+Let's say you want to design a probe to target deep layer pyramidal neurons in the prefrontal cortex. You choose TBR1 because of its role in neuronal identity specification in these cells, and you want to see if the last exon of this gene, a ~2.5 Kb sequence, would make for a good probe target. You find using the UCSC Genome browser (for instance) that the hg19 coordinates for this exon are `chr2:162279880-162282378:+`, where `chr2` is the chromosome, `162279880-162282378` is the start and end of the exon, and `+` means that it is on the plus strand.
 
 Before any of the `r Biocpkg('brainflowprobes')` functions can be used, the package must be loaded and attached:
 
@@ -122,13 +122,13 @@ Before any of the `r Biocpkg('brainflowprobes')` functions can be used, the pack
 library('brainflowprobes')
 ```
 
-The next step is to use the `region_info()` function to annotate the sequence in a `.csv` file that can be sent to Thermo Fisher when asking to custom synthesize a probe:
+The next step is to use the `region_info()` function to annotate the sequence in a `.csv` file that can be used to custom synthesize a target probe:
 
 ```{r 'annotate'}
-region_info("chr2:162279880-162282378:+", CSV = TRUE, SEQ = TRUE, PATH = ".")
+region_info("chr2:162279880-162282378:+", CSV = FALSE, SEQ = TRUE, PATH = ".")
 ```
 
-This function will annotate the specified genomic regions (sequences) by calling the \code{\link[bumphunter]{matchGenes}} function. The output is a table where the first six columns include the coordinates (chromosome, start, end, and strand), width, and the name of the nearest gene. The proceeding columns list further information about the nearest gene and where the region is in relation to the gene. These columns are described in the documentation for \code{\link[bumphunter]{matchGenes}}, reprinted below:
+This function will annotate the specified genomic regions (sequences) by calling the `matchGenes()` function from the `r Biocpkg('bumphunter')` package. The output is a table where the first six columns include the coordinates (chromosome, start, end, and strand), region width, and the name of the nearest gene. The proceeding columns list further information about the nearest gene and where the region is in relation to that gene. These columns are described in the documentation for `matchGenes()`, reprinted below:
 
 | Column | Description |
 |:------------- |:-------------|
@@ -145,38 +145,111 @@ This function will annotate the specified genomic regions (sequences) by calling
 | codingL | the coding length | 
 | Entrez | Entrez ID of closest gene |
 
-If `CSV = TRUE`, a file called `region_info.csv` will be printed in your working directory, unless another location and file name are listed in the `PATH` option. It is important that `chr` preceeds the chromosome, that the sequence is hg19, and that the candidate coordinates are encased in quotation marks (this tells R that it should read the coordinates as a character class). The output of this function is what can be sent to Thermo Fisher to specify the sequences you would like to be targeted.
+If `CSV = TRUE`, a file called `region_info.csv` will be printed in your working directory, unless another location and file name are listed in the `PATH` option. It is important that `chr` preceeds the chromosome number, that the sequence is hg19, and that the candidate coordinates are encased in quotation marks (this tells `R` that it should read the coordinates as a character class). The output of this function is what can be sent to Invitrogen to specify the sequences you would like to be targeted.
 
 # Plotting expression coverage across a candidate region
 
-`r Biocpkg('brainflowprobes')` includes two functions that visualize expression information about candidate target regions based on four external datasets. Coverage data for these external samples are stored online as BigWig tracks that unfortunately cannot be called using R on a Windows operating system. For users with Mac or Linux machines, expression of candidate regions in these datasets can be loaded and visualized using `plot_coverage()` and `four_panels()`.
+`r Biocpkg('brainflowprobes')` includes two functions that visualize expression information about candidate target regions based on four external datasets. Coverage data for these external datasets are stored online as BigWig tracks that unfortunately cannot be called using `R` on a Windows operating system. For users with Mac or Linux machines, expression of candidate regions in these datasets can be loaded and visualized using `plot_coverage()` and `four_panels()`.
 
-`plot_coverage()` uses the \code{\link[derfinder]{getRegionCoverage}} function from the `r Biocpkg('derfinder')` package to cut the coverage values for any regions of interest (specified in the `REGION` option) in a set of nuclear (N) and cytoplasmic (C) RNA-seq samples derived from adult (A) and fetal (F) human cortex. Two different RNA-seq libraries based on either polyA-enrichment (P) or rRNA depletion (R) were generated and sequenced for each fraction-age pair, resulting in eight groups of samples. Optimal candidate target probe sequences will be highly and uniformly expressed across the region.
+`plot_coverage()` uses the `getRegionCoverage()` function from the `r Biocpkg('derfinder')` package to cut the coverage values for region(s) of interest (specified in the `REGION` option) in a set of nuclear (N) and cytoplasmic (C) RNA-seq samples derived from adult (A) and fetal (F) human cortex. In this dataset, two different RNA-seq libraries based on either polyA-enrichment (P) or rRNA depletion (R) were generated and sequenced for each fraction-age pair, resulting in eight groups of samples. Optimal candidate target probe sequences will be highly and uniformly expressed across the region.
 
-```{r 'visualize coverage'}
+```{r 'visualize coverage', eval = FALSE}
 plot_coverage("chr2:162279880-162282378:+", 
               PDF = "regionCoverage_fractionedData.pdf",
-              COVERAGE = NULL, VERBOSE = TRUE)
+              COVERAGE = NULL, VERBOSE = FALSE)
+```
+```{r, include=TRUE, fig.align="center", echo=FALSE}
+knitr::include_graphics("./regionCoverage_fractionedData.pdf")
 ```
 
-In the example of the sixth exon of TBR1, 
+In this example, this exon is highly expressed in both nuclear and cytoplasmic RNA but is not uniformly expressed. 2.5 Kb (the length of this exon) is longer than the minimum for probe synthesis, so we can limit the coordinates to exclude the lower-expressed sequence:   
 
-using `brainflowprobes_cov.R`
+```{r 'visualize shorter region coverage', eval = FALSE}
+plot_coverage("chr2:162280900-162282378:+", 
+              PDF = "regionCoverage_fractionedData_shorter.pdf",
+              COVERAGE = NULL, VERBOSE = FALSE)
+```
+```{r, include=TRUE, fig.align="center", echo=FALSE}
+knitr::include_graphics("./regionCoverage_fractionedData_shorter.pdf")
+```
+
+These new coordinates are now evenly expressed across a ~1.5 Kb region.
 
 # Assessing other parameters for a candidate region using four_panels()
 
+Calculating coverage can take several minutes depending on the number of candidate regions being assessed. The coverage can also be pre-computed outside the context of the plotting functions using `brainflowprobes_cov()`, and then specified in the `COVERAGE` parameter of either `plot_coverage()` or `four_panels()`. 
 
+```{r 'precalculate coverage', eval = FALSE}
+tbr1.cov <- brainflowprobes_cov("chr2:162280900-162282378:+", VERBOSE = FALSE)
+```
+
+This example takes ~10 minutes to run. The resulting `tbr1.cov` object includes a list for each of the four external datasets of coverage across each region being assayed. In this case, coverage at each of the 1479 bases of the TBR1 exon is reported for each sample of the four datasets.
+
+A snapshot of coverage, degradation and cell type specificity can be estimated using the `four_panels()` function:
+
+```{r 'plot four panels', eval = FALSE}
+four_panels("chr2:162280900-162282378:+",
+            PDF = "four_panels.pdf",
+            JUNCTIONS = FALSE,
+            COVERAGE = tbr1.cov, VERBOSE = FALSE)
+```
+```{r, include=TRUE, fig.align="center", echo=FALSE}
+knitr::include_graphics("./four_panels.pdf")
+```
+
+The upper left panel (Separation) shows a boxplot of the mean transformed coverage value across the 1.5 Kb region in the fractionated data used by `plot_coverage` described above. This region is expressed at about the same level in both nuclear (N) and cytoplasmic (C) samples, making this a good candidate so far.
+
+The upper right panel (Degradation) plots the mean transformed coverage in cortical tissue samples left on a benchtop at room temperature for 0-60 minutes (x-axis) before RNA extraction and sequencing using either polyA selection ("polyA") or rRNA depletion ("Ribo") library preparation kits. Expression coverage of this region does not reduce after an hour at room temperature, meaning that this sequence may be a good candidate for target probe synthesis.
+
+The lower left panel (Sorted) shows expression of the region in nuclear RNA that has been sorted based on NeuN antibody labeling and sequenced using two library preparation strategies: polyA selection ("PolyA") or rRNA depletion ("RiboGone"). NeuN+ (positive) samples are enriched for neurons, while NeuN- (negative) samples are enriched for non-neurons such as the subclasses of glia or epithelial cells. Although these samples were collected using a different protocol, as products of flow cytometric sorting of postmortem brain tissue, they provide insight to the level of detectable expression that may be expected from sorted nuclear RNA. If your target gene is cell type-specific (such as TBR1), it can also be used as a sanity check for the expected neuronal-enriched expression pattern of that gene.
+
+The lower right panel (Single Cells) shows the expression of the region in 466 single cells isolated from human cortex or hippocampus and can be used to verify the cell type-specificity of the expression pattern, should you be interested in a cell type-specific target. In the case of the 6th exon of TBR1, it is selectively expressed in quiescent fetal brain cells and a subset of adult neurons, as is expected given its biological role. 
+
+After generating these plots, one can conclude that `chr2:162280900-162282378:+` is a strong candidate for a target probe. To design a custom probe, go to https://www.thermofisher.com/order/custom-oligo/brancheddna. Enter the name of the probe (e.g., TBR1_exon6), choose 'Prime Flow' as the chemistry, 'RNA' as the target, and your desired fluorophore. We recommend shoowing Alexa Fluor 647 as it is the brightest and will offer the greatest chance of success. Choose '[Hs] Human' as the species, and copy the sequence from `region_info.csv` to the target information. In the comment field, mention that this probe is for targeting nuclear RNA from human postmortem brain using BrainFlow application of the Invitrogen PrimeFlow&#174 RNA assay.  
+
+Even though it appears to be a good candidate however, it must still be validated experimentally. 
 
 # Assessing many candidate sequences at a time
 
+Say rather than one candidate you have a list of differentially expressed regions that are upregulated in your cell population of interest and you want to see which would make the best BrainFlow target probes. In this case, you can input a list of coordinates:
 
+```{r 'annotate multiple'}
+candidates <- c("chr2:162279880-162282378:+", "chr11:31806351-31811553", 
+                "chr7:103112236-103113354")
+
+region_info(candidates, CSV = FALSE, SEQ = FALSE)
+```
+
+Each candidate target probe region will be output as a row in the `region_info.csv` table.
+
+When multiple regions are assessed concurrently using `plot_coverage()` and `four_panels()`, each region will be plotted and saved as individual pages in a pdf. It is recommended to not assess more than 50 or so regions as a time because of size and ease of interpretibility. An example would look like this (this example won't run in this vignette to keep loading time down):
+
+```{r 'plot multiple', eval=FALSE}
+plot_coverage(candidates, PDF = "regionCoverage_fractionedData_multiple.pdf")
+
+four_panels(candidates, PDF = "four_panels_multiple.pdf")
+```
+
+# Spanning splice junctions
+
+Sometimes a gene may be too short to avoid a sequence that spans splice junctions, or you may be interested in creating a target probe that matches a probe that has been designed for another assay (sich as FISH). In this case, the start and end of the entire spliced sequence can be used as input to both `region_info()` and `plot_coverage()`. Because `four_panels()` averages the coverage across each candidate region, you want to exclude intron sequence. In this case, you may input the coordinates of the exons within a transcript of interest and specify that `JUNCTIONS = TRUE`. For instance, when designing a probe for PENK we wanted to target bases 2-1273 of NM_001135690.2 to match another probe from a different assay. From the UCSC genome browser, one can identify the coordinates of the exons within this transcript:
+
+```{r 'PENK', eval=FALSE}
+PENK_exons <- c('chr8:57353587-57354496:-', 'chr8:57358375-57358515:-',
+                'chr8:57358985-57359040:-', 'chr8:57359128-57359292:-')
+
+four_panels(PENK_exons, JUNCTIONS = TRUE, PDF = 'PENK_panels.pdf')
+```
+
+By specifying `JUNCTIONS = TRUE`, `four_panels()` will average the coverage of the four exons rather than plotting each exon on an individual pdf page.
 
 # Final considerations
 
-Choose fluorophores according to your experimental design needs.
-Can also be ordered high sensitivity (20 feet instead of 10)
-There are no hard cutoffs for what will work as a probe in the assay, and all custom target probes designed using these plots will ultimately have to be validated at the bench.  
-How to send it to Thermo Fisher for synthesis.
+Depending on the length of the target sequence, you may be able to synthesize a high sensitivity probe that includes 20 rather than 10 target-hybridizing pairs (See BrainFlow methods or the PrimFlow RNA literature for more information).
+
+Also, it is worth noting that there are no hard cutoffs for what will work as a probe in the assay even if all the data looks as it should. All custom target probes designed using these plots will ultimately have to be validated at the bench.  
+
+Good luck and happy sorting!
 
 # Reproducibility
 

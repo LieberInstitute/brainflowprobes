@@ -72,7 +72,7 @@ NULL
 #' @docType data
 #' @format A list of four data.frames with TODO columns.
 #' \describe{
-#'     \item{Sep }{ phenotype information from
+#'     \item{Sep }{ phenotype information for samples from
 #'     https://www.biorxiv.org/content/10.1101/567966v1; a data.frame with 23
 #'     rows and 15 columns. Column descriptions: SampleID is the sample name,
 #'     Zone is the RNA fraction of the sample ("Nucleus" or "Cytosol"), Age,
@@ -84,7 +84,7 @@ NULL
 #'     LabelFrac are columns of information for plotting, BigWig is the name of
 #'     the BigWig file for each sample, and files lists the URL for the BigWig
 #'     online.}
-#'     \item{Deg }{ phenotype information from
+#'     \item{Deg }{ phenotype information for samples from
 #'     https://www.pnas.org/content/114/27/7130; a data.frame with 40 rows and
 #'     16 columns. Column descriptions: DegradationTime is the number of minutes
 #'      the brain tissue for each sample was left on the benchtop at room
@@ -101,7 +101,7 @@ NULL
 #'       number of mapped reads, BigWig is the name of the BigWig file,
 #'       SampleID_library is the Sample ID and library column values together,
 #'       and files lists the URL for the BigWig online.}
-#'     \item{Cell }{ phenotype information from
+#'     \item{Cell }{ phenotype information for samples from
 #'     https://www.pnas.org/content/112/23/7285; a data.frame with 466
 #'     rows and 11 columns. Column descriptions: geo_accession is the accession
 #'     number for each sample in the Gene Expression Omnibus, Age is the numeric
@@ -113,7 +113,7 @@ NULL
 #'     SubjectID is the subject label, sumMapped is the number of mapped reads,
 #'     BigWig is the name of the BigWig file, and files lists the URL for the
 #'     BigWig online.}
-#'     \item{Sort }{ phenotype information from
+#'     \item{Sort }{ phenotype information  for samples from
 #'     https://www.biorxiv.org/content/10.1101/428391v2; a data.frame with 12
 #'     rows and 12 columns. Column descriptions: Description categorizes the
 #'     RNAseq library preparation method as polyA selection ("PolyA") or rRNA

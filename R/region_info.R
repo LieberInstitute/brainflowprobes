@@ -65,8 +65,8 @@ region_info <- function(REGION, CSV = TRUE, SEQ = TRUE, PATH = ".") {
     nearestAnnotation = bumphunter::matchGenes(x = gr,
         subject = brainflowprobes::genes)
     nearestAnnotation = nearestAnnotation[,
-        which(colnames(nearestAnnotation) !=
-            "strand")]
+        -which(colnames(nearestAnnotation) %in%
+            c("strand", "subjectHits"))]
 
     if (SEQ == TRUE) {
         df <- cbind(as.data.frame(gr),

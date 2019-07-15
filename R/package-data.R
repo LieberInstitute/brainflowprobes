@@ -72,10 +72,10 @@ NULL
 #' @docType data
 #' @format A list of four data.frames with TODO columns.
 #' \describe{
-#'     \item{Sep }{ phenotype information from TODO,}
-#'     \item{Deg }{ phenotype information from TODO,}
-#'     \item{Cell }{ phenotype information from TODO,}
-#'     \item{Sort }{ phenotype information from TODO.}
+#'     \item{Sep }{ phenotype information from https://www.biorxiv.org/content/10.1101/567966v1,}
+#'     \item{Deg }{ phenotype information from https://www.pnas.org/content/114/27/7130,}
+#'     \item{Cell }{ phenotype information from https://www.pnas.org/content/112/23/7285,}
+#'     \item{Sort }{ phenotype information from https://www.biorxiv.org/content/10.1101/428391v2.}
 #' }
 #'
 #' @keywords datasets

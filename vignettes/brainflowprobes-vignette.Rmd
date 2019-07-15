@@ -1,5 +1,5 @@
 ---
-title: "brainflowprobes users guide"
+title: "brainflowprobes user guide"
 author: 
   - name: Amanda Price
     affiliation:
@@ -61,7 +61,7 @@ write.bibtex(bib, file = 'brainflowprobes_ref.bib')
 
 ## Install `r Biocpkg('brainflowprobes')`
 
-`R` is an open-source statistical environment which can be easily modified to enhance its functionality via packages. `r Biocpkg('brainflowprobes')` is a `R` package available via the [Bioconductor](http://bioconductor/packages/brainflowprobes) repository for packages. `R` can be installed on any operating system from [CRAN](https://cran.r-project.org/) after which you can install `r Biocpkg('brainflowprobes')` by using the following commands in your `R` session:
+`R` is an open-source statistical environment which can be easily modified to enhance its functionality via packages. `r Biocpkg('brainflowprobes')` is an `R` package available via the [Bioconductor](http://bioconductor/packages/brainflowprobes) repository for packages. `R` can be installed on any operating system from [CRAN](https://cran.r-project.org/) after which you can install `r Biocpkg('brainflowprobes')` by using the following commands in your `R` session:
 
 ```{r 'installDer', eval = FALSE}
 install.packages("BiocManager")
@@ -73,16 +73,13 @@ BiocManager::valid()
 
 ## Required knowledge
 
-`r Biocpkg('brainflowprobes')` is based on many other packages and in particular in those that have implemented the infrastructure needed for dealing with RNA-seq data. That is, packages like `r Biocpkg('GenomicFeatures')` and `r Biocpkg('rtracklayer')` that allow you to import the data. A `r Biocpkg('brainflowprobes')` user is not expected to deal with those packages directly but will need to be familiar with `r Biocpkg('SummarizedExperiment')` to understand the results `r Biocpkg('brainflowprobes')` generates. It might also prove to be highly beneficial to check the
+`r Biocpkg('brainflowprobes')` is based on many other packages, particularly `r Biocpkg('GenomicRanges')`, `r Biocpkg('derfinder')`, and `r Biocpkg('derfinderPlot')`. A `r Biocpkg('brainflowprobes')` user is not expected to deal with those packages directly, but may find their manuals useful.
 
-
-* `r Biocpkg('derfinder')` package for performing annotation-agnostic differential expression analysis.
-
-If you are asking yourself the question "Where do I start using Bioconductor?" you might be interested in [this blog post](http://lcolladotor.github.io/2014/10/16/startBioC/#.VkOKbq6rRuU).
+If you are asking yourself the question "How do I start using Bioconductor?" you might be interested in [this blog post](http://lcolladotor.github.io/2014/10/16/startBioC/#.VkOKbq6rRuU).
 
 ## Asking for help
 
-As package developers, we try to explain clearly how to use our packages and in which order to use the functions. But `R` and `Bioconductor` have a steep learning curve so it is critical to learn where to ask for help. The blog post quoted above mentions some but we would like to highlight the [Bioconductor support site](https://support.bioconductor.org/) as the main resource for getting help: remember to use the `recount` tag and check [the older posts](https://support.bioconductor.org/t/brainflowprobes/). Other alternatives are available such as creating GitHub issues and tweeting. However, please note that if you want to receive help you should adhere to the [posting guidelines](http://www.bioconductor.org/help/support/posting-guide/). It is particularly critical that you provide a small reproducible example and your session information so package developers can track down the source of the error.
+The blog post quoted above mentions some options, but we would like to highlight the [Bioconductor support site](https://support.bioconductor.org/) as the main resource for getting help: remember to use the `brainflowprobes` tag and check [the older posts](https://support.bioconductor.org/t/brainflowprobes/). Other alternatives are available such as creating GitHub issues and tweeting. However, please note that if you want to receive help you should adhere to the [posting guidelines](http://www.bioconductor.org/help/support/posting-guide/). It is particularly critical that you provide a small reproducible example and your session information so package developers can track down the source of the error.
 
 ## Citing `r Biocpkg('brainflowprobes')`
 
@@ -93,10 +90,93 @@ We hope that `r Biocpkg('brainflowprobes')` will be useful for your research. Pl
 citation('brainflowprobes')
 ```
 
-# Quick start to using to `r Biocpkg('brainflowprobes')`
+# Introduction `r Biocpkg('brainflowprobes')`
 
-TODO
+`r Biocpkg('brainflowprobes')` is an R package that contains four functions to aid in designing probes to target specific RNA sequence in nuclei isolated from human postmortem brain using flow cytometry. `r Biocpkg('brainflowprobes')` was made to support the method described in the BrainFlow publication.
 
+# Notes before starting
+
+This package is only compatible with hg19 sequences. Also, because of the type of data used, the plotting functions `plot_coverage()` and `four_panels()` do not work on Windows machines. To plot the data, please use `R` installed on either Mac or Linux operating systems. The `region_info()` function can still be used on Windows machines for creating an annotated `.csv` file to send to Thermo Fisher for custom probe synthesis.
+
+# Choosing candidate RNA sequences
+
+Which genes you choose to target will ultimately depend on the purpose of your experiment. BrainFlow can be used to isolate specific cell populations for downstream sequencing, for instance, or to assess the coexpression of up to four transcripts at a time at single-nucleus resolution. For the highest probability of success, however, several parameters should be considered when choosing a sequence to target. Target sequences are more likely to be successful if they:
+
+* Are at least 1kb of contiguously expressed sequence (mandatory)
+* Are as highly expressed a target as possible (within the cell population of interest)
+* Are as highly expressed in nuclear RNA as possible
+* Are selectively expressed in the cell population of interest
+* Are robust to degradation due to postmortem factors
+* Avoid splice junctions if it can be helped (given that we’re profiling nuclear RNA)
+
+More details about probe design and each of these considerations can be found in the BrainFlow manuscript. One strategy for choosing a sequence could be to choose the 3'UTR of a transcript of interest. Another strategy (and how many of the probes already validated in the BrainFlow manuscript were designed) is to identify expressed regions using the `r Biocpkg('derfinder')` package. However you choose which sequences to test, the `r Biocpkg('brainflowprobes')` package will help narrow down the best sequences for which to synthesize target probes. 
+
+# Annotating a candidate sequence
+
+Let's say you want to design a probe to target deep layer pyramidal neurons in the prefrontal cortex. You choose TBR1 because of its role in neuronal identity specification in these cells, and you want to see if the last exon of this gene, a ~2.5 Kb sequence, would make for a good probe target. You find that the HG19 coordinates for this exon are `chr2:162279880-162282378:+` using the UCSC Genome browser (for instance), where `chr2` stands for chromosome 2, `162279880-162282378` is the start and end of the exon, and `+` means that it is on the plus strand.
+
+Before any of the `r Biocpkg('brainflowprobes')` functions can be used, the package must be loaded and attached:
+
+```{r 'start', message=FALSE}
+## Load brainflowprobes R package
+library('brainflowprobes')
+```
+
+The next step is to use the `region_info()` function to annotate the sequence in a `.csv` file that can be sent to Thermo Fisher when asking to custom synthesize a probe:
+
+```{r 'annotate'}
+region_info("chr2:162279880-162282378:+", CSV = TRUE, SEQ = TRUE, PATH = ".")
+```
+
+This function will annotate the specified genomic regions (sequences) by calling the \code{\link[bumphunter]{matchGenes}} function. The output is a table where the first six columns include the coordinates (chromosome, start, end, and strand), width, and the name of the nearest gene. The proceeding columns list further information about the nearest gene and where the region is in relation to the gene. These columns are described in the documentation for \code{\link[bumphunter]{matchGenes}}, reprinted below:
+
+| Column | Description |
+|:------------- |:-------------|
+| annotation | RefSeq ID | 
+| description | a factor with levels c("upstream", "promoter", "overlaps 5'", "inside intron", "inside exon", "covers exon(s)", "overlaps exon upstream", "overlaps exon downstream", "overlaps two exons", "overlaps 3'", "close to 3'", "downstream", "covers") |
+| region | a factor with levels c("upstream", "promoter", "overlaps 5'", "inside", "overlaps 3'", "close to 3'", "downstream", "covers") | 
+| distance | distance before 5' end of gene | 
+| subregion | a factor with levels c("inside intron", "inside exon", "covers exon(s)", "overlaps exon upstream", "overlaps exon downstream", "overlaps two exons") | 
+| insideDistance | distance past 5' end of gene | 
+| exonnumber | which exon | 
+| nexons | number of exons | 
+| UTR | a factor with levels c("inside transcription region", "5' UTR", "overlaps 5' UTR", "3'UTR", "overlaps 3'UTR", "covers transcription region") | 
+| geneL | the gene length | 
+| codingL | the coding length | 
+| Entrez | Entrez ID of closest gene |
+
+If `CSV = TRUE`, a file called `region_info.csv` will be printed in your working directory, unless another location and file name are listed in the `PATH` option. It is important that `chr` preceeds the chromosome, that the sequence is hg19, and that the candidate coordinates are encased in quotation marks (this tells R that it should read the coordinates as a character class). The output of this function is what can be sent to Thermo Fisher to specify the sequences you would like to be targeted.
+
+# Plotting expression coverage across a candidate region
+
+`r Biocpkg('brainflowprobes')` includes two functions that visualize expression information about candidate target regions based on four external datasets. Coverage data for these external samples are stored online as BigWig tracks that unfortunately cannot be called using R on a Windows operating system. For users with Mac or Linux machines, expression of candidate regions in these datasets can be loaded and visualized using `plot_coverage()` and `four_panels()`.
+
+`plot_coverage()` uses the \code{\link[derfinder]{getRegionCoverage}} function from the `r Biocpkg('derfinder')` package to cut the coverage values for any regions of interest (specified in the `REGION` option) in a set of nuclear (N) and cytoplasmic (C) RNA-seq samples derived from adult (A) and fetal (F) human cortex. Two different RNA-seq libraries based on either polyA-enrichment (P) or rRNA depletion (R) were generated and sequenced for each fraction-age pair, resulting in eight groups of samples. Optimal candidate target probe sequences will be highly and uniformly expressed across the region.
+
+```{r 'visualize coverage'}
+plot_coverage("chr2:162279880-162282378:+", 
+              PDF = "regionCoverage_fractionedData.pdf",
+              COVERAGE = NULL, VERBOSE = TRUE)
+```
+
+In the example of the sixth exon of TBR1, 
+
+using `brainflowprobes_cov.R`
+
+# Assessing other parameters for a candidate region using four_panels()
+
+
+
+# Assessing many candidate sequences at a time
+
+
+
+# Final considerations
+
+Choose fluorophores according to your experimental design needs.
+Can also be ordered high sensitivity (20 feet instead of 10)
+There are no hard cutoffs for what will work as a probe in the assay, and all custom target probes designed using these plots will ultimately have to be validated at the bench.  
+How to send it to Thermo Fisher for synthesis.
 
 # Reproducibility
 

@@ -103,6 +103,10 @@ four_panels <- function(REGION,
     VERBOSE = TRUE) {
 
 
+    ## For R CMD check
+    BrNum <- Cell_type <- Cov <- DegradationTime <- Label <- LabelFrac <-
+        LibraryProtocol <- Shortlabels <- NULL
+
     pdf_file <- PDF
     if (!grepl("pdf$",
         tolower(PDF)))

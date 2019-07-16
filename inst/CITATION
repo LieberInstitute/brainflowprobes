@@ -6,7 +6,7 @@ pkgVer <- function(pkg) {
 
 c(
     bibentry(bibtype="manual",
-        title = "Helpful plots and annotation for choosing BrainFlow target probe sequence",
+        title = "Plots and annotation for choosing BrainFlow target probe sequence",
         author = personList(
             as.person("Amanda J Price")
         ),

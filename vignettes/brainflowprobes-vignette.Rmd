@@ -158,8 +158,9 @@ plot_coverage("chr2:162279880-162282378:+",
               PDF = "regionCoverage_fractionedData.pdf",
               COVERAGE = NULL, VERBOSE = FALSE)
 ```
-```{r, include=TRUE, fig.align="center", echo=FALSE}
-knitr::include_graphics("./regionCoverage_fractionedData.pdf")
+
+```{r, include=TRUE, fig.align="center", echo=FALSE, out.height = 850}
+knitr::include_graphics('regionCoverage_fractionedData.pdf')
 ```
 
 In this example, this exon is highly expressed in both nuclear and cytoplasmic RNA but is not uniformly expressed. 2.5 Kb (the length of this exon) is longer than the minimum for probe synthesis, so we can limit the coordinates to exclude the lower-expressed sequence:   
@@ -169,8 +170,9 @@ plot_coverage("chr2:162280900-162282378:+",
               PDF = "regionCoverage_fractionedData_shorter.pdf",
               COVERAGE = NULL, VERBOSE = FALSE)
 ```
-```{r, include=TRUE, fig.align="center", echo=FALSE}
-knitr::include_graphics("./regionCoverage_fractionedData_shorter.pdf")
+
+```{r, include=TRUE, fig.align="center", echo=FALSE, out.height = 850}
+knitr::include_graphics('regionCoverage_fractionedData_shorter.pdf')
 ```
 
 These new coordinates are now evenly expressed across a ~1.5 Kb region.
@@ -193,17 +195,18 @@ four_panels("chr2:162280900-162282378:+",
             JUNCTIONS = FALSE,
             COVERAGE = tbr1.cov, VERBOSE = FALSE)
 ```
-```{r, include=TRUE, fig.align="center", echo=FALSE}
-knitr::include_graphics("./four_panels.pdf")
+
+```{r, include=TRUE, fig.align="center", echo=FALSE, out.height = 1000}
+knitr::include_graphics('four_panels.pdf')
 ```
 
-The upper left panel (Separation) shows a boxplot of the mean transformed coverage value across the 1.5 Kb region in the fractionated data used by `plot_coverage` described above. This region is expressed at about the same level in both nuclear (N) and cytoplasmic (C) samples, making this a good candidate so far.
+The upper left panel (__Separation__) shows a boxplot of the mean transformed coverage value across the 1.5 Kb region in the fractionated data used by `plot_coverage` described above. This region is expressed at about the same level in both nuclear (N) and cytoplasmic (C) samples, making this a good candidate so far.
 
-The upper right panel (Degradation) plots the mean transformed coverage in cortical tissue samples left on a benchtop at room temperature for 0-60 minutes (x-axis) before RNA extraction and sequencing using either polyA selection ("polyA") or rRNA depletion ("Ribo") library preparation kits. Expression coverage of this region does not reduce after an hour at room temperature, meaning that this sequence may be a good candidate for target probe synthesis.
+The upper right panel (__Degradation__) plots the mean transformed coverage in cortical tissue samples left on a benchtop at room temperature for 0-60 minutes (x-axis) before RNA extraction and sequencing using either polyA selection ("polyA") or rRNA depletion ("Ribo") library preparation kits. Expression coverage of this region does not reduce after an hour at room temperature, meaning that this sequence may be a good candidate for target probe synthesis.
 
-The lower left panel (Sorted) shows expression of the region in nuclear RNA that has been sorted based on NeuN antibody labeling and sequenced using two library preparation strategies: polyA selection ("PolyA") or rRNA depletion ("RiboGone"). NeuN+ (positive) samples are enriched for neurons, while NeuN- (negative) samples are enriched for non-neurons such as the subclasses of glia or epithelial cells. Although these samples were collected using a different protocol, as products of flow cytometric sorting of postmortem brain tissue, they provide insight to the level of detectable expression that may be expected from sorted nuclear RNA. If your target gene is cell type-specific (such as TBR1), it can also be used as a sanity check for the expected neuronal-enriched expression pattern of that gene.
+The lower left panel (__Sorted__) shows expression of the region in nuclear RNA that has been sorted based on NeuN antibody labeling and sequenced using two library preparation strategies: polyA selection ("PolyA") or rRNA depletion ("RiboGone"). NeuN+ (positive) samples are enriched for neurons, while NeuN- (negative) samples are enriched for non-neurons such as the subclasses of glia or epithelial cells. Although these samples were collected using a different protocol, as products of flow cytometric sorting of postmortem brain tissue, they provide insight to the level of detectable expression that may be expected from sorted nuclear RNA. If your target gene is cell type-specific (such as TBR1), it can also be used as a sanity check for the expected neuronal-enriched expression pattern of that gene.
 
-The lower right panel (Single Cells) shows the expression of the region in 466 single cells isolated from human cortex or hippocampus and can be used to verify the cell type-specificity of the expression pattern, should you be interested in a cell type-specific target. In the case of the 6th exon of TBR1, it is selectively expressed in quiescent fetal brain cells and a subset of adult neurons, as is expected given its biological role. 
+The lower right panel (__Single Cells__) shows the expression of the region in 466 single cells isolated from human cortex or hippocampus and can be used to verify the cell type-specificity of the expression pattern, should you be interested in a cell type-specific target. In the case of the 6th exon of TBR1, it is selectively expressed in quiescent fetal brain cells and a subset of adult neurons, as is expected given its biological role. 
 
 After generating these plots, one can conclude that `chr2:162280900-162282378:+` is a strong candidate for a target probe. To design a custom probe, go to https://www.thermofisher.com/order/custom-oligo/brancheddna. Enter the name of the probe (e.g., TBR1_exon6), choose 'Prime Flow' as the chemistry, 'RNA' as the target, and your desired fluorophore. We recommend shoowing Alexa Fluor 647 as it is the brightest and will offer the greatest chance of success. Choose '[Hs] Human' as the species, and copy the sequence from `region_info.csv` to the target information. In the comment field, mention that this probe is for targeting nuclear RNA from human postmortem brain using BrainFlow application of the Invitrogen PrimeFlow&#174 RNA assay.  
 

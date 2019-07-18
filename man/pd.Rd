@@ -4,11 +4,11 @@
 \name{pd}
 \alias{pd}
 \title{A list of phenotype data.frames}
-\format{A list of four data.frames with TODO columns.
+\format{A list of four data.frames:
 \describe{
     \item{Sep }{ phenotype information for samples from
-    https://www.biorxiv.org/content/10.1101/567966v1; a data.frame with 23
-    rows and 15 columns. Column descriptions: SampleID is the sample name,
+    \url{https://www.biorxiv.org/content/10.1101/567966v1}; a data.frame with
+    23 rows and 15 columns. Column descriptions: SampleID is the sample name,
     Zone is the RNA fraction of the sample ("Nucleus" or "Cytosol"), Age,
     Sex, and Race list these demographic characteristics, Fetal categorizes
     each sample age as "Fetal" or "Adult", Library categorizes the RNAseq
@@ -19,8 +19,8 @@
     the BigWig file for each sample, and files lists the URL for the BigWig
     online.}
     \item{Deg }{ phenotype information for samples from
-    https://www.pnas.org/content/114/27/7130; a data.frame with 40 rows and
-    16 columns. Column descriptions: DegradationTime is the number of minutes
+    \url{https://www.pnas.org/content/114/27/7130}; a data.frame with 40 rows
+and 16 columns. Column descriptions: DegradationTime is the number of minutes
      the brain tissue for each sample was left on the benchtop at room
      temperature before RNA was extracted, AgeDeath is the age of the donor
      at time of death, Dx lists whether the donor was diagnosed as
@@ -36,7 +36,7 @@
       SampleID_library is the Sample ID and library column values together,
       and files lists the URL for the BigWig online.}
     \item{Cell }{ phenotype information for samples from
-    https://www.pnas.org/content/112/23/7285; a data.frame with 466
+    \url{https://www.pnas.org/content/112/23/7285}; a data.frame with 466
     rows and 11 columns. Column descriptions: geo_accession is the accession
     number for each sample in the Gene Expression Omnibus, Age is the numeric
      age of each sample, AgeGroup categorizes each sample age as "prenatal"
@@ -48,8 +48,8 @@
     BigWig is the name of the BigWig file, and files lists the URL for the
     BigWig online.}
     \item{Sort }{ phenotype information  for samples from
-    https://www.biorxiv.org/content/10.1101/428391v2; a data.frame with 12
-    rows and 12 columns. Column descriptions: Description categorizes the
+    \url{https://www.biorxiv.org/content/10.1101/428391v2}; a data.frame with
+    12 rows and 12 columns. Column descriptions: Description categorizes the
     RNAseq library preparation method as polyA selection ("PolyA") or rRNA
     depletion ("Ribo"), SubjectID is the subject number, CellType lists
     whether the sample was labeled by NeuN antibody (neuronal, "NeuN_Plus")
@@ -67,10 +67,8 @@ A list of four phenotype data frames used throughput the package.
 ##  pd <- list(Sep = pdSep, Deg = pdDeg, Cell = pdCell, Sort = pdSort)
 
 }
-\references{
-TODO
-}
 \seealso{
 \link{four_panels} \link{brainflowprobes_cov}
+\url{https://github.com/LieberInstitute/brainflowprobes/blob/master/data-raw/create_sysdata.R}
 }
 \keyword{datasets}

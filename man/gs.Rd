@@ -5,30 +5,26 @@
 \alias{gs}
 \title{Genomic state object for hg19}
 \format{A genomic state object for the \code{fullGenome} for hg19
-using the XX annotation.}
+using the Gencode v31 annotation lifted over to hg19. The columns are:
+\describe{
+    \item{theRegion }{ type of region of the genome: exon, intron, intergenic
+    ,}
+    \item{tx_id }{ IntegerList of the transcripts for the TxDb object
+    made using Gencode v31 lifted over to hg19 (see links below),}
+    \item{tx_name }{ the Gencode v31 transcript IDs as a CharacterList,}
+    \item{gene }{IntegerList of the genes for the TxDb object
+    made using Gencode v31 lifted over to hg19 (see links below),}
+    \item{symbol }{ the gene symbols in a CharacterList.}
+}}
 \description{
 The derfinder genomic state object for hg19 created using
-TxDb.Hsapiens.UCSC.hg19.knownGene. Only the \code{fullGenome} portion of it
-is saved in this package. It takes about 200 seconds to re-make as timed
-using \code{system.time()}. See \link[derfinder]{makeGenomicState} for
+Gencode v31 lifted over to hg19. Only the \code{fullGenome} portion of it
+is saved in this package. See \link[derfinder]{makeGenomicState} for
 more information on how to make this type of object.
-}
-\examples{
-## to Amanda: looks like the genomic state object was made using
-## Ensembl, unlike the genes info. Ideally they should be from the same
-## annotation, so you might want to update the genes info
-
-## system.time(
-##     gs <- derfinder::makeGenomicState(
-##         txdb = TxDb.Hsapiens.UCSC.hg19.knownGene::TxDb.Hsapiens.UCSC.hg19.knownGene,
-##         chrs = paste0('chr', c(1:22, 'X', 'Y'))
-##    )$fullGenome
-## )
-}
-\references{
-TODO
 }
 \seealso{
 \link{four_panels}
+\url{https://github.com/LieberInstitute/brainflowprobes/blob/master/data-raw/create_sysdata.R}
+\url{https://www.gencodegenes.org/human/release_31lift37.html}
 }
 \keyword{datasets}

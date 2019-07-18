@@ -2,17 +2,17 @@
 #'
 #' A GRanges object with the annotated genes for hg19 using
 #' \code{bumphunter::annotateTranscripts} on the
-#' TxDb.Hsapiens.UCSC.hg19.knownGene annotation. Takes about 40 seconds to
-#' re-compute as measured with \code{system.time()}.
+#' Gencode v31 annotation lifted over to hg19 grouped by gene
+#' instead of by transcript.
 #'
 #' @name genes
 #' @docType data
 #' @format A GRanges object with the following annotation columns.
 #' \describe{
-#'     \item{CSS }{ the coding region start,}
-#'     \item{CSE }{ the coding region end,}
-#'     \item{Tx }{ the transcript ID used in TxDb.Hsapiens.UCSC.hg19.knownGene,}
-#'     \item{Geneid }{ the Entrez Gene ID,}
+#'     \item{CSS }{ the coding region start (NA for non-coding genes),}
+#'     \item{CSE }{ the coding region end (NA for non-coding genes),}
+#'     \item{Tx }{ the Gencode Gene ID,}
+#'     \item{Geneid }{ the Ensembl Gene ID,}
 #'     \item{Gene }{ the Gene symbol,}
 #'     \item{Refseq }{ the RefSeq gene ID,}
 #'     \item{Nexons }{ the number of exons,}
@@ -22,14 +22,8 @@
 #'
 #' @keywords datasets
 #' @seealso \link{four_panels}
-#' @references TxDb.Hsapiens.UCSC.hg19.knownGene bumphunter
-#' @examples
-#'
-#' ## system.time(
-#' ##     genes <- bumphunter::annotateTranscripts(
-#' ##         txdb = TxDb.Hsapiens.UCSC.hg19.knownGene::TxDb.Hsapiens.UCSC.hg19.knownGene
-#' ##     )
-#' ## )
+#' \url{https://github.com/LieberInstitute/brainflowprobes/blob/master/data-raw/create_sysdata.R}
+#' \url{https://www.gencodegenes.org/human/release_31lift37.html}
 #'
 NULL
 
@@ -37,30 +31,30 @@ NULL
 #' Genomic state object for hg19
 #'
 #' The derfinder genomic state object for hg19 created using
-#' TxDb.Hsapiens.UCSC.hg19.knownGene. Only the \code{fullGenome} portion of it
-#' is saved in this package. It takes about 200 seconds to re-make as timed
-#' using \code{system.time()}. See \link[derfinder]{makeGenomicState} for
+#' Gencode v31 lifted over to hg19. Only the \code{fullGenome} portion of it
+#' is saved in this package. See \link[derfinder]{makeGenomicState} for
 #' more information on how to make this type of object.
 #'
 #' @name gs
 #' @docType data
 #' @format A genomic state object for the \code{fullGenome} for hg19
-#' using the XX annotation.
+#' using the Gencode v31 annotation lifted over to hg19. The columns are:
+#' \describe{
+#'     \item{theRegion }{ type of region of the genome: exon, intron, intergenic
+#'     ,}
+#'     \item{tx_id }{ IntegerList of the transcripts for the TxDb object
+#'     made using Gencode v31 lifted over to hg19 (see links below),}
+#'     \item{tx_name }{ the Gencode v31 transcript IDs as a CharacterList,}
+#'     \item{gene }{IntegerList of the genes for the TxDb object
+#'     made using Gencode v31 lifted over to hg19 (see links below),}
+#'     \item{symbol }{ the gene symbols in a CharacterList.}
+#' }
 #'
 #' @keywords datasets
 #' @seealso \link{four_panels}
-#' @references TODO
-#' @examples
-#' ## to Amanda: looks like the genomic state object was made using
-#' ## Ensembl, unlike the genes info. Ideally they should be from the same
-#' ## annotation, so you might want to update the genes info
-#'
-#' ## system.time(
-#' ##     gs <- derfinder::makeGenomicState(
-#' ##         txdb = TxDb.Hsapiens.UCSC.hg19.knownGene::TxDb.Hsapiens.UCSC.hg19.knownGene,
-#' ##         chrs = paste0('chr', c(1:22, 'X', 'Y'))
-#' ##    )$fullGenome
-#' ## )
+#' \url{https://github.com/LieberInstitute/brainflowprobes/blob/master/data-raw/create_sysdata.R}
+#' \url{https://www.gencodegenes.org/human/release_31lift37.html}
+
 NULL
 
 
@@ -70,11 +64,11 @@ NULL
 #'
 #' @name pd
 #' @docType data
-#' @format A list of four data.frames with TODO columns.
+#' @format A list of four data.frames:
 #' \describe{
 #'     \item{Sep }{ phenotype information for samples from
-#'     https://www.biorxiv.org/content/10.1101/567966v1; a data.frame with 23
-#'     rows and 15 columns. Column descriptions: SampleID is the sample name,
+#'     \url{https://www.biorxiv.org/content/10.1101/567966v1}; a data.frame with
+#'     23 rows and 15 columns. Column descriptions: SampleID is the sample name,
 #'     Zone is the RNA fraction of the sample ("Nucleus" or "Cytosol"), Age,
 #'     Sex, and Race list these demographic characteristics, Fetal categorizes
 #'     each sample age as "Fetal" or "Adult", Library categorizes the RNAseq
@@ -85,8 +79,8 @@ NULL
 #'     the BigWig file for each sample, and files lists the URL for the BigWig
 #'     online.}
 #'     \item{Deg }{ phenotype information for samples from
-#'     https://www.pnas.org/content/114/27/7130; a data.frame with 40 rows and
-#'     16 columns. Column descriptions: DegradationTime is the number of minutes
+#'     \url{https://www.pnas.org/content/114/27/7130}; a data.frame with 40 rows
+#' and 16 columns. Column descriptions: DegradationTime is the number of minutes
 #'      the brain tissue for each sample was left on the benchtop at room
 #'      temperature before RNA was extracted, AgeDeath is the age of the donor
 #'      at time of death, Dx lists whether the donor was diagnosed as
@@ -102,7 +96,7 @@ NULL
 #'       SampleID_library is the Sample ID and library column values together,
 #'       and files lists the URL for the BigWig online.}
 #'     \item{Cell }{ phenotype information for samples from
-#'     https://www.pnas.org/content/112/23/7285; a data.frame with 466
+#'     \url{https://www.pnas.org/content/112/23/7285}; a data.frame with 466
 #'     rows and 11 columns. Column descriptions: geo_accession is the accession
 #'     number for each sample in the Gene Expression Omnibus, Age is the numeric
 #'      age of each sample, AgeGroup categorizes each sample age as "prenatal"
@@ -114,8 +108,8 @@ NULL
 #'     BigWig is the name of the BigWig file, and files lists the URL for the
 #'     BigWig online.}
 #'     \item{Sort }{ phenotype information  for samples from
-#'     https://www.biorxiv.org/content/10.1101/428391v2; a data.frame with 12
-#'     rows and 12 columns. Column descriptions: Description categorizes the
+#'     \url{https://www.biorxiv.org/content/10.1101/428391v2}; a data.frame with
+#'     12 rows and 12 columns. Column descriptions: Description categorizes the
 #'     RNAseq library preparation method as polyA selection ("PolyA") or rRNA
 #'     depletion ("Ribo"), SubjectID is the subject number, CellType lists
 #'     whether the sample was labeled by NeuN antibody (neuronal, "NeuN_Plus")
@@ -129,7 +123,7 @@ NULL
 #'
 #' @keywords datasets
 #' @seealso \link{four_panels} \link{brainflowprobes_cov}
-#' @references TODO
+#' \url{https://github.com/LieberInstitute/brainflowprobes/blob/master/data-raw/create_sysdata.R}
 #' @examples
 #' ##  pd <- list(Sep = pdSep, Deg = pdDeg, Cell = pdCell, Sort = pdSort)
 #'

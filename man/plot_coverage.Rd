@@ -5,7 +5,7 @@
 \title{Plot coverage in nuclear and cytoplasmic RNA for candidate probe sequences.}
 \usage{
 plot_coverage(REGION, PDF = "regionCoverage_fractionedData.pdf",
-  COVERAGE = NULL, VERBOSE = TRUE)
+  COVERAGE = NULL, CODING_ONLY = FALSE, VERBOSE = TRUE)
 }
 \arguments{
 \item{REGION}{Either a single hg19 genomic sequence including the chromosome,
@@ -22,6 +22,10 @@ separately since this is the step that takes the longest to run. Also, this
 is the only step that depends on rtracklayer's functionality for reading
 BigWig files which does not run on Windows OS. So it could be run on a
 non-Windows machine, saved, and then shared with Windows users.}
+
+\item{CODING_ONLY}{A logical vector of length 1 specifying whether to
+subset \link{genes} to only the coding genes. That is, whether to subset
+\link{genes} by whether they have a non-NA \code{CSS} value.}
 
 \item{VERBOSE}{A logical value indicating whether to print updates from the
 process of loading the data from the BigWig files.}

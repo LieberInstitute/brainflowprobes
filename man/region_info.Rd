@@ -4,7 +4,8 @@
 \alias{region_info}
 \title{Print relevant info about candidate probe sequence.}
 \usage{
-region_info(REGION, CSV = TRUE, SEQ = TRUE, PATH = ".")
+region_info(REGION, CSV = TRUE, SEQ = TRUE, PATH = ".",
+  CODING_ONLY = FALSE)
 }
 \arguments{
 \item{REGION}{Either a single hg19 genomic sequence including the chromosome,
@@ -21,6 +22,10 @@ returned.}
 \item{PATH}{If a .csv file is to be exported, this parameter indicates the
 path where the file should be saved. By default the file will be
 saved in the working directory.}
+
+\item{CODING_ONLY}{A logical vector of length 1 specifying whether to
+subset \link{genes} to only the coding genes. That is, whether to subset
+\link{genes} by whether they have a non-NA \code{CSS} value.}
 }
 \value{
 This function annotates all input sequences using
@@ -60,6 +65,12 @@ candidates <- c('chr20:10286777-10288069:+',
                 'chr18:74690788-74692427:-',
                 'chr19:49932861-49933829:-')
 region_info(candidates, CSV = FALSE)
+
+## Explore the effect of changing CODING_ONLY
+## Check how the "distance", "name", "Geneid" among other values change
+region_info('chr10:135379301-135379311:+', CSV = FALSE)
+region_info('chr10:135379301-135379311:+', CSV = FALSE, CODING_ONLY = TRUE)
+
 
 \dontrun{
 region_info(candidates, PATH = '/path/to/directory/')

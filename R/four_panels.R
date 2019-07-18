@@ -24,6 +24,9 @@
 #' is the only step that depends on rtracklayer's functionality for reading
 #' BigWig files which does not run on Windows OS. So it could be run on a
 #' non-Windows machine, saved, and then shared with Windows users.
+#' @param CODING_ONLY A logical vector of length 1 specifying whether to
+#' subset \link{genes} to only the coding genes. That is, whether to subset
+#' \link{genes} by whether they have a non-NA \code{CSS} value.
 #' @param VERBOSE A logical value indicating whether to print updates from the
 #' process of loading the data from the BigWig files.
 #' @return \code{four_panels} first annotates the input candidate probe
@@ -100,6 +103,7 @@ four_panels <- function(REGION,
     PDF = "four_panels.pdf",
     JUNCTIONS = FALSE,
     COVERAGE = NULL,
+    CODING_ONLY = FALSE,
     VERBOSE = TRUE) {
 
 
@@ -118,8 +122,13 @@ four_panels <- function(REGION,
             "already exists! Rename or erase it before proceeding."))
 
     gr <- GenomicRanges::GRanges(REGION)
+    gr_subject <- if(CODING_ONLY) {
+        brainflowprobes::genes[!is.na(brainflowprobes::genes$CSS)]
+    } else {
+        brainflowprobes::genes
+    }
     nearestAnnotation <- bumphunter::matchGenes(x = gr,
-        subject = brainflowprobes::genes)
+        subject = gr_subject)
 
 
     if(is.null(COVERAGE)) {

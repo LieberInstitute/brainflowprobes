@@ -14,6 +14,7 @@
 #' @param PATH If a .csv file is to be exported, this parameter indicates the
 #'   path where the file should be saved. By default the file will be
 #'   saved in the working directory.
+#' @inheritParams four_panels
 #' @return This function annotates all input sequences using
 #'   \code{\link[bumphunter]{matchGenes}}. It returns a data frame where each
 #'   row is a genomic sequence specified in REGION. The columns
@@ -47,6 +48,12 @@
 #'                 'chr19:49932861-49933829:-')
 #' region_info(candidates, CSV = FALSE)
 #'
+#' ## Explore the effect of changing CODING_ONLY
+#' ## Check how the "distance", "name", "Geneid" among other values change
+#' region_info('chr10:135379301-135379311:+', CSV = FALSE)
+#' region_info('chr10:135379301-135379311:+', CSV = FALSE, CODING_ONLY = TRUE)
+#'
+#'
 #' \dontrun{
 #' region_info(candidates, PATH = '/path/to/directory/')
 #'
@@ -59,11 +66,18 @@
 #' @author Amanda J Price
 
 
-region_info <- function(REGION, CSV = TRUE, SEQ = TRUE, PATH = ".") {
+region_info <- function(REGION, CSV = TRUE, SEQ = TRUE, PATH = ".",
+    CODING_ONLY = FALSE) {
 
     gr = GenomicRanges::GRanges(REGION)
+    gr_subject <- if(CODING_ONLY) {
+        brainflowprobes::genes[!is.na(brainflowprobes::genes$CSS)]
+    } else {
+        brainflowprobes::genes
+    }
+
     nearestAnnotation = bumphunter::matchGenes(x = gr,
-        subject = brainflowprobes::genes)
+        subject = gr_subject)
     nearestAnnotation = nearestAnnotation[,
         -which(colnames(nearestAnnotation) %in%
             c("strand", "subjectHits"))]

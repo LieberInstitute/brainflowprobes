@@ -68,6 +68,7 @@
 plot_coverage <- function(REGION,
     PDF = "regionCoverage_fractionedData.pdf",
     COVERAGE = NULL,
+    CODING_ONLY = FALSE,
     VERBOSE = TRUE) {
 
     pdf_file <- PDF
@@ -81,8 +82,13 @@ plot_coverage <- function(REGION,
             "already exists! Rename or erase it before proceeding."))
 
     gr <- GenomicRanges::GRanges(REGION)
+    gr_subject <- if(CODING_ONLY) {
+        brainflowprobes::genes[!is.na(brainflowprobes::genes$CSS)]
+    } else {
+        brainflowprobes::genes
+    }
     nearestAnnotation <- bumphunter::matchGenes(x = gr,
-        subject = brainflowprobes::genes)
+        subject = gr_subject)
     annotatedRegions <- derfinder::annotateRegions(regions = gr,
         genomicState = brainflowprobes::gs,
         minoverlap = 1)

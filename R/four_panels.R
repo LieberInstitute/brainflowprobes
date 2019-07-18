@@ -91,6 +91,15 @@
 #'
 #' four_panels('chr20:10286777-10288069:+',
 #'     PDF = '/path/to/directory/PDF_file.pdf')
+#'
+#'
+#' ## Explore the effect of changing CODING_ONLY
+#' ## Check how gene name changes in the title of the plot
+#' ## (everything else stays the same)
+#' cov <- brainflowprobes_cov('chr10:135379301-135379311:+')
+#' four_panels('chr10:135379301-135379311:+', COVERAGE = cov)
+#' four_panels('chr10:135379301-135379311:+', COVERAGE = cov,
+#'     PDF = 'coding_only_four_panels', CODING_ONLY = TRUE)
 #' }
 #' @export
 #' @import GenomicRanges bumphunter ggplot2 derfinder RColorBrewer cowplot

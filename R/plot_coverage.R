@@ -57,6 +57,14 @@
 #'
 #' plot_coverage('chr20:10286777-10288069:+',
 #'     PDF = '/path/to/directory/PDF_file.pdf')
+#'
+#' ## Explore the effect of changing CODING_ONLY
+#' ## Check how gene name and distance to TSS changes in the title of the plot
+#' ## (everything else stays the same)
+#' cov <- brainflowprobes_cov('chr10:135379301-135379311:+')
+#' plot_coverage('chr10:135379301-135379311:+', COVERAGE = cov)
+#' plot_coverage('chr10:135379301-135379311:+', COVERAGE = cov,
+#'     PDF = 'coding_only_plot_coverage', CODING_ONLY = TRUE)
 #' }
 #' @export
 #' @import GenomicRanges bumphunter derfinder derfinderPlot RColorBrewer

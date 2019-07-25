@@ -187,7 +187,7 @@ tbr1.cov <- brainflowprobes_cov("chr2:162280900-162282378:+", VERBOSE = FALSE)
 
 This example takes ~10 minutes to run. The resulting `tbr1.cov` object includes a list for each of the four external datasets of coverage across each region being assayed. In this case, coverage at each of the 1479 bases of the TBR1 exon is reported for each sample of the four datasets.
 
-A snapshot of coverage, degradation and cell type specificity can be estimated using the `four_panels()` function:
+A snapshot of coverage, degradation and cell type specificity can be visualized using the `four_panels()` function:
 
 ```{r 'plot four panels', eval = FALSE}
 four_panels("chr2:162280900-162282378:+",

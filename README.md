@@ -8,7 +8,7 @@ Bioc-release <a href="https://bioconductor.org/developers/how-to/unitTesting-gui
 brainflowprobes
 ===============
 
-This package can be used to annotate candidate target probe sequences designed to label RNA in nuclei isolated from human postmortem brain for flow cytometry. This package also includes functions that visualize candidate sequence expression in four postmortem brain datasets that address nuclear expression, effects of RNA degradation and flow cytometric sorting, and cell type-specific expression to increase the likelihood of success as a custom target probe. Please refer to the BrainFlow publication or the PrimeFlow RNA(TM) Assay Kit literature (https://www.thermofisher.com/order/catalog/product/88-18005-204) for more information.
+This package can be used to annotate candidate target probe sequences designed to label RNA in nuclei isolated from human postmortem brain for flow cytometry. This package also includes functions that visualize candidate sequence expression in four postmortem brain datasets that address nuclear expression, effects of RNA degradation and flow cytometric sorting, and cell type-specific expression to increase the likelihood of success as a custom target probe. Please refer to the BrainFlow publication or the [PrimeFlow RNA(TM) Assay Kit](https://www.thermofisher.com/order/catalog/product/88-18005-204) literature for more information.
 
 # Installation instructions
 

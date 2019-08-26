@@ -94,8 +94,9 @@ plot_coverage <- function(REGION,
         genomicState = brainflowprobes::gs,
         minoverlap = 1)
 
-    ## Compute or check the coverage
-    regionCov <- get_region_cov(REGION, COVERAGE, VERBOSE)$Sep
+    ## Compute or check the coverage (only for Sep)
+    regionCov <- get_region_cov(REGION, COVERAGE, VERBOSE,
+        PD = brainflowprobes::pd['Sep'])$Sep
 
     grDevices::pdf(pdf_file, height = 8, width = 8, useDingbats = FALSE)
 

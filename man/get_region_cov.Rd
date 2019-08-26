@@ -4,7 +4,8 @@
 \alias{get_region_cov}
 \title{Check or compute the region coverage from the datasets in brainflowprobes}
 \usage{
-get_region_cov(REGION, COVERAGE = NULL, VERBOSE = TRUE)
+get_region_cov(REGION, COVERAGE = NULL, VERBOSE = TRUE,
+  PD = brainflowprobes::pd)
 }
 \arguments{
 \item{REGION}{Either a single hg19 genomic sequence including the chromosome,
@@ -21,6 +22,9 @@ non-Windows machine, saved, and then shared with Windows users.}
 
 \item{VERBOSE}{A logical value indicating whether to print updates from the
 process of loading the data from the BigWig files.}
+
+\item{PD}{A list of data.frames with the \code{sumMapped} and \code{files}
+columns. Defaults to the data included in this package.}
 }
 \value{
 If \code{COVERAGE} is provided and all checks pass, then this function

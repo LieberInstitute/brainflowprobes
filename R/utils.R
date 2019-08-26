@@ -88,6 +88,7 @@ get_nearest_annotation <- function(gr, CODING_ONLY = FALSE) {
 #' This is used by \link{four_panels} and \link{plot_coverage}.
 #'
 #' @inheritParams four_panels
+#' @inheritParams brainflowprobes_cov
 #'
 #' @return If `COVERAGE` is provided and all checks pass, then this function
 #' returns `COVERAGE`. Otherwise, it computes a new region coverage data.frame
@@ -103,11 +104,11 @@ get_nearest_annotation <- function(gr, CODING_ONLY = FALSE) {
 #'     four_panels_example_cov
 #' ))
 #'
-get_region_cov <- function(REGION, COVERAGE = NULL, VERBOSE = TRUE) {
+get_region_cov <- function(REGION, COVERAGE = NULL, VERBOSE = TRUE, PD = brainflowprobes::pd) {
     if(is.null(COVERAGE)) {
         regionCov <- brainflowprobes_cov(
             REGION = REGION,
-            PD = brainflowprobes::pd,
+            PD = PD,
             VERBOSE = VERBOSE
         )
     } else {

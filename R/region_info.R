@@ -1,6 +1,6 @@
 #' Print relevant info about candidate probe sequence.
 #'
-#' \code{region_info} returns annotation of a single potential probe sequence or
+#' `region_info` returns annotation of a single potential probe sequence or
 #' list of sequences and, if specified, prints the resuts in a .csv file.
 #'
 #' @param REGION Either a single hg19 genomic sequence including the chromosome,
@@ -16,14 +16,14 @@
 #'   saved in the working directory.
 #' @inheritParams four_panels
 #' @return This function annotates all input sequences using
-#'   \code{\link[bumphunter]{matchGenes}}. It returns a data frame where each
+#'   [bumphunter::matchGenes()]. It returns a data frame where each
 #'   row is a genomic sequence specified in REGION. The columns
 #'   c('seqnames', 'start', 'end', 'width', 'strand') list the chromosome,
 #'   range, sequence length, and strand of the REGION. The columns c('name',
 #'   'annotation', 'description', 'region', 'distance', 'subregion',
 #'   'insideDistance', 'exonnumber', 'nexons', 'UTR', 'geneL', 'codingL',
 #'   'Geneid', 'subjectHits') are described in
-#'   \code{\link[bumphunter]{matchGenes}} documentation.
+#'   [bumphunter::matchGenes()] documentation.
 #'
 #'   If SEQ=TRUE, a column 'Sequence' will be included. This is recommended for
 #'   sending the probe sequence to be synthesized.
@@ -69,20 +69,16 @@
 region_info <- function(REGION, CSV = TRUE, SEQ = TRUE, PATH = ".",
     CODING_ONLY = FALSE) {
 
-    gr = GenomicRanges::GRanges(REGION)
-    gr_subject <- if(CODING_ONLY) {
-        brainflowprobes::genes[!is.na(brainflowprobes::genes$CSS)]
-    } else {
-        brainflowprobes::genes
-    }
+    ## Define the region(s)
+    gr <- GenomicRanges::GRanges(REGION)
 
-    nearestAnnotation = bumphunter::matchGenes(x = gr,
-        subject = gr_subject)
-    nearestAnnotation = nearestAnnotation[,
+    ## Compute the nearest annotation
+    nearestAnnotation <- get_nearest_annotation(gr, CODING_ONLY)
+    nearestAnnotation <- nearestAnnotation[,
         -which(colnames(nearestAnnotation) %in%
             c("strand", "subjectHits"))]
 
-    if (SEQ == TRUE) {
+    if (SEQ) {
         df <- cbind(as.data.frame(gr),
             nearestAnnotation,
             Sequence = as.character(Biostrings::getSeq(
@@ -93,7 +89,7 @@ region_info <- function(REGION, CSV = TRUE, SEQ = TRUE, PATH = ".",
             nearestAnnotation)
     }
 
-    if (CSV == TRUE) {
+    if (CSV) {
         csv_path <- file.path(PATH,
             "region_info.csv")
         if (file.exists(csv_path))
@@ -112,7 +108,7 @@ region_info <- function(REGION, CSV = TRUE, SEQ = TRUE, PATH = ".",
     }
 
     message("Completed! If CSV=TRUE, check for region_info.csv in your working
-         directory unless otherwise specified in PATH.")
+        directory unless otherwise specified in PATH.")
     return(df)
 
 }

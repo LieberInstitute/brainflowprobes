@@ -34,35 +34,35 @@ subset \link{genes} to only the coding genes. That is, whether to subset
 process of loading the data from the BigWig files.}
 }
 \value{
-\code{four_panels} first annotates the input candidate probe
-  sequence(s) in REGION using \code{\link[bumphunter]{matchGenes}}, and then
-  cuts the expression coverage for each sequence from each sample in four
-  different datasets (see the BrainFlow publication for references) using
-  \code{\link[derfinder]{getRegionCoverage}}. The coverage is normalized to
-  the total mapped reads per sample and kilobase width of each probe region
-  before log2 transformation. The four plots are labeled by the dataset and
-  the plots are topped by the sequence coordinates, sequence width, and the
-  name of the nearest gene.
+\code{four_panels()} first annotates the input candidate probe
+sequence(s) in REGION using \code{\link[bumphunter:matchGenes]{bumphunter::matchGenes()}}, and then
+cuts the expression coverage for each sequence from each sample in four
+different datasets (see the BrainFlow publication for references) using
+\code{\link[derfinder:getRegionCoverage]{derfinder::getRegionCoverage()}}. The coverage is normalized to
+the total mapped reads per sample and kilobase width of each probe region
+before log2 transformation. The four plots are labeled by the dataset and
+the plots are topped by the sequence coordinates, sequence width, and the
+name of the nearest gene.
 
-  A good candidate probe sequence will have several characteristics. In the
-  Separation data, the sequence should be relatively highly expressed in
-  nuclear RNA, at least in your age of interest. The sequence should also
-  show stable expression over the 60 minutes of room temperature exposure in
-  the Degradation data. The sequence should also be expressed in the
-  appropriate NeuN fraction (depending on cell type specificity) in the
-  Sorted dataset, and also be expressed in the right cell type in the Single
-  Cell dataset.
+A good candidate probe sequence will have several characteristics. In the
+Separation data, the sequence should be relatively highly expressed in
+nuclear RNA, at least in your age of interest. The sequence should also
+show stable expression over the 60 minutes of room temperature exposure in
+the Degradation data. The sequence should also be expressed in the
+appropriate NeuN fraction (depending on cell type specificity) in the
+Sorted dataset, and also be expressed in the right cell type in the Single
+Cell dataset.
 
-  \code{four_panels} saves the results as four_panels.pdf in the working
-  directory unless otherwise specified in PATH.
+\code{four_panels()} saves the results as four_panels.pdf in the working
+directory unless otherwise specified in PATH.
 
-  If JUNCTIONS=TRUE, this means that the candidate probe sequence spans
-  splice junctions. In this case, the character vector of regions should
-  represent the coordinates of each exon spanned in the sequence. If
-  JUNCTIONS=TRUE, \code{four_panels} will sum the coverage of each exon and
-  plot that value for each dataset instead of creating an independent set of
-  plots for each exon. This is a way to avoid deflating coverage by including
-  lowly-expressed intron coverage in the plots.
+\code{if(JUNCTIONS)}, this means that the candidate probe sequence spans
+splice junctions. In this case, the character vector of regions should
+represent the coordinates of each exon spanned in the sequence.
+\code{if(JUNCTIONS)}, \code{four_panels()} will sum the coverage of each exon and
+plot that value for each dataset instead of creating an independent set of
+plots for each exon. This is a way to avoid deflating coverage by including
+lowly-expressed intron coverage in the plots.
 }
 \description{
 \code{four_panels} creates four plots for each candidate probe sequence. The
@@ -93,14 +93,16 @@ if(.Platform$OS.type != 'windows') {
 
 ## These examples will take several minutes to run depending on your
 ## internet connection
-four_panels(c('chr20:10286777-10288069:+',
-              'chr18:74690788-74692427:-',
-              'chr19:49932861-49933829:-'))
+four_panels(c(
+    'chr20:10286777-10288069:+',
+    'chr18:74690788-74692427:-',
+    'chr19:49932861-49933829:-'))
 
-PENK_exons <- c('chr8:57353587-57354496:-',
-                'chr8:57358375-57358515:-',
-                'chr8:57358985-57359040:-',
-                'chr8:57359128-57359292:-')
+PENK_exons <- c(
+    'chr8:57353587-57354496:-',
+    'chr8:57358375-57358515:-',
+    'chr8:57358985-57359040:-',
+    'chr8:57359128-57359292:-')
 
 ## General syntax
 four_panels(PENK_exons, JUNCTIONS=TRUE,

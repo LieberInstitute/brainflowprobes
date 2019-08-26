@@ -1,6 +1,6 @@
 #' Plot expression coverage in four datasets for candidate probe sequences.
 #'
-#' \code{four_panels} creates four plots for each candidate probe sequence. The
+#' `four_panels` creates four plots for each candidate probe sequence. The
 #' first plot (Separation) shows the adjusted read coverage in cytosolic and
 #' nuclear RNA from human postmortem cortex. The second plot (Degradation) shows
 #' coverage in human cortical samples exposed to room temperature for 0-60
@@ -15,25 +15,25 @@
 #'   'chr20:10199446-10288068:+'), or a string of sequences. Must be character.
 #'   Chromosome must be proceeded by 'chr'.
 #' @param PDF The path and name of the PDF file. Defaults to
-#' \code{four_panels.pdf}.
+#' `four_panels.pdf`.
 #' @param JUNCTIONS A logical value indicating if the candidate probe sequence
 #'   spans splice junctions (Default=FALSE).
-#' @param COVERAGE The output of \link{brainflowprobes_cov} for the input
-#' \code{REGION}. Defaults to \code{NULL} but it can be pre-computed and saved
+#' @param COVERAGE The output of [brainflowprobes_cov] for the input
+#' `REGION`. Defaults to `NULL` but it can be pre-computed and saved
 #' separately since this is the step that takes the longest to run. Also, this
 #' is the only step that depends on rtracklayer's functionality for reading
 #' BigWig files which does not run on Windows OS. So it could be run on a
 #' non-Windows machine, saved, and then shared with Windows users.
 #' @param CODING_ONLY A logical vector of length 1 specifying whether to
-#' subset \link{genes} to only the coding genes. That is, whether to subset
-#' \link{genes} by whether they have a non-NA \code{CSS} value.
+#' subset [genes] to only the coding genes. That is, whether to subset
+#' [genes] by whether they have a non-NA `CSS` value.
 #' @param VERBOSE A logical value indicating whether to print updates from the
 #' process of loading the data from the BigWig files.
-#' @return \code{four_panels} first annotates the input candidate probe
-#'   sequence(s) in REGION using \code{\link[bumphunter]{matchGenes}}, and then
+#' @return `four_panels()` first annotates the input candidate probe
+#'   sequence(s) in REGION using [bumphunter::matchGenes()], and then
 #'   cuts the expression coverage for each sequence from each sample in four
 #'   different datasets (see the BrainFlow publication for references) using
-#'   \code{\link[derfinder]{getRegionCoverage}}. The coverage is normalized to
+#'   [derfinder::getRegionCoverage()]. The coverage is normalized to
 #'   the total mapped reads per sample and kilobase width of each probe region
 #'   before log2 transformation. The four plots are labeled by the dataset and
 #'   the plots are topped by the sequence coordinates, sequence width, and the
@@ -48,13 +48,13 @@
 #'   Sorted dataset, and also be expressed in the right cell type in the Single
 #'   Cell dataset.
 #'
-#'   \code{four_panels} saves the results as four_panels.pdf in the working
+#'   `four_panels()` saves the results as four_panels.pdf in the working
 #'   directory unless otherwise specified in PATH.
 #'
-#'   If JUNCTIONS=TRUE, this means that the candidate probe sequence spans
+#'   `if(JUNCTIONS)`, this means that the candidate probe sequence spans
 #'   splice junctions. In this case, the character vector of regions should
-#'   represent the coordinates of each exon spanned in the sequence. If
-#'   JUNCTIONS=TRUE, \code{four_panels} will sum the coverage of each exon and
+#'   represent the coordinates of each exon spanned in the sequence.
+#'   `if(JUNCTIONS)`, `four_panels()` will sum the coverage of each exon and
 #'   plot that value for each dataset instead of creating an independent set of
 #'   plots for each exon. This is a way to avoid deflating coverage by including
 #'   lowly-expressed intron coverage in the plots.
@@ -76,14 +76,16 @@
 #'
 #' ## These examples will take several minutes to run depending on your
 #' ## internet connection
-#' four_panels(c('chr20:10286777-10288069:+',
-#'               'chr18:74690788-74692427:-',
-#'               'chr19:49932861-49933829:-'))
+#' four_panels(c(
+#'     'chr20:10286777-10288069:+',
+#'     'chr18:74690788-74692427:-',
+#'     'chr19:49932861-49933829:-'))
 #'
-#' PENK_exons <- c('chr8:57353587-57354496:-',
-#'                 'chr8:57358375-57358515:-',
-#'                 'chr8:57358985-57359040:-',
-#'                 'chr8:57359128-57359292:-')
+#' PENK_exons <- c(
+#'     'chr8:57353587-57354496:-',
+#'     'chr8:57358375-57358515:-',
+#'     'chr8:57358985-57359040:-',
+#'     'chr8:57359128-57359292:-')
 #'
 #' ## General syntax
 #' four_panels(PENK_exons, JUNCTIONS=TRUE,
@@ -120,107 +122,58 @@ four_panels <- function(REGION,
     BrNum <- Cell_type <- Cov <- DegradationTime <- Label <- LabelFrac <-
         LibraryProtocol <- Shortlabels <- NULL
 
-    pdf_file <- PDF
-    if (!grepl("pdf$",
-        tolower(PDF)))
-        pdf_file <- paste0(PDF,
-            ".pdf")
-    if (file.exists(pdf_file))
-        stop(paste("The file",
-            pdf_file,
-            "already exists! Rename or erase it before proceeding."))
+    ## Check the PDF file
+    pdf_file <- check_pdf(PDF)
 
+    ## Define the region(s)
     gr <- GenomicRanges::GRanges(REGION)
-    gr_subject <- if(CODING_ONLY) {
-        brainflowprobes::genes[!is.na(brainflowprobes::genes$CSS)]
-    } else {
-        brainflowprobes::genes
-    }
-    nearestAnnotation <- bumphunter::matchGenes(x = gr,
-        subject = gr_subject)
 
+    ## Compute the nearest annotation
+    nearestAnnotation <- get_nearest_annotation(gr, CODING_ONLY)
 
-    if(is.null(COVERAGE)) {
-        regionCov <- brainflowprobes_cov(
-            REGION = REGION,
-            PD = brainflowprobes::pd,
-            VERBOSE = VERBOSE
-        )
-    } else {
-        stopifnot(is.list(COVERAGE))
-        stopifnot(all(c('Sep', 'Deg', 'Cell', 'Sort') %in% names(COVERAGE)))
-        regionCov <- COVERAGE
-    }
+    ## Compute or check the coverage
+    regionCov <- get_region_cov(REGION, COVERAGE, VERBOSE)
 
-    if (JUNCTIONS !=
-        FALSE) {
-
-        regionCov <- lapply(regionCov,
-            function(x) list(do.call(rbind,
-                x)))
-        covMat <- lapply(regionCov,
-            function(x) t(sapply(x,
-                colSums)/100))
-
-        bg <- lapply(covMat,
-            function(x) matrix(sum(GenomicRanges::width(gr)),
-                ncol = ncol(x),
-                nrow = nrow(x))/1000)
-
+    if(JUNCTIONS) {
+        regionCov <- lapply(regionCov, function(x) list(do.call(rbind, x)))
         coords <- paste0(GenomicRanges::seqnames(gr)[1],
             ":", min(GenomicRanges::start(gr)),
             "-", max(GenomicRanges::end(gr)),
             ":", GenomicRanges::strand(gr)[1])
-        mains <- paste0(coords,
-            " (", sum(GenomicRanges::width(gr)),
-            " bp)\n",
-            nearestAnnotation$name)
 
     } else {
-
-        covMat <- lapply(regionCov,
-            function(x) t(sapply(x,
-                colSums)/100))
-
-        bg <- lapply(covMat,
-            function(x) matrix(GenomicRanges::width(gr),
-                ncol = ncol(x),
-                nrow = nrow(x))/1000)
-
         coords <- paste0(GenomicRanges::seqnames(gr),
             ":", GenomicRanges::start(gr),
             "-", GenomicRanges::end(gr),
             ":", GenomicRanges::strand(gr))
-        mains <- paste0(coords,
-            " (", GenomicRanges::width(gr),
-            " bp)\n",
-            nearestAnnotation$name)
-
     }
 
-    covMat <- mapply(function(cv,
-        b) cv/b, covMat,
-        bg, SIMPLIFY = FALSE)
-    covMat <- lapply(covMat,
-        function(x) as.matrix(log2(x +
-            1)))
-    theRanges <- range(do.call(cbind,
-        covMat))
+    covMat <- lapply(regionCov, function(x) t(sapply(x, colSums)/100))
 
-    grDevices::pdf(pdf_file, height = 12,
-        width = 10, useDingbats = FALSE)
+    bg <- lapply(covMat, function(x) matrix(sum(GenomicRanges::width(gr)),
+            ncol = ncol(x),
+            nrow = nrow(x))/1000)
+
+    mains <- paste0(coords,
+        " (", sum(GenomicRanges::width(gr)),
+        " bp)\n",
+        nearestAnnotation$name)
 
 
-    result <- vector(mode = "list",
-        length = length(regionCov[[1]]))
+    covMat <- mapply(function(cv, b) cv/b, covMat, bg, SIMPLIFY = FALSE)
+    covMat <- lapply(covMat, function(x) as.matrix(log2(x + 1)))
+    theRanges <- range(do.call(cbind, covMat))
+
+    grDevices::pdf(pdf_file, height = 12, width = 10, useDingbats = FALSE)
+
+    result <- vector(mode = "list", length = length(regionCov[[1]]))
     for (j in seq_len(length(regionCov[[1]]))) {
 
         SepDat <- data.frame(Cov = covMat$Sep[j,
             ], LabelFrac = brainflowprobes::pd$Sep$LabelFrac,
             Shortlabels = brainflowprobes::pd$Sep$Shortlabels)
         Sep <- ggplot2::ggplot(SepDat,
-            aes(x = LabelFrac,
-                y = Cov)) +
+            aes(x = LabelFrac, y = Cov)) +
             theme_bw() +
             geom_boxplot(outlier.shape = NA) +
             geom_jitter(size = 2,
@@ -236,13 +189,13 @@ four_panels <- function(REGION,
             theme(text = element_text(size = 20),
                 legend.text = element_text(size = 12),
                 legend.position = c(0.5,
-                  0.15),
+                    0.15),
                 legend.background = element_rect(fill = "transparent",
-                  linetype = "solid",
-                  colour = "black"),
+                    linetype = "solid",
+                    colour = "black"),
                 legend.title = element_blank(),
                 axis.text.x = element_text(angle = 90,
-                  hjust = 1)) +
+                    hjust = 1)) +
             guides(fill = guide_legend(ncol = 4)) +
             ggtitle("Separation")
 
@@ -273,10 +226,10 @@ four_panels <- function(REGION,
             theme(text = element_text(size = 20),
                 legend.text = element_text(size = 12),
                 legend.position = c(0.5,
-                  0.1),
+                    0.1),
                 legend.background = element_rect(fill = "transparent",
-                  linetype = "solid",
-                  colour = "black"),
+                    linetype = "solid",
+                    colour = "black"),
                 legend.title = element_blank()) +
             guides(linetype = guide_legend(ncol = 2),
                 fill = FALSE,
@@ -302,8 +255,8 @@ four_panels <- function(REGION,
             xlab("") +
             theme(text = element_text(size = 20),
                 axis.text.x = element_text(angle = 90,
-                  vjust = 0.5,
-                  hjust = 1)) +
+                    vjust = 0.5,
+                    hjust = 1)) +
             guides(fill = FALSE) +
             ggtitle("Sorted")
 
@@ -318,7 +271,8 @@ four_panels <- function(REGION,
             geom_jitter(aes(fill = Cell_type),
                 pch = 21,
                 color = "black") +
-            scale_fill_manual(values = c("#FFBB78",
+            scale_fill_manual(values = c(
+                "#FFBB78",
                 "#FF9896",
                 "#C5B0D5",
                 "#9467BD",
@@ -333,15 +287,12 @@ four_panels <- function(REGION,
             xlab("") +
             theme(text = element_text(size = 20),
                 axis.text.x = element_text(angle = 90,
-                  vjust = 0.5,
-                  hjust = 1)) +
+                    vjust = 0.5,
+                    hjust = 1)) +
             guides(fill = FALSE) +
             ggtitle("Single Cells")
 
-        p <- cowplot::plot_grid(Sep,
-            Deg, Sort,
-            Cell, ncol = 2,
-            align = "hv")
+        p <- cowplot::plot_grid(Sep, Deg, Sort, Cell, ncol = 2, align = "hv")
         title <- cowplot::ggdraw() +
             cowplot::draw_label(mains[j],
                 fontface = "bold",
@@ -356,11 +307,7 @@ four_panels <- function(REGION,
     }
     grDevices::dev.off()
 
-    message("Completed! Check for ",
-        pdf_file, " in your working
-         directory unless otherwise specified.")
-    if (interactive())
-        utils::browseURL(pdf_file)
+    .view_pdf(pdf_file)
     return(invisible(j))
 
 }

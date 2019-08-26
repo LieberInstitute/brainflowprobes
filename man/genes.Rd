@@ -6,16 +6,17 @@
 \title{GRanges object with the annotated genes for hg19}
 \format{A GRanges object with the following annotation columns.
 \describe{
-    \item{CSS }{ the coding region start (NA for non-coding genes),}
-    \item{CSE }{ the coding region end (NA for non-coding genes),}
-    \item{Tx }{ the Gencode Gene ID,}
-    \item{Geneid }{ the Ensembl Gene ID,}
-    \item{Gene }{ the Gene symbol,}
-    \item{Refseq }{ the RefSeq gene ID,}
-    \item{Nexons }{ the number of exons,}
-    \item{Exons }{ the exon coordinates.}
+\item{CSS }{ the coding region start (NA for non-coding genes),}
+\item{CSE }{ the coding region end (NA for non-coding genes),}
+\item{Tx }{ the Gencode Gene ID,}
+\item{Geneid }{ the Ensembl Gene ID,}
+\item{Gene }{ the Gene symbol,}
+\item{Refseq }{ the RefSeq gene ID,}
+\item{Nexons }{ the number of exons,}
+\item{Exons }{ the exon coordinates.}
 }
-See \link[bumphunter]{annotateTranscripts} for more information.}
+See \link[bumphunter:annotateTranscripts]{annotateTranscripts} for more
+information.}
 \description{
 A GRanges object with the annotated genes for hg19 using
 \code{bumphunter::annotateTranscripts} on the

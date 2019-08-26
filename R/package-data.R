@@ -1,7 +1,7 @@
 #' GRanges object with the annotated genes for hg19
 #'
 #' A GRanges object with the annotated genes for hg19 using
-#' \code{bumphunter::annotateTranscripts} on the
+#' `bumphunter::annotateTranscripts` on the
 #' Gencode v31 annotation lifted over to hg19 grouped by gene
 #' instead of by transcript.
 #'
@@ -18,12 +18,13 @@
 #'     \item{Nexons }{ the number of exons,}
 #'     \item{Exons }{ the exon coordinates.}
 #' }
-#' See \link[bumphunter]{annotateTranscripts} for more information.
+#' See [annotateTranscripts][bumphunter::annotateTranscripts] for more
+#' information.
 #'
 #' @keywords datasets
-#' @seealso \link{four_panels}
-#' \url{https://github.com/LieberInstitute/brainflowprobes/blob/master/data-raw/create_sysdata.R}
-#' \url{https://www.gencodegenes.org/human/release_31lift37.html}
+#' @seealso [four_panels]
+#' <https://github.com/LieberInstitute/brainflowprobes/blob/master/data-raw/create_sysdata.R>
+#' <https://www.gencodegenes.org/human/release_31lift37.html>
 #'
 NULL
 
@@ -31,13 +32,13 @@ NULL
 #' Genomic state object for hg19
 #'
 #' The derfinder genomic state object for hg19 created using
-#' Gencode v31 lifted over to hg19. Only the \code{fullGenome} portion of it
-#' is saved in this package. See \link[derfinder]{makeGenomicState} for
-#' more information on how to make this type of object.
+#' Gencode v31 lifted over to hg19. Only the `fullGenome` portion of it
+#' is saved in this package. See [makeGenomicState][derfinder::makeGenomicState]
+#' for more information on how to make this type of object.
 #'
 #' @name gs
 #' @docType data
-#' @format A genomic state object for the \code{fullGenome} for hg19
+#' @format A genomic state object for the `fullGenome` for hg19
 #' using the Gencode v31 annotation lifted over to hg19. The columns are:
 #' \describe{
 #'     \item{theRegion }{ type of region of the genome: exon, intron, intergenic
@@ -51,9 +52,9 @@ NULL
 #' }
 #'
 #' @keywords datasets
-#' @seealso \link{four_panels}
-#' \url{https://github.com/LieberInstitute/brainflowprobes/blob/master/data-raw/create_sysdata.R}
-#' \url{https://www.gencodegenes.org/human/release_31lift37.html}
+#' @seealso [four_panels]
+#' <https://github.com/LieberInstitute/brainflowprobes/blob/master/data-raw/create_sysdata.R>
+#' <https://www.gencodegenes.org/human/release_31lift37.html>
 
 NULL
 
@@ -67,7 +68,7 @@ NULL
 #' @format A list of four data.frames:
 #' \describe{
 #'     \item{Sep }{ phenotype information for samples from
-#'     \url{https://www.biorxiv.org/content/10.1101/567966v1}; a data.frame with
+#'     <https://www.biorxiv.org/content/10.1101/567966v1>; a data.frame with
 #'     23 rows and 15 columns. Column descriptions: SampleID is the sample name,
 #'     Zone is the RNA fraction of the sample ("Nucleus" or "Cytosol"), Age,
 #'     Sex, and Race list these demographic characteristics, Fetal categorizes
@@ -79,7 +80,7 @@ NULL
 #'     the BigWig file for each sample, and files lists the URL for the BigWig
 #'     online.}
 #'     \item{Deg }{ phenotype information for samples from
-#'     \url{https://www.pnas.org/content/114/27/7130}; a data.frame with 40 rows
+#'     <https://www.pnas.org/content/114/27/7130>; a data.frame with 40 rows
 #' and 16 columns. Column descriptions: DegradationTime is the number of minutes
 #'      the brain tissue for each sample was left on the benchtop at room
 #'      temperature before RNA was extracted, AgeDeath is the age of the donor
@@ -96,7 +97,7 @@ NULL
 #'       SampleID_library is the Sample ID and library column values together,
 #'       and files lists the URL for the BigWig online.}
 #'     \item{Cell }{ phenotype information for samples from
-#'     \url{https://www.pnas.org/content/112/23/7285}; a data.frame with 466
+#'     <https://www.pnas.org/content/112/23/7285>; a data.frame with 466
 #'     rows and 11 columns. Column descriptions: geo_accession is the accession
 #'     number for each sample in the Gene Expression Omnibus, Age is the numeric
 #'      age of each sample, AgeGroup categorizes each sample age as "prenatal"
@@ -108,7 +109,7 @@ NULL
 #'     BigWig is the name of the BigWig file, and files lists the URL for the
 #'     BigWig online.}
 #'     \item{Sort }{ phenotype information  for samples from
-#'     \url{https://www.biorxiv.org/content/10.1101/428391v2}; a data.frame with
+#'     <https://www.biorxiv.org/content/10.1101/428391v2>; a data.frame with
 #'     12 rows and 12 columns. Column descriptions: Description categorizes the
 #'     RNAseq library preparation method as polyA selection ("PolyA") or rRNA
 #'     depletion ("Ribo"), SubjectID is the subject number, CellType lists
@@ -122,8 +123,8 @@ NULL
 #' }
 #'
 #' @keywords datasets
-#' @seealso \link{four_panels} \link{brainflowprobes_cov}
-#' \url{https://github.com/LieberInstitute/brainflowprobes/blob/master/data-raw/create_sysdata.R}
+#' @seealso [four_panels] [brainflowprobes_cov]
+#' <https://github.com/LieberInstitute/brainflowprobes/blob/master/data-raw/create_sysdata.R>
 #' @examples
 #' ##  pd <- list(Sep = pdSep, Deg = pdDeg, Cell = pdCell, Sort = pdSort)
 #'
@@ -132,27 +133,27 @@ NULL
 
 #' Example base-pair region coverage data
 #'
-#' A list of base-pair region coverage matrices used for exemplifying the
-#' package functionality. This is the data extracted for the example region
-#' \code{chr20:10286777-10288069:+} by looping through the phenotype tables
-#' stored in \code{pd} and using the \link[derfinder]{getRegionCoverage}
-#' function. This can be reproduced using the \link{brainflowprobes_cov}
-#' function in this package.
+#' A list of base-pair region coverage data.frame lists used for exemplifying
+#' the package functionality. This is the data extracted for the example region
+#' `chr20:10286777-10288069:+` by looping through the phenotype tables
+#' stored in `pd` and using the
+#' [getRegionCoverage][derfinder::getRegionCoverage] function. This can be
+#' reproduced using the [brainflowprobes_cov] function in this package.
 #'
 #' @name four_panels_example_cov
 #' @docType data
 #' @format A list with the base-pair coverage output from
-#' \link{brainflowprobes_cov} with the example region used throughout the
+#' [brainflowprobes_cov] with the example region used throughout the
 #' package documentation ('chr20:10286777-10288069:+').
 #' \describe{
-#'     \item{Sep }{ base-pair coverage region matrix for pd$Sep,}
-#'     \item{Deg }{ base-pair coverage region matrix for pd$Deg,}
-#'     \item{Cell }{ base-pair coverage region matrix for pd$Cell,}
-#'     \item{Sort }{ base-pair coverage region matrix for pd$Sort.}
+#'     \item{Sep }{ base-pair coverage region data.frame list for pd$Sep,}
+#'     \item{Deg }{ base-pair coverage region data.frame list for pd$Deg,}
+#'     \item{Cell }{ base-pair coverage region data.frame list for pd$Cell,}
+#'     \item{Sort }{ base-pair coverage region data.frame list for pd$Sort.}
 #' }
 #'
 #' @keywords datasets
-#' @seealso \link{four_panels} \link{plot_coverage}
+#' @seealso [four_panels] [plot_coverage]
 #' @examples
 #' if(FALSE) {
 #'     ## Takes about 10 minutes to run!

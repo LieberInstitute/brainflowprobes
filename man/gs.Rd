@@ -7,20 +7,20 @@
 \format{A genomic state object for the \code{fullGenome} for hg19
 using the Gencode v31 annotation lifted over to hg19. The columns are:
 \describe{
-    \item{theRegion }{ type of region of the genome: exon, intron, intergenic
-    ,}
-    \item{tx_id }{ IntegerList of the transcripts for the TxDb object
-    made using Gencode v31 lifted over to hg19 (see links below),}
-    \item{tx_name }{ the Gencode v31 transcript IDs as a CharacterList,}
-    \item{gene }{IntegerList of the genes for the TxDb object
-    made using Gencode v31 lifted over to hg19 (see links below),}
-    \item{symbol }{ the gene symbols in a CharacterList.}
+\item{theRegion }{ type of region of the genome: exon, intron, intergenic
+,}
+\item{tx_id }{ IntegerList of the transcripts for the TxDb object
+made using Gencode v31 lifted over to hg19 (see links below),}
+\item{tx_name }{ the Gencode v31 transcript IDs as a CharacterList,}
+\item{gene }{IntegerList of the genes for the TxDb object
+made using Gencode v31 lifted over to hg19 (see links below),}
+\item{symbol }{ the gene symbols in a CharacterList.}
 }}
 \description{
 The derfinder genomic state object for hg19 created using
 Gencode v31 lifted over to hg19. Only the \code{fullGenome} portion of it
-is saved in this package. See \link[derfinder]{makeGenomicState} for
-more information on how to make this type of object.
+is saved in this package. See \link[derfinder:makeGenomicState]{makeGenomicState}
+for more information on how to make this type of object.
 }
 \seealso{
 \link{four_panels}

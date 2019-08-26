@@ -1,3 +1,13 @@
+CHANGES IN VERSION 0.99.3
+-------------------------
+
+NEW FEATURES
+
+    o Created three utility functions: check_pdf(), get_nearest_annotation()
+       and get_region_cov() and resolved other tasks suggested by
+       @Liubuntu at https://github.com/Bioconductor/Contributions/issues/1191#issuecomment-522762540
+       during the Bioconductor submission process.
+
 CHANGES IN VERSION 0.99.0
 -------------------------
 

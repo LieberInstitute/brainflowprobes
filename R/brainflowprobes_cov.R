@@ -11,8 +11,15 @@
 #' @param PD A list of data.frames with the \code{sumMapped} and \code{files}
 #' columns. Defaults to the data included in this package.
 #'
-#' @return A list with the region coverage matrices used by
-#' \link{four_panels} and \link{plot_coverage}.
+#' @return A list of region coverage coverage data.frame lists used by
+#' \link{four_panels} and \link{plot_coverage}. That is, a list with one
+#' element per dataset in \link{pd} (so four: `Sep`, `Deg`, `Cell`, `Sort`).
+#' Each element of the output list is a list with one data.frame per input
+#' region. In the case of `four_panels_example_cov` there was only one input
+#' region hence each region coverage data.frame list has one element. A region
+#' coverage data.frame has one column per sample and one row per genome
+#' base-pair for the given region and dataset.
+#'
 #' @export
 #' @import derfinder GenomicRanges
 #' @author Leonardo Collado-Torres
@@ -25,8 +32,42 @@
 #'
 #' ## How long this takes to run will depend on your internet connection.
 #' example_cov <- brainflowprobes_cov('chr20:10286777-10288069:+',
-#'      PD = lapply(brainflowprobes::pd, head, n = 2)
+#'     PD = lapply(brainflowprobes::pd, head, n = 2)
 #' )
+#'
+#' ## Output examination:
+#' # A list with one element per element in brainflowprobes::pd
+#' stopifnot(is.list(example_cov))
+#' stopifnot(identical(
+#'     names(example_cov),
+#'     names(brainflowprobes::pd)
+#' ))
+#'
+#' # For each dataset, brainflowprobes_cov() returns a list of region
+#' # coverage data.frames. In this example, there was a single input region.
+#' stopifnot(all(
+#'     sapply(example_cov, length) ==
+#'     length(
+#'         GenomicRanges::GRanges('chr20:10286777-10288069:+')
+#'     ))
+#' )
+#'
+#' # Then each data.frame itself has 1 row per genome base-pair in the region
+#' stopifnot(
+#'     all(
+#'         sapply(example_cov, function(x) { nrow(x[[1]]) }) ==
+#'         GenomicRanges::width(
+#'             GenomicRanges::GRanges('chr20:10286777-10288069:+')
+#'         )
+#'     )
+#' )
+#'
+#' # and one column per sample in the dataset unless you subsetted the data
+#' # like we did earlier when creating "example_cov".
+#' stopifnot(identical(
+#'     sapply(four_panels_example_cov, function(x) { ncol(x[[1]]) }),
+#'     sapply(pd, nrow)
+#' ))
 #' }
 #'
 #' ## This is how the example data included in the package was made:
@@ -34,6 +75,7 @@
 #' ## This can take about 10 minutes to run!
 #' four_panels_example_cov <- brainflowprobes_cov('chr20:10286777-10288069:+')
 #' }
+#'
 #'
 #' ## If you are interested, you could download all the BigWig files
 #' ## in the \code{brainflowprobes::pd} list of data.frames from the
@@ -49,9 +91,9 @@
 brainflowprobes_cov <- function(REGION, PD = brainflowprobes::pd,
     VERBOSE = TRUE) {
 
-    stopifnot(all(sapply(PD, is.data.frame)))
-    stopifnot(all(sapply(PD, function(x) all(
-        c('sumMapped', 'files') %in% colnames(x)))))
+    stopifnot(all(vapply(PD, is.data.frame, logical(1))))
+    stopifnot(all(vapply(PD, function(x) all(
+        c('sumMapped', 'files') %in% colnames(x)), logical(1))))
 
     gr <- GenomicRanges::GRanges(REGION)
     regionCov <- lapply(PD,

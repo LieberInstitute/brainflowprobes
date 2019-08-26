@@ -1,16 +1,16 @@
 #' Plot coverage in nuclear and cytoplasmic RNA for candidate probe sequences.
 #'
-#' \code{plot_coverage} plots the coverage of nuclear and cytoplasmic RNA from
+#' `plot_coverage` plots the coverage of nuclear and cytoplasmic RNA from
 #' adult and prenatal human prefrontal cortex across a candidate or series of
 #' candidate probe sequences for BrainFlow. If the sequence spans splice
 #' junctions, the plot will include the introns. A good candidate sequence will
 #' be highly and evenly expressed in nuclear RNA.
 #'
 #' @param PDF The path and name of the PDF file. Defaults to
-#' \code{regionCoverage_fractionedData.pdf}.
+#' `regionCoverage_fractionedData.pdf`.
 #' @inheritParams four_panels
-#' @return \code{plot_coverage} plots all input sequences using
-#'   \code{\link[derfinderPlot]{plotRegionCoverage}}. It returns a plot for each
+#' @return `plot_coverage` plots all input sequences using
+#'   [derfinderPlot::plotRegionCoverage()]. It returns a plot for each
 #'   input candidate sequence listed in REGION. Each plot includes coverage of
 #'   the sequence(s) in nuclear (N) and cytoplasmic (C) RNA isolated from adult
 #'   (A) and fetal (F) prefrontal cortex, sequenced using two different library
@@ -22,9 +22,9 @@
 #'   genomic location. The title lists the nearest gene, the position of the
 #'   sequence relative to the gene's canonical transcriptional start site (TSS),
 #'   and further annotation information as described in the 'region' column from
-#'   \code{\link[bumphunter]{matchGenes}}.
+#'   [bumphunter::matchGenes()].
 #'
-#'   \code{plot_coverage} saves the results as regionCoverage_fractionedData.pdf
+#'   `plot_coverage` saves the results as regionCoverage_fractionedData.pdf
 #'   in the working directory unless otherwise specified in PATH.
 #' @examples
 #'
@@ -66,6 +66,7 @@
 #' plot_coverage('chr10:135379301-135379311:+', COVERAGE = cov,
 #'     PDF = 'coding_only_plot_coverage', CODING_ONLY = TRUE)
 #' }
+#'
 #' @export
 #' @import GenomicRanges bumphunter derfinder derfinderPlot RColorBrewer
 #' @importFrom utils browseURL
@@ -79,61 +80,44 @@ plot_coverage <- function(REGION,
     CODING_ONLY = FALSE,
     VERBOSE = TRUE) {
 
-    pdf_file <- PDF
-    if (!grepl("pdf$",
-        tolower(PDF)))
-        pdf_file <- paste0(PDF,
-            ".pdf")
-    if (file.exists(pdf_file))
-        stop(paste("The file",
-            pdf_file,
-            "already exists! Rename or erase it before proceeding."))
+    ## Check the PDF file
+    pdf_file <- check_pdf(PDF)
 
+    ## Define the region(s)
     gr <- GenomicRanges::GRanges(REGION)
-    gr_subject <- if(CODING_ONLY) {
-        brainflowprobes::genes[!is.na(brainflowprobes::genes$CSS)]
-    } else {
-        brainflowprobes::genes
-    }
-    nearestAnnotation <- bumphunter::matchGenes(x = gr,
-        subject = gr_subject)
+
+    ## Compute the nearest annotation
+    nearestAnnotation <- get_nearest_annotation(gr, CODING_ONLY)
+
+    ## Annotate the regions
     annotatedRegions <- derfinder::annotateRegions(regions = gr,
         genomicState = brainflowprobes::gs,
         minoverlap = 1)
 
-    if(is.null(COVERAGE)) {
-        regionCov <- brainflowprobes_cov(
-            REGION = REGION,
-            PD = brainflowprobes::pd['Sep'],
-            VERBOSE = VERBOSE
-        )
-    } else {
-        stopifnot(is.list(COVERAGE))
-        stopifnot('Sep' %in% names(COVERAGE))
-        regionCov <- COVERAGE
-    }
-    regionCov <- regionCov$Sep
+    ## Compute or check the coverage
+    regionCov <- get_region_cov(REGION, COVERAGE, VERBOSE)$Sep
 
-    grDevices::pdf(pdf_file, height = 8,
-        width = 8, useDingbats = FALSE)
+    grDevices::pdf(pdf_file, height = 8, width = 8, useDingbats = FALSE)
 
     derfinderPlot::plotRegionCoverage(regions = gr,
         regionCoverage = regionCov,
         groupInfo = brainflowprobes::pd$Sep$Shortlabels,
-        colors = RColorBrewer::brewer.pal(8,
-            "Paired"),
+        colors = RColorBrewer::brewer.pal(8, "Paired"),
         nearestAnnotation = nearestAnnotation,
         annotatedRegions = annotatedRegions,
         whichRegions = seq_len(length(gr)),
         ask = FALSE,
-        verbose = FALSE)
+        verbose = FALSE
+    )
     grDevices::dev.off()
 
+    .view_pdf(pdf_file)
+    return(invisible(pdf_file))
+}
 
-
-    message("Completed! Check for ",
-        pdf_file, " in your working directory unless otherwise specified.")
+.view_pdf <- function(pdf_file) {
+    message(paste(Sys.time(), "Completed! Check for ",
+        pdf_file, " in your working directory unless otherwise specified."))
     if (interactive())
         utils::browseURL(pdf_file)
-    return(invisible(pdf_file))
 }

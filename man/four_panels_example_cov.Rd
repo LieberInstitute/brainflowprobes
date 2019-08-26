@@ -8,18 +8,18 @@
 \link{brainflowprobes_cov} with the example region used throughout the
 package documentation ('chr20:10286777-10288069:+').
 \describe{
-    \item{Sep }{ base-pair coverage region matrix for pd$Sep,}
-    \item{Deg }{ base-pair coverage region matrix for pd$Deg,}
-    \item{Cell }{ base-pair coverage region matrix for pd$Cell,}
-    \item{Sort }{ base-pair coverage region matrix for pd$Sort.}
+\item{Sep }{ base-pair coverage region data.frame list for pd$Sep,}
+\item{Deg }{ base-pair coverage region data.frame list for pd$Deg,}
+\item{Cell }{ base-pair coverage region data.frame list for pd$Cell,}
+\item{Sort }{ base-pair coverage region data.frame list for pd$Sort.}
 }}
 \description{
-A list of base-pair region coverage matrices used for exemplifying the
-package functionality. This is the data extracted for the example region
+A list of base-pair region coverage data.frame lists used for exemplifying
+the package functionality. This is the data extracted for the example region
 \code{chr20:10286777-10288069:+} by looping through the phenotype tables
-stored in \code{pd} and using the \link[derfinder]{getRegionCoverage}
-function. This can be reproduced using the \link{brainflowprobes_cov}
-function in this package.
+stored in \code{pd} and using the
+\link[derfinder:getRegionCoverage]{getRegionCoverage} function. This can be
+reproduced using the \link{brainflowprobes_cov} function in this package.
 }
 \examples{
 if(FALSE) {

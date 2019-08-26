@@ -64,18 +64,24 @@ write.bibtex(bib, file = 'brainflowprobes_ref.bib')
 `R` is an open-source statistical environment which can be easily modified to enhance its functionality via packages. `r Biocpkg('brainflowprobes')` is an `R` package available via the [Bioconductor](http://bioconductor/packages/brainflowprobes) repository for packages. `R` can be installed on any operating system from [CRAN](https://cran.r-project.org/) after which you can install `r Biocpkg('brainflowprobes')` by using the following commands in your `R` session:
 
 ```{r 'install', eval = FALSE}
-install.packages("BiocManager")
+if (!requireNamespace("BiocManager", quietly = TRUE))
+   install.packages("BiocManager")
 BiocManager::install("brainflowprobes")
 
 ## Check that you have a valid Bioconductor installation
 BiocManager::valid()
+
+## If you want to force the installation of the development version, you can
+## do so by running. However, we suggest that you wait for Bioconductor to
+## run checks and build the latest release.
+BiocManager::install("LieberInstitute/brainflowprobes")
 ```
 
 ## Required knowledge
 
 `r Biocpkg('brainflowprobes')` is based on many other packages, particularly `r Biocpkg('GenomicRanges')`, `r Biocpkg('derfinder')`, and `r Biocpkg('derfinderPlot')`. A `r Biocpkg('brainflowprobes')` user is not expected to deal with those packages directly, but may find their manuals useful.
 
-If you are asking yourself the question "How do I start using Bioconductor?" you might be interested in [this blog post](http://lcolladotor.github.io/2014/10/16/startBioC/#.VkOKbq6rRuU).
+If you are asking yourself the question "How do I start using Bioconductor?" you might be interested in [this blog post](http://lcolladotor.github.io/2014/10/16/startbioc/#.VkOKbq6rRuU).
 
 ## Asking for help
 

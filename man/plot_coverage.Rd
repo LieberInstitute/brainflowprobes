@@ -32,22 +32,22 @@ process of loading the data from the BigWig files.}
 }
 \value{
 \code{plot_coverage} plots all input sequences using
-  \code{\link[derfinderPlot]{plotRegionCoverage}}. It returns a plot for each
-  input candidate sequence listed in REGION. Each plot includes coverage of
-  the sequence(s) in nuclear (N) and cytoplasmic (C) RNA isolated from adult
-  (A) and fetal (F) prefrontal cortex, sequenced using two different library
-  preparation methods. PolyA+ libraries (P) were generated using selection
-  for polyadenylated transcripts, and RiboZero (R) libraries were generated
-  using a ribosomal RNA depletion protocol.
+\code{\link[derfinderPlot:plotRegionCoverage]{derfinderPlot::plotRegionCoverage()}}. It returns a plot for each
+input candidate sequence listed in REGION. Each plot includes coverage of
+the sequence(s) in nuclear (N) and cytoplasmic (C) RNA isolated from adult
+(A) and fetal (F) prefrontal cortex, sequenced using two different library
+preparation methods. PolyA+ libraries (P) were generated using selection
+for polyadenylated transcripts, and RiboZero (R) libraries were generated
+using a ribosomal RNA depletion protocol.
 
-  Each plot also shows the overlapping genes beneath the coverage, and the
-  genomic location. The title lists the nearest gene, the position of the
-  sequence relative to the gene's canonical transcriptional start site (TSS),
-  and further annotation information as described in the 'region' column from
-  \code{\link[bumphunter]{matchGenes}}.
+Each plot also shows the overlapping genes beneath the coverage, and the
+genomic location. The title lists the nearest gene, the position of the
+sequence relative to the gene's canonical transcriptional start site (TSS),
+and further annotation information as described in the 'region' column from
+\code{\link[bumphunter:matchGenes]{bumphunter::matchGenes()}}.
 
-  \code{plot_coverage} saves the results as regionCoverage_fractionedData.pdf
-  in the working directory unless otherwise specified in PATH.
+\code{plot_coverage} saves the results as regionCoverage_fractionedData.pdf
+in the working directory unless otherwise specified in PATH.
 }
 \description{
 \code{plot_coverage} plots the coverage of nuclear and cytoplasmic RNA from
@@ -96,6 +96,7 @@ plot_coverage('chr10:135379301-135379311:+', COVERAGE = cov)
 plot_coverage('chr10:135379301-135379311:+', COVERAGE = cov,
     PDF = 'coding_only_plot_coverage', CODING_ONLY = TRUE)
 }
+
 }
 \author{
 Amanda J Price

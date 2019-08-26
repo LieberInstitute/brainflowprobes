@@ -29,20 +29,20 @@ subset \link{genes} to only the coding genes. That is, whether to subset
 }
 \value{
 This function annotates all input sequences using
-  \code{\link[bumphunter]{matchGenes}}. It returns a data frame where each
-  row is a genomic sequence specified in REGION. The columns
-  c('seqnames', 'start', 'end', 'width', 'strand') list the chromosome,
-  range, sequence length, and strand of the REGION. The columns c('name',
-  'annotation', 'description', 'region', 'distance', 'subregion',
-  'insideDistance', 'exonnumber', 'nexons', 'UTR', 'geneL', 'codingL',
-  'Geneid', 'subjectHits') are described in
-  \code{\link[bumphunter]{matchGenes}} documentation.
+\code{\link[bumphunter:matchGenes]{bumphunter::matchGenes()}}. It returns a data frame where each
+row is a genomic sequence specified in REGION. The columns
+c('seqnames', 'start', 'end', 'width', 'strand') list the chromosome,
+range, sequence length, and strand of the REGION. The columns c('name',
+'annotation', 'description', 'region', 'distance', 'subregion',
+'insideDistance', 'exonnumber', 'nexons', 'UTR', 'geneL', 'codingL',
+'Geneid', 'subjectHits') are described in
+\code{\link[bumphunter:matchGenes]{bumphunter::matchGenes()}} documentation.
 
-  If SEQ=TRUE, a column 'Sequence' will be included. This is recommended for
-  sending the probe sequence to be synthesized.
+If SEQ=TRUE, a column 'Sequence' will be included. This is recommended for
+sending the probe sequence to be synthesized.
 
-  If CSV=TRUE, a .csv file called region_info.csv will be saved to the
-  working directory unless otherwise specified in PATH.
+If CSV=TRUE, a .csv file called region_info.csv will be saved to the
+working directory unless otherwise specified in PATH.
 }
 \description{
 \code{region_info} returns annotation of a single potential probe sequence or

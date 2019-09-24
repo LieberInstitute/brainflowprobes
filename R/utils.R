@@ -54,7 +54,7 @@ check_pdf <- function(PDF = 'four_panels.pdf', OUTDIR = tempdir()) {
 #' This is an utility function used by \link{region_info}, \link{four_panels}
 #' and \link{plot_coverage}.
 #'
-#' @param gr A [GenomicRanges::GRanges()] object.
+#' @param gr A [GenomicRanges::GRanges()][GenomicRanges::GRanges-class] object.
 #' @inheritParams four_panels
 #'
 #' @return The [bumphunter::matchGenes()] output for the annotation information

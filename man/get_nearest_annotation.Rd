@@ -7,7 +7,7 @@
 get_nearest_annotation(gr, CODING_ONLY = FALSE)
 }
 \arguments{
-\item{gr}{A \code{\link[GenomicRanges:GRanges]{GenomicRanges::GRanges()}} object.}
+\item{gr}{A \link[GenomicRanges:GRanges-class]{GenomicRanges::GRanges()} object.}
 
 \item{CODING_ONLY}{A logical vector of length 1 specifying whether to
 subset \link{genes} to only the coding genes. That is, whether to subset

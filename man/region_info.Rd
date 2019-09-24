@@ -4,24 +4,24 @@
 \alias{region_info}
 \title{Print relevant info about candidate probe sequence.}
 \usage{
-region_info(REGION, CSV = TRUE, SEQ = TRUE, PATH = ".",
+region_info(REGION, CSV = TRUE, SEQ = TRUE, OUTDIR = tempdir(),
   CODING_ONLY = FALSE)
 }
 \arguments{
 \item{REGION}{Either a single hg19 genomic sequence including the chromosome,
 start, end, and optionally strand separated by colons (e.g.,
-'chr20:10199446-10288068:+'), or a string of sequences to be annotated.
+\code{'chr20:10199446-10288068:+'}), or a string of sequences to be annotated.
 Must be character. Chromosome must be proceeded by 'chr'.}
 
-\item{CSV}{A logical value indicating if the results should be exported in a
-.csv file.}
+\item{CSV}{A \code{logical(1)} value indicating if the results should be exported
+in a .csv file.}
 
-\item{SEQ}{A logical value indicating if the base sequence should be
+\item{SEQ}{A `logical(1)`` value indicating if the base sequence should be
 returned.}
 
-\item{PATH}{If a .csv file is to be exported, this parameter indicates the
+\item{OUTDIR}{If a .csv file is to be exported, this parameter indicates the
 path where the file should be saved. By default the file will be
-saved in the working directory.}
+saved in a temporary directory.}
 
 \item{CODING_ONLY}{A logical vector of length 1 specifying whether to
 subset \link{genes} to only the coding genes. That is, whether to subset
@@ -41,8 +41,8 @@ range, sequence length, and strand of the REGION. The columns c('name',
 If SEQ=TRUE, a column 'Sequence' will be included. This is recommended for
 sending the probe sequence to be synthesized.
 
-If CSV=TRUE, a .csv file called region_info.csv will be saved to the
-working directory unless otherwise specified in PATH.
+If CSV=TRUE, a .csv file called region_info.csv will be saved to a
+temporary directory unless otherwise specified in \code{OUTDIR}.
 }
 \description{
 \code{region_info} returns annotation of a single potential probe sequence or
@@ -73,9 +73,9 @@ region_info('chr10:135379301-135379311:+', CSV = FALSE, CODING_ONLY = TRUE)
 
 
 \dontrun{
-region_info(candidates, PATH = '/path/to/directory/')
+region_info(candidates, OUTDIR = '/path/to/directory/')
 
-region_info('chr20:10286777-10288069:+', PATH = '/path/to/directory')
+region_info('chr20:10286777-10288069:+', OUTDIR = '/path/to/directory')
 
 }
 }

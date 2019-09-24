@@ -5,7 +5,8 @@
 \title{Plot coverage in nuclear and cytoplasmic RNA for candidate probe sequences.}
 \usage{
 plot_coverage(REGION, PDF = "regionCoverage_fractionedData.pdf",
-  COVERAGE = NULL, CODING_ONLY = FALSE, VERBOSE = TRUE)
+  OUTDIR = tempdir(), COVERAGE = NULL, CODING_ONLY = FALSE,
+  VERBOSE = TRUE)
 }
 \arguments{
 \item{REGION}{Either a single hg19 genomic sequence including the chromosome,
@@ -13,8 +14,10 @@ start, end, and optionally strand separated by colons (e.g.,
 'chr20:10199446-10288068:+'), or a string of sequences. Must be character.
 Chromosome must be proceeded by 'chr'.}
 
-\item{PDF}{The path and name of the PDF file. Defaults to
+\item{PDF}{The name of the PDF file. Defaults to
 \code{regionCoverage_fractionedData.pdf}.}
+
+\item{OUTDIR}{The default directory where \code{PDF} will be saved to.}
 
 \item{COVERAGE}{The output of \link{brainflowprobes_cov} for the input
 \code{REGION}. Defaults to \code{NULL} but it can be pre-computed and saved
@@ -47,7 +50,7 @@ and further annotation information as described in the 'region' column from
 \code{\link[bumphunter:matchGenes]{bumphunter::matchGenes()}}.
 
 \code{plot_coverage} saves the results as regionCoverage_fractionedData.pdf
-in the working directory unless otherwise specified in PATH.
+in a temporary directory unless otherwise specified with \code{OUTDIR}.
 }
 \description{
 \code{plot_coverage} plots the coverage of nuclear and cytoplasmic RNA from
@@ -83,10 +86,11 @@ candidates <- c('chr20:10286777-10288069:+',
                 'chr19:49932861-49933829:-')
 
 ## General syntax:
-plot_coverage(candidates, PDF = '/path/to/directory/PDF_file.pdf')
+plot_coverage(candidates, PDF = 'PDF_file.pdf',
+    OUTDIR = '/path/to/directory/')
 
 plot_coverage('chr20:10286777-10288069:+',
-    PDF = '/path/to/directory/PDF_file.pdf')
+    PDF = 'PDF_file.pdf', OUTDIR = '/path/to/directory/')
 
 ## Explore the effect of changing CODING_ONLY
 ## Check how gene name and distance to TSS changes in the title of the plot

@@ -14,8 +14,9 @@
 #'   start, end, and optionally strand separated by colons (e.g.,
 #'   'chr20:10199446-10288068:+'), or a string of sequences. Must be character.
 #'   Chromosome must be proceeded by 'chr'.
-#' @param PDF The path and name of the PDF file. Defaults to
+#' @param PDF The name of the PDF file. Defaults to
 #' `four_panels.pdf`.
+#' @param OUTDIR The default directory where `PDF` will be saved to.
 #' @param JUNCTIONS A logical value indicating if the candidate probe sequence
 #'   spans splice junctions (Default=FALSE).
 #' @param COVERAGE The output of [brainflowprobes_cov] for the input
@@ -48,8 +49,8 @@
 #'   Sorted dataset, and also be expressed in the right cell type in the Single
 #'   Cell dataset.
 #'
-#'   `four_panels()` saves the results as four_panels.pdf in the working
-#'   directory unless otherwise specified in PATH.
+#'   `four_panels()` saves the results as four_panels.pdf in a temporary
+#'   directory unless otherwise specified with `OUTDIR`.
 #'
 #'   `if(JUNCTIONS)`, this means that the candidate probe sequence spans
 #'   splice junctions. In this case, the character vector of regions should
@@ -89,10 +90,10 @@
 #'
 #' ## General syntax
 #' four_panels(PENK_exons, JUNCTIONS=TRUE,
-#'     PDF = '/path/to/directory/PDF_file.pdf')
+#'     PDF = 'PDF_file.pdf', OUTDIR = '/path/to/directory/')
 #'
 #' four_panels('chr20:10286777-10288069:+',
-#'     PDF = '/path/to/directory/PDF_file.pdf')
+#'     PDF = 'PDF_file.pdf', OUTDIR = '/path/to/directory/')
 #'
 #'
 #' ## Explore the effect of changing CODING_ONLY
@@ -112,6 +113,7 @@
 
 four_panels <- function(REGION,
     PDF = "four_panels.pdf",
+    OUTDIR = tempdir(),
     JUNCTIONS = FALSE,
     COVERAGE = NULL,
     CODING_ONLY = FALSE,
@@ -123,7 +125,7 @@ four_panels <- function(REGION,
         LibraryProtocol <- Shortlabels <- NULL
 
     ## Check the PDF file
-    pdf_file <- check_pdf(PDF)
+    pdf_file <- check_pdf(PDF, OUTDIR)
 
     ## Define the region(s)
     gr <- GenomicRanges::GRanges(REGION)

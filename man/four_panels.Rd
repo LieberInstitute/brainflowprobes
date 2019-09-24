@@ -4,8 +4,9 @@
 \alias{four_panels}
 \title{Plot expression coverage in four datasets for candidate probe sequences.}
 \usage{
-four_panels(REGION, PDF = "four_panels.pdf", JUNCTIONS = FALSE,
-  COVERAGE = NULL, CODING_ONLY = FALSE, VERBOSE = TRUE)
+four_panels(REGION, PDF = "four_panels.pdf", OUTDIR = tempdir(),
+  JUNCTIONS = FALSE, COVERAGE = NULL, CODING_ONLY = FALSE,
+  VERBOSE = TRUE)
 }
 \arguments{
 \item{REGION}{Either a single hg19 genomic sequence including the chromosome,
@@ -13,8 +14,10 @@ start, end, and optionally strand separated by colons (e.g.,
 'chr20:10199446-10288068:+'), or a string of sequences. Must be character.
 Chromosome must be proceeded by 'chr'.}
 
-\item{PDF}{The path and name of the PDF file. Defaults to
+\item{PDF}{The name of the PDF file. Defaults to
 \code{four_panels.pdf}.}
+
+\item{OUTDIR}{The default directory where \code{PDF} will be saved to.}
 
 \item{JUNCTIONS}{A logical value indicating if the candidate probe sequence
 spans splice junctions (Default=FALSE).}
@@ -53,8 +56,8 @@ appropriate NeuN fraction (depending on cell type specificity) in the
 Sorted dataset, and also be expressed in the right cell type in the Single
 Cell dataset.
 
-\code{four_panels()} saves the results as four_panels.pdf in the working
-directory unless otherwise specified in PATH.
+\code{four_panels()} saves the results as four_panels.pdf in a temporary
+directory unless otherwise specified with \code{OUTDIR}.
 
 \code{if(JUNCTIONS)}, this means that the candidate probe sequence spans
 splice junctions. In this case, the character vector of regions should
@@ -106,10 +109,10 @@ PENK_exons <- c(
 
 ## General syntax
 four_panels(PENK_exons, JUNCTIONS=TRUE,
-    PDF = '/path/to/directory/PDF_file.pdf')
+    PDF = 'PDF_file.pdf', OUTDIR = '/path/to/directory/')
 
 four_panels('chr20:10286777-10288069:+',
-    PDF = '/path/to/directory/PDF_file.pdf')
+    PDF = 'PDF_file.pdf', OUTDIR = '/path/to/directory/')
 
 
 ## Explore the effect of changing CODING_ONLY

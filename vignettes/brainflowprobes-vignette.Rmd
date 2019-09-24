@@ -131,7 +131,7 @@ library('brainflowprobes')
 The next step is to use the `region_info()` function to annotate the sequence in a `.csv` file that can be used to custom synthesize a target probe:
 
 ```{r 'annotate'}
-region_info("chr2:162279880-162282378:+", CSV = FALSE, SEQ = TRUE, PATH = ".")
+region_info("chr2:162279880-162282378:+", CSV = FALSE, SEQ = TRUE, OUTDIR = ".")
 ```
 
 This function will annotate the specified genomic regions (sequences) by calling the `matchGenes()` function from the `r Biocpkg('bumphunter')` package. The output is a table where the first six columns include the coordinates (chromosome, start, end, and strand), region width, and the name of the nearest gene. The proceeding columns list further information about the nearest gene and where the region is in relation to that gene. These columns are described in the documentation for `matchGenes()`, reprinted below:
@@ -151,7 +151,7 @@ This function will annotate the specified genomic regions (sequences) by calling
 | codingL | the coding length | 
 | Entrez | Entrez ID of closest gene |
 
-If `CSV = TRUE`, a file called `region_info.csv` will be printed in your working directory, unless another location and file name are listed in the `PATH` option. It is important that `chr` preceeds the chromosome number, that the sequence is hg19, and that the candidate coordinates are encased in quotation marks (this tells `R` that it should read the coordinates as a character class). The output of this function is what can be sent to Invitrogen to specify the sequences you would like to be targeted.
+If `CSV = TRUE`, a file called `region_info.csv` will be printed in your working directory, unless another location and file name are listed in the `OUTDIR` option. It is important that `chr` preceeds the chromosome number, that the sequence is hg19, and that the candidate coordinates are encased in quotation marks (this tells `R` that it should read the coordinates as a character class). The output of this function is what can be sent to Invitrogen to specify the sequences you would like to be targeted.
 
 # Plotting expression coverage across a candidate region
 
@@ -161,8 +161,9 @@ If `CSV = TRUE`, a file called `region_info.csv` will be printed in your working
 
 ```{r 'visualize coverage', eval = FALSE}
 plot_coverage("chr2:162279880-162282378:+", 
-              PDF = "regionCoverage_fractionedData.pdf",
-              COVERAGE = NULL, VERBOSE = FALSE)
+    PDF = "regionCoverage_fractionedData.pdf",
+    OUTDIR = '.',
+    COVERAGE = NULL, VERBOSE = FALSE)
 ```
 
 ```{r, include=TRUE, fig.align="center", echo=FALSE, out.height = 850}
@@ -173,8 +174,9 @@ In this example, this exon is highly expressed in both nuclear and cytoplasmic R
 
 ```{r 'visualize shorter region coverage', eval = FALSE}
 plot_coverage("chr2:162280900-162282378:+", 
-              PDF = "regionCoverage_fractionedData_shorter.pdf",
-              COVERAGE = NULL, VERBOSE = FALSE)
+    PDF = "regionCoverage_fractionedData_shorter.pdf",
+    OUTDIR = '.',
+    COVERAGE = NULL, VERBOSE = FALSE)
 ```
 
 ```{r, include=TRUE, fig.align="center", echo=FALSE, out.height = 850}
@@ -197,9 +199,10 @@ A snapshot of coverage, degradation and cell type specificity can be visualized 
 
 ```{r 'plot four panels', eval = FALSE}
 four_panels("chr2:162280900-162282378:+",
-            PDF = "four_panels.pdf",
-            JUNCTIONS = FALSE,
-            COVERAGE = tbr1.cov, VERBOSE = FALSE)
+    PDF = "four_panels.pdf",
+    OUTDIR = '.',
+    JUNCTIONS = FALSE,
+    COVERAGE = tbr1.cov, VERBOSE = FALSE)
 ```
 
 ```{r, include=TRUE, fig.align="center", echo=FALSE, out.height = 1000}
@@ -223,8 +226,11 @@ Even though it appears to be a good candidate however, it must still be validate
 Say rather than one candidate you have a list of differentially expressed regions that are upregulated in your cell population of interest and you want to see which would make the best BrainFlow target probes. In this case, you can input a list of coordinates:
 
 ```{r 'annotate multiple'}
-candidates <- c("chr2:162279880-162282378:+", "chr11:31806351-31811553", 
-                "chr7:103112236-103113354")
+candidates <- c(
+    "chr2:162279880-162282378:+",
+    "chr11:31806351-31811553", 
+    "chr7:103112236-103113354"
+)
 
 region_info(candidates, CSV = FALSE, SEQ = FALSE)
 ```
@@ -234,9 +240,10 @@ Each candidate target probe region will be output as a row in the `region_info.c
 When multiple regions are assessed concurrently using `plot_coverage()` and `four_panels()`, each region will be plotted and saved as individual pages in a pdf. It is recommended to not assess more than 50 or so regions as a time because of size and ease of interpretibility. An example would look like this (this example won't run in this vignette to keep loading time down):
 
 ```{r 'plot multiple', eval=FALSE}
-plot_coverage(candidates, PDF = "regionCoverage_fractionedData_multiple.pdf")
+plot_coverage(candidates,
+    PDF = "regionCoverage_fractionedData_multiple.pdf", OUTDIR = '.')
 
-four_panels(candidates, PDF = "four_panels_multiple.pdf")
+four_panels(candidates, PDF = "four_panels_multiple.pdf", OUTDIR = '.')
 ```
 
 # Spanning splice junctions
@@ -244,8 +251,12 @@ four_panels(candidates, PDF = "four_panels_multiple.pdf")
 Sometimes a gene may be too short to avoid a sequence that spans splice junctions, or you may be interested in creating a target probe that matches a probe that has been designed for another assay (sich as FISH). In this case, the start and end of the entire spliced sequence can be used as input to both `region_info()` and `plot_coverage()`. Because `four_panels()` averages the coverage across each candidate region, you want to exclude intron sequence. In this case, you may input the coordinates of the exons within a transcript of interest and specify that `JUNCTIONS = TRUE`. For instance, when designing a probe for PENK we wanted to target bases 2-1273 of NM_001135690.2 to match another probe from a different assay. From the UCSC genome browser, one can identify the coordinates of the exons within this transcript:
 
 ```{r 'PENK', eval=FALSE}
-PENK_exons <- c('chr8:57353587-57354496:-', 'chr8:57358375-57358515:-',
-                'chr8:57358985-57359040:-', 'chr8:57359128-57359292:-')
+PENK_exons <- c(
+    'chr8:57353587-57354496:-',
+    'chr8:57358375-57358515:-',
+    'chr8:57358985-57359040:-',
+    'chr8:57359128-57359292:-'
+)
 
 four_panels(PENK_exons, JUNCTIONS = TRUE, PDF = 'PENK_panels.pdf')
 ```

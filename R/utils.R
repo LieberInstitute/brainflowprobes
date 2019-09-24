@@ -11,14 +11,12 @@
 #' @author Leonardo Collado-Torres
 #' @return The path to the PDF file if the file doesn't exist. It appends
 #' the pdf file extension if it was absent from `PDF`.
+#'
 #' @export
 #' @examples
 #'
 #' ## Choose a random PDF file
-#' PDF <- file.path(tempdir(),
-#'     paste0('test_', stats::runif(1, max = 1e10))
-#' )
-#' PDF
+#' PDF <- paste0('test_', stats::runif(1, max = 1e10))
 #'
 #' ## Initially this works because the output PDF does not exist.
 #' PDF <- check_pdf(PDF)
@@ -31,13 +29,14 @@
 #' dev.off()
 #'
 #' ## Now it doesn't work since the PDF file already exists.
-#' testthat::expect_error(check_pdf(PDF), 'already exists! Rename or erase it')
+#' testthat::expect_error(check_pdf(basename(PDF)),
+#'     'already exists! Rename or erase it')
 #'
 
-check_pdf <- function(PDF = 'four_panels.pdf') {
-    pdf_file <- PDF
-    if (!grepl("pdf$", tolower(PDF)))
-        pdf_file <- paste0(PDF, ".pdf")
+check_pdf <- function(PDF = 'four_panels.pdf', OUTDIR = tempdir()) {
+    pdf_file <- file.path(OUTDIR, PDF)
+    if (!grepl("pdf$", tolower(pdf_file)))
+        pdf_file <- paste0(pdf_file, ".pdf")
     if (file.exists(pdf_file))
         stop(paste("The file",
             pdf_file,
@@ -104,7 +103,8 @@ get_nearest_annotation <- function(gr, CODING_ONLY = FALSE) {
 #'     four_panels_example_cov
 #' ))
 #'
-get_region_cov <- function(REGION, COVERAGE = NULL, VERBOSE = TRUE, PD = brainflowprobes::pd) {
+get_region_cov <- function(REGION, COVERAGE = NULL, VERBOSE = TRUE,
+    PD = brainflowprobes::pd) {
     if(is.null(COVERAGE)) {
         regionCov <- brainflowprobes_cov(
             REGION = REGION,

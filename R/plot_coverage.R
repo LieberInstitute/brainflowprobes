@@ -6,7 +6,7 @@
 #' junctions, the plot will include the introns. A good candidate sequence will
 #' be highly and evenly expressed in nuclear RNA.
 #'
-#' @param PDF The path and name of the PDF file. Defaults to
+#' @param PDF The name of the PDF file. Defaults to
 #' `regionCoverage_fractionedData.pdf`.
 #' @inheritParams four_panels
 #' @return `plot_coverage` plots all input sequences using
@@ -25,7 +25,7 @@
 #'   [bumphunter::matchGenes()].
 #'
 #'   `plot_coverage` saves the results as regionCoverage_fractionedData.pdf
-#'   in the working directory unless otherwise specified in PATH.
+#'   in a temporary directory unless otherwise specified with `OUTDIR`.
 #' @examples
 #'
 #' ## Here we use the pre-saved example coverage data such that this example
@@ -53,10 +53,11 @@
 #'                 'chr19:49932861-49933829:-')
 #'
 #' ## General syntax:
-#' plot_coverage(candidates, PDF = '/path/to/directory/PDF_file.pdf')
+#' plot_coverage(candidates, PDF = 'PDF_file.pdf',
+#'     OUTDIR = '/path/to/directory/')
 #'
 #' plot_coverage('chr20:10286777-10288069:+',
-#'     PDF = '/path/to/directory/PDF_file.pdf')
+#'     PDF = 'PDF_file.pdf', OUTDIR = '/path/to/directory/')
 #'
 #' ## Explore the effect of changing CODING_ONLY
 #' ## Check how gene name and distance to TSS changes in the title of the plot
@@ -76,12 +77,13 @@
 
 plot_coverage <- function(REGION,
     PDF = "regionCoverage_fractionedData.pdf",
+    OUTDIR = tempdir(),
     COVERAGE = NULL,
     CODING_ONLY = FALSE,
     VERBOSE = TRUE) {
 
     ## Check the PDF file
-    pdf_file <- check_pdf(PDF)
+    pdf_file <- check_pdf(PDF, OUTDIR)
 
     ## Define the region(s)
     gr <- GenomicRanges::GRanges(REGION)
@@ -117,8 +119,7 @@ plot_coverage <- function(REGION,
 }
 
 .view_pdf <- function(pdf_file) {
-    message(paste(Sys.time(), "Completed! Check for ",
-        pdf_file, " in your working directory unless otherwise specified."))
+    message(paste0(Sys.time(), " Completed! Check for ", pdf_file, "."))
     if (interactive())
         utils::browseURL(pdf_file)
 }

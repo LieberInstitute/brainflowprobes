@@ -4,11 +4,13 @@
 \alias{check_pdf}
 \title{Check the PDF file}
 \usage{
-check_pdf(PDF = "four_panels.pdf")
+check_pdf(PDF = "four_panels.pdf", OUTDIR = tempdir())
 }
 \arguments{
-\item{PDF}{The path and name of the PDF file. Defaults to
+\item{PDF}{The name of the PDF file. Defaults to
 \code{four_panels.pdf}.}
+
+\item{OUTDIR}{The default directory where \code{PDF} will be saved to.}
 }
 \value{
 The path to the PDF file if the file doesn't exist. It appends
@@ -25,10 +27,7 @@ This is an utility function used by \link{four_panels} and
 \examples{
 
 ## Choose a random PDF file
-PDF <- file.path(tempdir(),
-    paste0('test_', stats::runif(1, max = 1e10))
-)
-PDF
+PDF <- paste0('test_', stats::runif(1, max = 1e10))
 
 ## Initially this works because the output PDF does not exist.
 PDF <- check_pdf(PDF)
@@ -41,7 +40,8 @@ plot(1, 1)
 dev.off()
 
 ## Now it doesn't work since the PDF file already exists.
-testthat::expect_error(check_pdf(PDF), 'already exists! Rename or erase it')
+testthat::expect_error(check_pdf(basename(PDF)),
+    'already exists! Rename or erase it')
 
 }
 \author{

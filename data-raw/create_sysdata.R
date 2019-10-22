@@ -64,7 +64,6 @@ table(is.na(gene_gr$symbol))
 stopifnot(max(unlist(gs$gene)) == length(gene_gr))
 gs$symbol <- extractList(gene_gr$symbol, gs$gene)
 
-
 ## gs is now available through:
 ## GenomicState::GenomicStateHub(version = '31', genome = 'hg19', filetype = 'GenomicState')[[1]]
 

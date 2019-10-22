@@ -16,8 +16,10 @@ Get R 3.6.x from [CRAN](http://cran.r-project.org/).
 
 ```R
 ## From Bioconductor
-install.packages("BiocManager")
-BiocManager::install('brainflowprobes')
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("brainflowprobes")
 
 ## Currently: BiocManager::install('LieberInstitute/brainflowprobes')
 ```

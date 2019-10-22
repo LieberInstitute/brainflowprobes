@@ -1,7 +1,8 @@
 Package: brainflowprobes
 Type: Package
 Title: Plots and annotation for choosing BrainFlow target probe sequence 
-Version: 0.99.6
+Version: 0.99.7
+Date: 2019-10-22
 Authors@R: c(person("Amanda", "Price", email = "amanda.joy.price@gmail.com", 
   role = c("aut", "cre"), comment = c(ORCID = "0000-0001-7352-3732")),
   person("Leonardo", "Collado-Torres", role = c("ctb"), 
@@ -24,7 +25,8 @@ Imports:
     ggplot2 (>= 3.1.1),
     RColorBrewer (>= 1.1),
     utils,
-    grDevices
+    grDevices,
+    GenomicState (>= 0.99.7)
 RoxygenNote: 6.1.1
 Suggests: 
     BiocStyle,

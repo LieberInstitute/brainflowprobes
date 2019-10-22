@@ -64,8 +64,15 @@ table(is.na(gene_gr$symbol))
 stopifnot(max(unlist(gs$gene)) == length(gene_gr))
 gs$symbol <- extractList(gene_gr$symbol, gs$gene)
 
+
+## gs is now available through:
+## GenomicState::GenomicStateHub(version = '31', genome = 'hg19', filetype = 'GenomicState')[[1]]
+
+## genes is now available through:
+## GenomicState::GenomicStateHub(version = '31', genome = 'hg19', filetype = 'AnnotatedGenes')[[1]]
+
 ## Save for later use inside the package
-usethis::use_data(genes, gs, internal = FALSE, overwrite = TRUE)
+# usethis::use_data(genes, gs, internal = FALSE, overwrite = TRUE)
 
 
 

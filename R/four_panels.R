@@ -26,8 +26,9 @@
 #' BigWig files which does not run on Windows OS. So it could be run on a
 #' non-Windows machine, saved, and then shared with Windows users.
 #' @param CODING_ONLY A logical vector of length 1 specifying whether to
-#' subset [genes] to only the coding genes. That is, whether to subset
-#' [genes] by whether they have a non-NA `CSS` value.
+#' subset the Annotated Genes to only the coding genes. That is, whether to
+#' subset the genes by whether they have a non-NA `CSS` value. The Annotated
+#' Genes are downloaded with [GenomicState::GenomicStateHub()].
 #' @param VERBOSE A logical value indicating whether to print updates from the
 #' process of loading the data from the BigWig files.
 #' @return `four_panels()` first annotates the input candidate probe

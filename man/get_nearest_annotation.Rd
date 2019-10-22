@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{get_nearest_annotation}
 \alias{get_nearest_annotation}
-\title{Compute the nearest annotation to the genes in brainflowprobes}
+\title{Compute the nearest annotation to the annoated genes in brainflowprobes}
 \usage{
 get_nearest_annotation(gr, CODING_ONLY = FALSE)
 }
@@ -10,18 +10,20 @@ get_nearest_annotation(gr, CODING_ONLY = FALSE)
 \item{gr}{A \link[GenomicRanges:GRanges-class]{GenomicRanges::GRanges()} object.}
 
 \item{CODING_ONLY}{A logical vector of length 1 specifying whether to
-subset \link{genes} to only the coding genes. That is, whether to subset
-\link{genes} by whether they have a non-NA \code{CSS} value.}
+subset the Annotated Genes to only the coding genes. That is, whether to
+subset the genes by whether they have a non-NA \code{CSS} value. The Annotated
+Genes are downloaded with \code{\link[GenomicState:GenomicStateHub]{GenomicState::GenomicStateHub()}}.}
 }
 \value{
 The \code{\link[bumphunter:matchGenes]{bumphunter::matchGenes()}} output for the annotation information
-using the \code{genes} object in this package (subset to only the coding elements
-if \code{CODING_ONLY} was set to \code{TRUE}).
+using the Annotated Genes for Gencode version 31 on hg19 coordinates (subset
+to only the coding elements if \code{CODING_ONLY} was set to \code{TRUE}).
 }
 \description{
 For a given set of genomic regions, this function computes the nearest
-annotation information using the \link{genes} object distributed in this
-package.
+annotation information using the Annotated Genes required by this package.
+The Annotated Genes are actually provided by
+\code{\link[GenomicState:GenomicStateHub]{GenomicState::GenomicStateHub()}}.
 }
 \details{
 This is an utility function used by \link{region_info}, \link{four_panels}

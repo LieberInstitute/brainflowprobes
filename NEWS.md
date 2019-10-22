@@ -1,4 +1,10 @@
-# brainflowprobles 0.99.5
+# brainflowprobes 0.99.7
+
+* Functions now use the data provided by `GenomicState::GenomicStateHub()`.
+* Removed data/gs.rda and data/genes.rda using BFG from 
+https://rtyley.github.io/bfg-repo-cleaner/.
+
+# brainflowprobes 0.99.5
 
 NEW FEATURES
 

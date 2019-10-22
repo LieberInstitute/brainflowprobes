@@ -72,6 +72,7 @@
 #' @import GenomicRanges bumphunter derfinder derfinderPlot RColorBrewer
 #' @importFrom utils browseURL
 #' @importFrom grDevices pdf dev.off
+#' @importFrom GenomicState GenomicStateHub
 #' @author Amanda J Price
 
 
@@ -91,9 +92,13 @@ plot_coverage <- function(REGION,
     ## Compute the nearest annotation
     nearestAnnotation <- get_nearest_annotation(gr, CODING_ONLY)
 
+    ## Obtain the GenomicState object from AnnotationHub
+    gs <- GenomicState::GenomicStateHub(version = '31', genome = 'hg19',
+        filetype = 'GenomicState')[[1]]
+
     ## Annotate the regions
     annotatedRegions <- derfinder::annotateRegions(regions = gr,
-        genomicState = brainflowprobes::gs,
+        genomicState = gs[['fullGenome']],
         minoverlap = 1)
 
     ## Compute or check the coverage (only for Sep)

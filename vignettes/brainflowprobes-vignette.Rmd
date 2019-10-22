@@ -51,7 +51,8 @@ bib <- c(
     BSgenome.Hsapiens.UCSC.hg19 = citation('BSgenome.Hsapiens.UCSC.hg19'),
     Biostrings = citation('Biostrings'),
     RColorBrewer = citation('RColorBrewer'),
-    bumphunter = citation('bumphunter')[1]
+    bumphunter = citation('bumphunter')[1],
+    GenomicState = citation('GenomicState')
 )
 
 write.bibtex(bib, file = 'brainflowprobes_ref.bib')
@@ -285,6 +286,7 @@ The `r Biocpkg('brainflowprobes')` package `r citep(bib[['brainflowprobes']])` w
 * `r Biocpkg('derfinderPlot')` `r citep(bib[['derfinderPlot']])`
 * `r CRANpkg('sessioninfo')` `r citep(bib[['sessioninfo']])`
 * `r Biocpkg('GenomicRanges')` `r citep(bib[['GenomicRanges']])`
+* `r Biocpkg('GenomicState')` `r citep(bib[['GenomicState']])`
 * `r CRANpkg('ggplot2')` `r citep(bib[['ggplot2']])`
 * `r CRANpkg('knitcitations')` `r citep(bib[['knitcitations']])`
 * `r CRANpkg('knitr')` `r citep(bib[['knitr']])`

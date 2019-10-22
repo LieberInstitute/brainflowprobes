@@ -45,11 +45,12 @@ check_pdf <- function(PDF = 'four_panels.pdf', OUTDIR = tempdir()) {
     return(pdf_file)
 }
 
-#' Compute the nearest annotation to the genes in brainflowprobes
+#' Compute the nearest annotation to the annoated genes in brainflowprobes
 #'
 #' For a given set of genomic regions, this function computes the nearest
-#' annotation information using the \link{genes} object distributed in this
-#' package.
+#' annotation information using the Annotated Genes required by this package.
+#' The Annotated Genes are actually provided by
+#' [GenomicState::GenomicStateHub()].
 #'
 #' This is an utility function used by \link{region_info}, \link{four_panels}
 #' and \link{plot_coverage}.
@@ -58,10 +59,11 @@ check_pdf <- function(PDF = 'four_panels.pdf', OUTDIR = tempdir()) {
 #' @inheritParams four_panels
 #'
 #' @return The [bumphunter::matchGenes()] output for the annotation information
-#' using the `genes` object in this package (subset to only the coding elements
-#' if `CODING_ONLY` was set to `TRUE`).
+#' using the Annotated Genes for Gencode version 31 on hg19 coordinates (subset
+#' to only the coding elements if `CODING_ONLY` was set to `TRUE`).
 #' @export
 #' @author Leonardo Collado-Torres
+#' @importFrom GenomicState GenomicStateHub
 #' @examples
 #'
 #' gr <- GenomicRanges::GRanges('chr10:135379301-135379311:+')
@@ -70,10 +72,14 @@ check_pdf <- function(PDF = 'four_panels.pdf', OUTDIR = tempdir()) {
 #' get_nearest_annotation(gr, CODING_ONLY = TRUE)
 #'
 get_nearest_annotation <- function(gr, CODING_ONLY = FALSE) {
+    ## Get the data from AnnotationHub
+    genes <- GenomicState::GenomicStateHub(version = '31', genome = 'hg19',
+        filetype = 'AnnotatedGenes')[[1]]
+
     gr_subject <- if(CODING_ONLY) {
-        brainflowprobes::genes[!is.na(brainflowprobes::genes$CSS)]
+        genes[!is.na(genes$CSS)]
     } else {
-        brainflowprobes::genes
+        genes
     }
     nearestAnnotation <- bumphunter::matchGenes(x = gr, subject = gr_subject)
     return(nearestAnnotation)

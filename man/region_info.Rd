@@ -24,8 +24,9 @@ path where the file should be saved. By default the file will be
 saved in a temporary directory.}
 
 \item{CODING_ONLY}{A logical vector of length 1 specifying whether to
-subset \link{genes} to only the coding genes. That is, whether to subset
-\link{genes} by whether they have a non-NA \code{CSS} value.}
+subset the Annotated Genes to only the coding genes. That is, whether to
+subset the genes by whether they have a non-NA \code{CSS} value. The Annotated
+Genes are downloaded with \code{\link[GenomicState:GenomicStateHub]{GenomicState::GenomicStateHub()}}.}
 }
 \value{
 This function annotates all input sequences using

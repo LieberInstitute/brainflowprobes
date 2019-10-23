@@ -151,7 +151,9 @@ four_panels <- function(REGION,
             ":", GenomicRanges::strand(gr))
     }
 
-    covMat <- lapply(regionCov, function(x) t(sapply(x, colSums)/100))
+    covMat <- lapply(regionCov, function(x) {
+        do.call(rbind, lapply(x, colSums)) /100
+    })
 
     bg <- lapply(covMat, function(x) matrix(sum(GenomicRanges::width(gr)),
             ncol = ncol(x),

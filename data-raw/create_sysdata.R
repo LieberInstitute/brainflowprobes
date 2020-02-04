@@ -25,7 +25,6 @@ metadata <- GenomicFeatures:::.prepareGFFMetadata(
     taxonomyId = NA, miRBaseBuild = NA, metadata = NULL)
 gr <- GenomicFeatures:::.tidy_seqinfo(
     gr = gencode_gtf,
-    circ_seqs = GenomicFeatures::DEFAULT_CIRC_SEQS,
     chrominfo = Seqinfo(genome="hg19")
 )
 txdb <- makeTxDbFromGRanges(gr, metadata = metadata)

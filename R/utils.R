@@ -16,7 +16,7 @@
 #' @examples
 #'
 #' ## Choose a random PDF file
-#' PDF <- paste0('test_', stats::runif(1, max = 1e10))
+#' PDF <- paste0("test_", stats::runif(1, max = 1e10))
 #'
 #' ## Initially this works because the output PDF does not exist.
 #' PDF <- check_pdf(PDF)
@@ -29,19 +29,24 @@
 #' dev.off()
 #'
 #' ## Now it doesn't work since the PDF file already exists.
-#' testthat::expect_error(check_pdf(basename(PDF)),
-#'     'already exists! Rename or erase it')
-#'
-
-check_pdf <- function(PDF = 'four_panels.pdf', OUTDIR = tempdir()) {
+#' testthat::expect_error(
+#'     check_pdf(basename(PDF)),
+#'     "already exists! Rename or erase it"
+#' )
+check_pdf <- function(PDF = "four_panels.pdf", OUTDIR = tempdir()) {
     pdf_file <- file.path(OUTDIR, PDF)
-    if (!grepl("pdf$", tolower(pdf_file)))
-        pdf_file <- paste0(pdf_file, ".pdf")
-    if (file.exists(pdf_file))
-        stop(paste("The file",
-            pdf_file,
-            "\nalready exists! Rename or erase it before proceeding."),
-            call. = FALSE)
+    if (!grepl("pdf$", tolower(pdf_file))) {
+          pdf_file <- paste0(pdf_file, ".pdf")
+      }
+    if (file.exists(pdf_file)) {
+          stop(paste(
+              "The file",
+              pdf_file,
+              "\nalready exists! Rename or erase it before proceeding."
+          ),
+          call. = FALSE
+          )
+      }
     return(pdf_file)
 }
 
@@ -66,17 +71,18 @@ check_pdf <- function(PDF = 'four_panels.pdf', OUTDIR = tempdir()) {
 #' @importFrom GenomicState GenomicStateHub
 #' @examples
 #'
-#' gr <- GenomicRanges::GRanges('chr10:135379301-135379311:+')
+#' gr <- GenomicRanges::GRanges("chr10:135379301-135379311:+")
 #'
 #' get_nearest_annotation(gr)
 #' get_nearest_annotation(gr, CODING_ONLY = TRUE)
-#'
 get_nearest_annotation <- function(gr, CODING_ONLY = FALSE) {
     ## Get the data from AnnotationHub
-    genes <- GenomicState::GenomicStateHub(version = '31', genome = 'hg19',
-        filetype = 'AnnotatedGenes')[[1]]
+    genes <- GenomicState::GenomicStateHub(
+        version = "31", genome = "hg19",
+        filetype = "AnnotatedGenes"
+    )[[1]]
 
-    gr_subject <- if(CODING_ONLY) {
+    gr_subject <- if (CODING_ONLY) {
         genes[!is.na(genes$CSS)]
     } else {
         genes
@@ -108,10 +114,9 @@ get_nearest_annotation <- function(gr, CODING_ONLY = FALSE) {
 #'     get_region_cov(COVERAGE = four_panels_example_cov),
 #'     four_panels_example_cov
 #' ))
-#'
 get_region_cov <- function(REGION, COVERAGE = NULL, VERBOSE = TRUE,
     PD = brainflowprobes::pd) {
-    if(is.null(COVERAGE)) {
+    if (is.null(COVERAGE)) {
         regionCov <- brainflowprobes_cov(
             REGION = REGION,
             PD = PD,
@@ -119,39 +124,47 @@ get_region_cov <- function(REGION, COVERAGE = NULL, VERBOSE = TRUE,
         )
     } else {
         stopifnot(is.list(COVERAGE))
-        if(!all(c('Sep', 'Deg', 'Cell', 'Sort') %in% names(COVERAGE))) {
+        if (!all(c("Sep", "Deg", "Cell", "Sort") %in% names(COVERAGE))) {
             stop("'COVERAGE' should be a list with the elements:\n'",
                 paste(names(brainflowprobes::pd), collapse = "', '"), "'.",
-                call. = FALSE)
+                call. = FALSE
+            )
         }
         ## Keep the main ones (in case the user shuffled them)
         COVERAGE <- COVERAGE[names(brainflowprobes::pd)]
-        if(!all(vapply(COVERAGE, is.list, logical(1)))) {
+        if (!all(vapply(COVERAGE, is.list, logical(1)))) {
             stop("Each of the elements of 'COVERAGE' should be a list of\n",
                 "region coverage data.frames as created by\n",
                 "brainflowprobes_cov().",
-                call. = FALSE)
+                call. = FALSE
+            )
         }
-        if(!all(
-            vapply(COVERAGE, function(x) is.data.frame(x[[1]]), logical(1)))) {
+        if (!all(
+            vapply(COVERAGE, function(x) is.data.frame(x[[1]]), logical(1))
+        )) {
             stop("Each of the elements of 'COVERAGE' should be a list of\n",
                 "region coverage data.frames as created by\n",
                 "brainflowprobes_cov().",
-                call. = FALSE)
+                call. = FALSE
+            )
         }
-        if(!identical(
+        if (!identical(
             vapply(brainflowprobes::pd, nrow, integer(1)),
             vapply(COVERAGE, function(x) ncol(x[[1]]), integer(1))
         )) {
             stop("Each of the region coverage data.frame lists in 'COVERAGE'\n",
                 "should have a column per each of the samples in\n",
-                "brainflowprobes::pd.", call. = FALSE)
+                "brainflowprobes::pd.",
+                call. = FALSE
+            )
         }
-        if(length(unique(
-            vapply(COVERAGE, function(x) nrow(x[[1]]), integer(1)))) != 1) {
+        if (length(unique(
+            vapply(COVERAGE, function(x) nrow(x[[1]]), integer(1))
+        )) != 1) {
             stop("Each of the region coverage data.frames inside 'COVERAGE'\n",
                 "should have the same number of rows (1 row per base-pair).",
-                call. = FALSE)
+                call. = FALSE
+            )
         }
         regionCov <- COVERAGE
     }

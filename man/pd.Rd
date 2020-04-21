@@ -4,7 +4,8 @@
 \name{pd}
 \alias{pd}
 \title{A list of phenotype data.frames}
-\format{A list of four data.frames:
+\format{
+A list of four data.frames:
 \describe{
 \item{Sep }{ phenotype information for samples from
 \url{https://www.biorxiv.org/content/10.1101/567966v1}; a data.frame with
@@ -59,13 +60,13 @@ ID, RIN is the RNA Integrity Number for each RNA sample, Age is the
 numeric age at death, sumMapped is the number of mapped reads, Label and
 col provide information for plotting, BigWig is the name of each BigWig
 file, and files lists the URL for the BigWig online.}
-}}
+}
+}
 \description{
 A list of four phenotype data frames used throughput the package.
 }
 \examples{
 ##  pd <- list(Sep = pdSep, Deg = pdDeg, Cell = pdCell, Sort = pdSort)
-
 }
 \seealso{
 \link{four_panels} \link{brainflowprobes_cov}

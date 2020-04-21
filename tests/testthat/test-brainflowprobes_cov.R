@@ -11,16 +11,21 @@ test_that("brainflowprobes_cov", {
     expect_true(all(
         sapply(four_panels_example_cov, length) ==
             length(
-                GenomicRanges::GRanges('chr20:10286777-10288069:+')
-    )))
+                GenomicRanges::GRanges("chr20:10286777-10288069:+")
+            )
+    ))
     expect_true(all(
-        sapply(four_panels_example_cov, function(x) { nrow(x[[1]]) }) ==
-        GenomicRanges::width(
-            GenomicRanges::GRanges('chr20:10286777-10288069:+')
-        )
+        sapply(four_panels_example_cov, function(x) {
+            nrow(x[[1]])
+        }) ==
+            GenomicRanges::width(
+                GenomicRanges::GRanges("chr20:10286777-10288069:+")
+            )
     ))
     expect_equal(
-        sapply(four_panels_example_cov, function(x) { ncol(x[[1]]) }),
+        sapply(four_panels_example_cov, function(x) {
+            ncol(x[[1]])
+        }),
         sapply(pd, nrow)
     )
 })

@@ -31,11 +31,10 @@ and \link{plot_coverage}.
 }
 \examples{
 
-gr <- GenomicRanges::GRanges('chr10:135379301-135379311:+')
+gr <- GenomicRanges::GRanges("chr10:135379301-135379311:+")
 
 get_nearest_annotation(gr)
 get_nearest_annotation(gr, CODING_ONLY = TRUE)
-
 }
 \author{
 Leonardo Collado-Torres

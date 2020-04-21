@@ -4,8 +4,12 @@
 \alias{get_region_cov}
 \title{Check or compute the region coverage from the datasets in brainflowprobes}
 \usage{
-get_region_cov(REGION, COVERAGE = NULL, VERBOSE = TRUE,
-  PD = brainflowprobes::pd)
+get_region_cov(
+  REGION,
+  COVERAGE = NULL,
+  VERBOSE = TRUE,
+  PD = brainflowprobes::pd
+)
 }
 \arguments{
 \item{REGION}{Either a single hg19 genomic sequence including the chromosome,
@@ -43,7 +47,6 @@ stopifnot(identical(
     get_region_cov(COVERAGE = four_panels_example_cov),
     four_panels_example_cov
 ))
-
 }
 \author{
 Leonardo Collado-Torres

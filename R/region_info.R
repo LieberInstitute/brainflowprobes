@@ -31,34 +31,36 @@
 #'   If CSV=TRUE, a .csv file called region_info.csv will be saved to a
 #'   temporary directory unless otherwise specified in `OUTDIR`.
 #' @examples
-#' x <- region_info('chr20:10286777-10288069:+', CSV = FALSE)
+#' x <- region_info("chr20:10286777-10288069:+", CSV = FALSE)
 #' head(x)
 #'
 #' ## You can easily transform this data.frame to a GRanges object
 #' GenomicRanges::GRanges(x)
 #'
-#' y <- region_info(c('chr20:10286777-10288069:+',
-#'                    'chr18:74690788-74692427:-',
-#'                    'chr19:49932861-49933829:-'),
-#'                  CSV = FALSE, SEQ = FALSE)
+#' y <- region_info(c(
+#'     "chr20:10286777-10288069:+",
+#'     "chr18:74690788-74692427:-",
+#'     "chr19:49932861-49933829:-"
+#' ),
+#' CSV = FALSE, SEQ = FALSE
+#' )
 #' head(y)
 #'
-#' candidates <- c('chr20:10286777-10288069:+',
-#'                 'chr18:74690788-74692427:-',
-#'                 'chr19:49932861-49933829:-')
+#' candidates <- c(
+#'     "chr20:10286777-10288069:+",
+#'     "chr18:74690788-74692427:-",
+#'     "chr19:49932861-49933829:-"
+#' )
 #' region_info(candidates, CSV = FALSE)
 #'
 #' ## Explore the effect of changing CODING_ONLY
 #' ## Check how the "distance", "name", "Geneid" among other values change
-#' region_info('chr10:135379301-135379311:+', CSV = FALSE)
-#' region_info('chr10:135379301-135379311:+', CSV = FALSE, CODING_ONLY = TRUE)
-#'
-#'
+#' region_info("chr10:135379301-135379311:+", CSV = FALSE)
+#' region_info("chr10:135379301-135379311:+", CSV = FALSE, CODING_ONLY = TRUE)
 #' \dontrun{
-#' region_info(candidates, OUTDIR = '/path/to/directory/')
+#' region_info(candidates, OUTDIR = "/path/to/directory/")
 #'
-#' region_info('chr20:10286777-10288069:+', OUTDIR = '/path/to/directory')
-#'
+#' region_info("chr20:10286777-10288069:+", OUTDIR = "/path/to/directory")
 #' }
 #' @export
 #' @import GenomicRanges bumphunter Biostrings BSgenome.Hsapiens.UCSC.hg19
@@ -74,42 +76,56 @@ region_info <- function(REGION, CSV = TRUE, SEQ = TRUE, OUTDIR = tempdir(),
 
     ## Compute the nearest annotation
     nearestAnnotation <- get_nearest_annotation(gr, CODING_ONLY)
-    nearestAnnotation <- nearestAnnotation[,
+    nearestAnnotation <- nearestAnnotation[
+        ,
         -which(colnames(nearestAnnotation) %in%
-            c("strand", "subjectHits"))]
+            c("strand", "subjectHits"))
+    ]
 
     if (SEQ) {
         df <- cbind(as.data.frame(gr),
             nearestAnnotation,
             Sequence = as.character(Biostrings::getSeq(
                 BSgenome.Hsapiens.UCSC.hg19::Hsapiens,
-                gr)))
+                gr
+            ))
+        )
     } else {
-        df <- cbind(as.data.frame(gr),
-            nearestAnnotation)
+        df <- cbind(
+            as.data.frame(gr),
+            nearestAnnotation
+        )
     }
 
     if (CSV) {
-        csv_path <- file.path(OUTDIR,
-            "region_info.csv")
-        if (file.exists(csv_path))
-            stop(paste("The file",
-                csv_path,
-                "already exists! Rename or erase it before proceeding."))
+        csv_path <- file.path(
+            OUTDIR,
+            "region_info.csv"
+        )
+        if (file.exists(csv_path)) {
+              stop(paste(
+                  "The file",
+                  csv_path,
+                  "already exists! Rename or erase it before proceeding."
+              ))
+          }
         utils::write.csv(df,
             file = csv_path,
             quote = FALSE,
-            row.names = FALSE)
+            row.names = FALSE
+        )
 
         if (!file.exists(csv_path)) {
-            stop(paste("Check that the specified path exists.",
-                "(Are you missing a backslash?)"))
+            stop(paste(
+                "Check that the specified path exists.",
+                "(Are you missing a backslash?)"
+            ))
         }
     }
 
     message(
         "Completed! If CSV=TRUE, check for region_info.csv in the temporary\n",
-        "directory (i.e. tempdir()) unless otherwise specified in OUTDIR.")
+        "directory (i.e. tempdir()) unless otherwise specified in OUTDIR."
+    )
     return(df)
-
 }

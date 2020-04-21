@@ -66,7 +66,6 @@
 #' <https://github.com/LieberInstitute/brainflowprobes/blob/master/data-raw/create_sysdata.R>
 #' @examples
 #' ##  pd <- list(Sep = pdSep, Deg = pdDeg, Cell = pdCell, Sort = pdSort)
-#'
 NULL
 
 
@@ -94,11 +93,10 @@ NULL
 #' @keywords datasets
 #' @seealso [four_panels] [plot_coverage]
 #' @examples
-#' if(FALSE) {
+#' if (FALSE) {
 #'     ## Takes about 10 minutes to run!
 #'     four_panels_example_cov <- brainflowprobes_cov(
-#'         'chr20:10286777-10288069:+'
+#'         "chr20:10286777-10288069:+"
 #'     )
 #' }
 NULL
-

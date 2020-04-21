@@ -4,9 +4,14 @@
 \alias{plot_coverage}
 \title{Plot coverage in nuclear and cytoplasmic RNA for candidate probe sequences.}
 \usage{
-plot_coverage(REGION, PDF = "regionCoverage_fractionedData.pdf",
-  OUTDIR = tempdir(), COVERAGE = NULL, CODING_ONLY = FALSE,
-  VERBOSE = TRUE)
+plot_coverage(
+  REGION,
+  PDF = "regionCoverage_fractionedData.pdf",
+  OUTDIR = tempdir(),
+  COVERAGE = NULL,
+  CODING_ONLY = FALSE,
+  VERBOSE = TRUE
+)
 }
 \arguments{
 \item{REGION}{Either a single hg19 genomic sequence including the chromosome,
@@ -64,42 +69,52 @@ be highly and evenly expressed in nuclear RNA.
 
 ## Here we use the pre-saved example coverage data such that this example
 ## will run fast!
-plot_coverage('chr20:10286777-10288069:+',
-    COVERAGE = four_panels_example_cov)
+plot_coverage("chr20:10286777-10288069:+",
+    COVERAGE = four_panels_example_cov
+)
 
 ## Without using COVERAGE, this function reads BigWig files from the web
 ## using rtracklayer and this functionality is not supported on Windows
 ## machines.
-if(.Platform$OS.type != 'windows') {
-    plot_coverage('chr20:10286777-10288069:+',
-        PDF = 'regionCoverage_fractionedData_fromScratch.pdf')
+if (.Platform$OS.type != "windows") {
+    plot_coverage("chr20:10286777-10288069:+",
+        PDF = "regionCoverage_fractionedData_fromScratch.pdf"
+    )
 }
-
 \dontrun{
 
 ## These examples will take a few minutes to run!
-plot_coverage(c('chr20:10286777-10288069:+',
-                'chr18:74690788-74692427:-',
-                'chr19:49932861-49933829:-'))
+plot_coverage(c(
+    "chr20:10286777-10288069:+",
+    "chr18:74690788-74692427:-",
+    "chr19:49932861-49933829:-"
+))
 
-candidates <- c('chr20:10286777-10288069:+',
-                'chr18:74690788-74692427:-',
-                'chr19:49932861-49933829:-')
+candidates <- c(
+    "chr20:10286777-10288069:+",
+    "chr18:74690788-74692427:-",
+    "chr19:49932861-49933829:-"
+)
 
 ## General syntax:
-plot_coverage(candidates, PDF = 'PDF_file.pdf',
-    OUTDIR = '/path/to/directory/')
+plot_coverage(candidates,
+    PDF = "PDF_file.pdf",
+    OUTDIR = "/path/to/directory/"
+)
 
-plot_coverage('chr20:10286777-10288069:+',
-    PDF = 'PDF_file.pdf', OUTDIR = '/path/to/directory/')
+plot_coverage("chr20:10286777-10288069:+",
+    PDF = "PDF_file.pdf", OUTDIR = "/path/to/directory/"
+)
 
 ## Explore the effect of changing CODING_ONLY
 ## Check how gene name and distance to TSS changes in the title of the plot
 ## (everything else stays the same)
-cov <- brainflowprobes_cov('chr10:135379301-135379311:+')
-plot_coverage('chr10:135379301-135379311:+', COVERAGE = cov)
-plot_coverage('chr10:135379301-135379311:+', COVERAGE = cov,
-    PDF = 'coding_only_plot_coverage', CODING_ONLY = TRUE)
+cov <- brainflowprobes_cov("chr10:135379301-135379311:+")
+plot_coverage("chr10:135379301-135379311:+", COVERAGE = cov)
+plot_coverage("chr10:135379301-135379311:+",
+    COVERAGE = cov,
+    PDF = "coding_only_plot_coverage", CODING_ONLY = TRUE
+)
 }
 
 }

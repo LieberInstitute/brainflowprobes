@@ -1,3 +1,11 @@
+# brainflowprobes 1.1.1
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+* Documentation website is now available at
+http://LieberInstitute.github.io/brainflowprobes/. It gets updated with every
+commit on the master branch (bioc-devel) using GitHub Actions and pkgdown.
+
 # brainflowprobes 0.99.7
 
 * Functions now use the data provided by `GenomicState::GenomicStateHub()`.

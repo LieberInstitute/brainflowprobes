@@ -4,9 +4,15 @@
 \alias{four_panels}
 \title{Plot expression coverage in four datasets for candidate probe sequences.}
 \usage{
-four_panels(REGION, PDF = "four_panels.pdf", OUTDIR = tempdir(),
-  JUNCTIONS = FALSE, COVERAGE = NULL, CODING_ONLY = FALSE,
-  VERBOSE = TRUE)
+four_panels(
+  REGION,
+  PDF = "four_panels.pdf",
+  OUTDIR = tempdir(),
+  JUNCTIONS = FALSE,
+  COVERAGE = NULL,
+  CODING_ONLY = FALSE,
+  VERBOSE = TRUE
+)
 }
 \arguments{
 \item{REGION}{Either a single hg19 genomic sequence including the chromosome,
@@ -60,10 +66,10 @@ Cell dataset.
 \code{four_panels()} saves the results as four_panels.pdf in a temporary
 directory unless otherwise specified with \code{OUTDIR}.
 
-\code{if(JUNCTIONS)}, this means that the candidate probe sequence spans
+\verb{if(JUNCTIONS)}, this means that the candidate probe sequence spans
 splice junctions. In this case, the character vector of regions should
 represent the coordinates of each exon spanned in the sequence.
-\code{if(JUNCTIONS)}, \code{four_panels()} will sum the coverage of each exon and
+\verb{if(JUNCTIONS)}, \code{four_panels()} will sum the coverage of each exon and
 plot that value for each dataset instead of creating an independent set of
 plots for each exon. This is a way to avoid deflating coverage by including
 lowly-expressed intron coverage in the plots.
@@ -83,46 +89,53 @@ isolated from human temporal lobe.
 
 ## Here we use the pre-saved example coverage data such that this example
 ## will run fast!
-four_panels('chr20:10286777-10288069:+',
-    COVERAGE = four_panels_example_cov)
-
+four_panels("chr20:10286777-10288069:+",
+    COVERAGE = four_panels_example_cov
+)
 \dontrun{
 ## Without using COVERAGE, this function reads BigWig files from the web
 ## using rtracklayer and this functionality is not supported on Windows
 ## machines.
-if(.Platform$OS.type != 'windows') {
+if (.Platform$OS.type != "windows") {
     ## This example takes 10 minutes to run!
-    four_panels('chr20:10286777-10288069:+')
+    four_panels("chr20:10286777-10288069:+")
 }
 
 ## These examples will take several minutes to run depending on your
 ## internet connection
 four_panels(c(
-    'chr20:10286777-10288069:+',
-    'chr18:74690788-74692427:-',
-    'chr19:49932861-49933829:-'))
+    "chr20:10286777-10288069:+",
+    "chr18:74690788-74692427:-",
+    "chr19:49932861-49933829:-"
+))
 
 PENK_exons <- c(
-    'chr8:57353587-57354496:-',
-    'chr8:57358375-57358515:-',
-    'chr8:57358985-57359040:-',
-    'chr8:57359128-57359292:-')
+    "chr8:57353587-57354496:-",
+    "chr8:57358375-57358515:-",
+    "chr8:57358985-57359040:-",
+    "chr8:57359128-57359292:-"
+)
 
 ## General syntax
-four_panels(PENK_exons, JUNCTIONS=TRUE,
-    PDF = 'PDF_file.pdf', OUTDIR = '/path/to/directory/')
+four_panels(PENK_exons,
+    JUNCTIONS = TRUE,
+    PDF = "PDF_file.pdf", OUTDIR = "/path/to/directory/"
+)
 
-four_panels('chr20:10286777-10288069:+',
-    PDF = 'PDF_file.pdf', OUTDIR = '/path/to/directory/')
+four_panels("chr20:10286777-10288069:+",
+    PDF = "PDF_file.pdf", OUTDIR = "/path/to/directory/"
+)
 
 
 ## Explore the effect of changing CODING_ONLY
 ## Check how gene name changes in the title of the plot
 ## (everything else stays the same)
-cov <- brainflowprobes_cov('chr10:135379301-135379311:+')
-four_panels('chr10:135379301-135379311:+', COVERAGE = cov)
-four_panels('chr10:135379301-135379311:+', COVERAGE = cov,
-    PDF = 'coding_only_four_panels', CODING_ONLY = TRUE)
+cov <- brainflowprobes_cov("chr10:135379301-135379311:+")
+four_panels("chr10:135379301-135379311:+", COVERAGE = cov)
+four_panels("chr10:135379301-135379311:+",
+    COVERAGE = cov,
+    PDF = "coding_only_four_panels", CODING_ONLY = TRUE
+)
 }
 }
 \author{

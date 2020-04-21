@@ -18,11 +18,11 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Amanda Price \email{amanda.joy.price@gmail.com} (0000-0001-7352-3732)
+\strong{Maintainer}: Amanda Price \email{amanda.joy.price@gmail.com} (\href{https://orcid.org/0000-0001-7352-3732}{ORCID})
 
 Other contributors:
 \itemize{
-  \item Leonardo Collado-Torres \email{lcolladotor@gmail.com} (0000-0003-2140-308X) [contributor]
+  \item Leonardo Collado-Torres \email{lcolladotor@gmail.com} (\href{https://orcid.org/0000-0003-2140-308X}{ORCID}) [contributor]
 }
 
 }

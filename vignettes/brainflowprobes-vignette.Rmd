@@ -25,37 +25,37 @@ vignette: >
 startTime <- Sys.time()
 
 ## Bib setup
-library('knitcitations')
+library("knitcitations")
 
 ## Load knitcitations with a clean bibliography
 cleanbib()
-cite_options(hyperlink = 'to.doc', citation_format = 'text', style = 'html')
+cite_options(hyperlink = "to.doc", citation_format = "text", style = "html")
 # Note links won't show for now due to the following issue
 # https://github.com/cboettig/knitcitations/issues/63
 
 ## Write bibliography information
 bib <- c(
     R = citation(),
-    BiocStyle = citation('BiocStyle'),
-    derfinder = citation('derfinder')[1],
-    derfinderPlot = citation('derfinderPlot')[1],
-    sessioninfo = citation('sessioninfo'),
-    GenomicRanges = citation('GenomicRanges'),
-    knitcitations = citation('knitcitations'),
-    knitr = citation('knitr')[3],
-    rmarkdown = citation('rmarkdown'),
-    rtracklayer = citation('rtracklayer'),
-    testthat = citation('testthat'),
-    ggplot2 = citation('ggplot2'),
-    cowplot = citation('cowplot'),
-    BSgenome.Hsapiens.UCSC.hg19 = citation('BSgenome.Hsapiens.UCSC.hg19'),
-    Biostrings = citation('Biostrings'),
-    RColorBrewer = citation('RColorBrewer'),
-    bumphunter = citation('bumphunter')[1],
-    GenomicState = citation('GenomicState')
+    BiocStyle = citation("BiocStyle"),
+    derfinder = citation("derfinder")[1],
+    derfinderPlot = citation("derfinderPlot")[1],
+    sessioninfo = citation("sessioninfo"),
+    GenomicRanges = citation("GenomicRanges"),
+    knitcitations = citation("knitcitations"),
+    knitr = citation("knitr")[3],
+    rmarkdown = citation("rmarkdown")[1],
+    rtracklayer = citation("rtracklayer"),
+    testthat = citation("testthat"),
+    ggplot2 = citation("ggplot2"),
+    cowplot = citation("cowplot"),
+    BSgenome.Hsapiens.UCSC.hg19 = citation("BSgenome.Hsapiens.UCSC.hg19"),
+    Biostrings = citation("Biostrings"),
+    RColorBrewer = citation("RColorBrewer"),
+    bumphunter = citation("bumphunter")[1],
+    GenomicState = citation("GenomicState")
 )
 
-write.bibtex(bib, file = 'brainflowprobes_ref.bib')
+write.bibtex(bib, file = "brainflowprobes_ref.bib")
 ```
 
 # Basics
@@ -65,8 +65,9 @@ write.bibtex(bib, file = 'brainflowprobes_ref.bib')
 `R` is an open-source statistical environment which can be easily modified to enhance its functionality via packages. `r Biocpkg('brainflowprobes')` is an `R` package available via the [Bioconductor](http://bioconductor/packages/brainflowprobes) repository for packages. `R` can be installed on any operating system from [CRAN](https://cran.r-project.org/) after which you can install `r Biocpkg('brainflowprobes')` by using the following commands in your `R` session:
 
 ```{r 'install', eval = FALSE}
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
+if (!requireNamespace("BiocManager", quietly = TRUE)) {
+      install.packages("BiocManager")
+  }
 
 BiocManager::install("brainflowprobes")
 
@@ -95,7 +96,7 @@ We hope that `r Biocpkg('brainflowprobes')` will be useful for your research. Pl
 
 ```{r 'citation'}
 ## Citation info
-citation('brainflowprobes')
+citation("brainflowprobes")
 ```
 
 # Introduction
@@ -127,7 +128,7 @@ Before any of the `r Biocpkg('brainflowprobes')` functions can be used, the pack
 
 ```{r 'start', message=FALSE}
 ## Load brainflowprobes R package
-library('brainflowprobes')
+library("brainflowprobes")
 ```
 
 The next step is to use the `region_info()` function to annotate the sequence in a `.csv` file that can be used to custom synthesize a target probe:
@@ -162,27 +163,29 @@ If `CSV = TRUE`, a file called `region_info.csv` will be printed in your working
 `plot_coverage()` uses the `getRegionCoverage()` function from the `r Biocpkg('derfinder')` package to cut the coverage values for region(s) of interest (specified in the `REGION` option) in a set of nuclear (N) and cytoplasmic (C) RNA-seq samples derived from adult (A) and fetal (F) human cortex. In this dataset, two different RNA-seq libraries based on either polyA-enrichment (P) or rRNA depletion (R) were generated and sequenced for each fraction-age pair, resulting in eight groups of samples. Optimal candidate target probe sequences will be highly and uniformly expressed across the region.
 
 ```{r 'visualize coverage', eval = FALSE}
-plot_coverage("chr2:162279880-162282378:+", 
+plot_coverage("chr2:162279880-162282378:+",
     PDF = "regionCoverage_fractionedData.pdf",
-    OUTDIR = '.',
-    COVERAGE = NULL, VERBOSE = FALSE)
+    OUTDIR = ".",
+    COVERAGE = NULL, VERBOSE = FALSE
+)
 ```
 
 ```{r, include=TRUE, fig.align="center", echo=FALSE, out.height = 850}
-knitr::include_graphics('regionCoverage_fractionedData.pdf')
+knitr::include_graphics("regionCoverage_fractionedData.pdf")
 ```
 
 In this example, this exon is highly expressed in both nuclear and cytoplasmic RNA but is not uniformly expressed. 2.5 Kb (the length of this exon) is longer than the minimum for probe synthesis, so we can limit the coordinates to exclude the lower-expressed sequence:   
 
 ```{r 'visualize shorter region coverage', eval = FALSE}
-plot_coverage("chr2:162280900-162282378:+", 
+plot_coverage("chr2:162280900-162282378:+",
     PDF = "regionCoverage_fractionedData_shorter.pdf",
-    OUTDIR = '.',
-    COVERAGE = NULL, VERBOSE = FALSE)
+    OUTDIR = ".",
+    COVERAGE = NULL, VERBOSE = FALSE
+)
 ```
 
 ```{r, include=TRUE, fig.align="center", echo=FALSE, out.height = 850}
-knitr::include_graphics('regionCoverage_fractionedData_shorter.pdf')
+knitr::include_graphics("regionCoverage_fractionedData_shorter.pdf")
 ```
 
 These new coordinates are now evenly expressed across a ~1.5 Kb region.
@@ -202,13 +205,14 @@ A snapshot of coverage, degradation and cell type specificity can be visualized 
 ```{r 'plot four panels', eval = FALSE}
 four_panels("chr2:162280900-162282378:+",
     PDF = "four_panels.pdf",
-    OUTDIR = '.',
+    OUTDIR = ".",
     JUNCTIONS = FALSE,
-    COVERAGE = tbr1.cov, VERBOSE = FALSE)
+    COVERAGE = tbr1.cov, VERBOSE = FALSE
+)
 ```
 
 ```{r, include=TRUE, fig.align="center", echo=FALSE, out.height = 1000}
-knitr::include_graphics('four_panels.pdf')
+knitr::include_graphics("four_panels.pdf")
 ```
 
 The upper left panel (__Separation__) shows a boxplot of the mean transformed coverage value across the 1.5 Kb region in the fractionated data used by `plot_coverage` described above. This region is expressed at about the same level in both nuclear (N) and cytoplasmic (C) samples, making this a good candidate so far.
@@ -230,7 +234,7 @@ Say rather than one candidate you have a list of differentially expressed region
 ```{r 'annotate multiple'}
 candidates <- c(
     "chr2:162279880-162282378:+",
-    "chr11:31806351-31811553", 
+    "chr11:31806351-31811553",
     "chr7:103112236-103113354"
 )
 
@@ -243,9 +247,10 @@ When multiple regions are assessed concurrently using `plot_coverage()` and `fou
 
 ```{r 'plot multiple', eval=FALSE}
 plot_coverage(candidates,
-    PDF = "regionCoverage_fractionedData_multiple.pdf", OUTDIR = '.')
+    PDF = "regionCoverage_fractionedData_multiple.pdf", OUTDIR = "."
+)
 
-four_panels(candidates, PDF = "four_panels_multiple.pdf", OUTDIR = '.')
+four_panels(candidates, PDF = "four_panels_multiple.pdf", OUTDIR = ".")
 ```
 
 # Spanning splice junctions
@@ -254,13 +259,13 @@ Sometimes a gene may be too short to avoid a sequence that spans splice junction
 
 ```{r 'PENK', eval=FALSE}
 PENK_exons <- c(
-    'chr8:57353587-57354496:-',
-    'chr8:57358375-57358515:-',
-    'chr8:57358985-57359040:-',
-    'chr8:57359128-57359292:-'
+    "chr8:57353587-57354496:-",
+    "chr8:57358375-57358515:-",
+    "chr8:57358985-57359040:-",
+    "chr8:57359128-57359292:-"
 )
 
-four_panels(PENK_exons, JUNCTIONS = TRUE, PDF = 'PENK_panels.pdf')
+four_panels(PENK_exons, JUNCTIONS = TRUE, PDF = "PENK_panels.pdf")
 ```
 
 By specifying `JUNCTIONS = TRUE`, `four_panels()` will average the coverage of the four exons rather than plotting each exon on an individual pdf page.
@@ -301,17 +306,17 @@ Code for creating the vignette
 
 ```{r createVignette, eval=FALSE}
 ## Create the vignette
-library('rmarkdown')
-system.time(render('brainflowprobes-vignette.Rmd', 'BiocStyle::html_document'))
+library("rmarkdown")
+system.time(render("brainflowprobes-vignette.Rmd", "BiocStyle::html_document"))
 
 ## Extract the R code
-library('knitr')
-knit('brainflowprobes-vignette.Rmd', tangle = TRUE)
+library("knitr")
+knit("brainflowprobes-vignette.Rmd", tangle = TRUE)
 ```
 
 ```{r createVignette2}
 ## Clean up
-file.remove('brainflowprobes_ref.bib')
+file.remove("brainflowprobes_ref.bib")
 ```
 
 Date the vignette was generated.
@@ -326,14 +331,14 @@ Wallclock time spent generating the vignette.
 ```{r reproduce2, echo=FALSE}
 ## Processing time in seconds
 totalTime <- diff(c(startTime, Sys.time()))
-round(totalTime, digits=3)
+round(totalTime, digits = 3)
 ```
 
 `R` session information.
 
 ```{r reproduce3, echo=FALSE}
 ## Session info
-library('sessioninfo')
+library("sessioninfo")
 options(width = 120)
 session_info()
 ```

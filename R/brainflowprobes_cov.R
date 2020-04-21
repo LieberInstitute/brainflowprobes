@@ -28,52 +28,56 @@
 #'
 #' ## This function loads data from BigWig files using the rtracklayer package.
 #' ## This functionality is not supported on Windows OS machines!
-#' if(.Platform$OS.type != 'windows') {
+#' if (.Platform$OS.type != "windows") {
 #'
-#' ## How long this takes to run will depend on your internet connection.
-#' example_cov <- brainflowprobes_cov('chr20:10286777-10288069:+',
-#'     PD = lapply(brainflowprobes::pd, head, n = 2)
-#' )
+#'     ## How long this takes to run will depend on your internet connection.
+#'     example_cov <- brainflowprobes_cov("chr20:10286777-10288069:+",
+#'         PD = lapply(brainflowprobes::pd, head, n = 2)
+#'     )
 #'
-#' ## Output examination:
-#' # A list with one element per element in brainflowprobes::pd
-#' stopifnot(is.list(example_cov))
-#' stopifnot(identical(
-#'     names(example_cov),
-#'     names(brainflowprobes::pd)
-#' ))
-#'
-#' # For each dataset, brainflowprobes_cov() returns a list of region
-#' # coverage data.frames. In this example, there was a single input region.
-#' stopifnot(all(
-#'     sapply(example_cov, length) ==
-#'     length(
-#'         GenomicRanges::GRanges('chr20:10286777-10288069:+')
+#'     ## Output examination:
+#'     # A list with one element per element in brainflowprobes::pd
+#'     stopifnot(is.list(example_cov))
+#'     stopifnot(identical(
+#'         names(example_cov),
+#'         names(brainflowprobes::pd)
 #'     ))
-#' )
 #'
-#' # Then each data.frame itself has 1 row per genome base-pair in the region
-#' stopifnot(
-#'     all(
-#'         sapply(example_cov, function(x) { nrow(x[[1]]) }) ==
-#'         GenomicRanges::width(
-#'             GenomicRanges::GRanges('chr20:10286777-10288069:+')
+#'     # For each dataset, brainflowprobes_cov() returns a list of region
+#'     # coverage data.frames. In this example, there was a single input region.
+#'     stopifnot(all(
+#'         sapply(example_cov, length) ==
+#'             length(
+#'                 GenomicRanges::GRanges("chr20:10286777-10288069:+")
+#'             )
+#'     ))
+#'
+#'     # Then each data.frame itself has 1 row per genome base-pair in the region
+#'     stopifnot(
+#'         all(
+#'             sapply(example_cov, function(x) {
+#'                 nrow(x[[1]])
+#'             }) ==
+#'                 GenomicRanges::width(
+#'                     GenomicRanges::GRanges("chr20:10286777-10288069:+")
+#'                 )
 #'         )
 #'     )
-#' )
 #'
-#' # and one column per sample in the dataset unless you subsetted the data
-#' # like we did earlier when creating "example_cov".
-#' stopifnot(identical(
-#'     sapply(four_panels_example_cov, function(x) { ncol(x[[1]]) }),
-#'     sapply(pd, nrow)
-#' ))
+#'     # and one column per sample in the dataset unless you subsetted the data
+#'     # like we did earlier when creating "example_cov".
+#'     stopifnot(identical(
+#'         sapply(four_panels_example_cov, function(x) {
+#'             ncol(x[[1]])
+#'         }),
+#'         sapply(pd, nrow)
+#'     ))
 #' }
 #'
 #' ## This is how the example data included in the package was made:
 #' \dontrun{
 #' ## This can take about 10 minutes to run!
-#' four_panels_example_cov <- brainflowprobes_cov('chr20:10286777-10288069:+')
+#' four_panels_example_cov <- brainflowprobes_cov("chr20:10286777-10288069:+")
 #' }
 #'
 #'
@@ -86,20 +90,26 @@
 #'
 #' ## Web location of BigWig files
 #' lapply(brainflowprobes::pd, function(x) head(x$files))
-#'
-
 brainflowprobes_cov <- function(REGION, PD = brainflowprobes::pd,
     VERBOSE = TRUE) {
-
     stopifnot(all(vapply(PD, is.data.frame, logical(1))))
-    stopifnot(all(vapply(PD, function(x) all(
-        c('sumMapped', 'files') %in% colnames(x)), logical(1))))
+    stopifnot(all(vapply(PD, function(x) {
+        all(
+            c("sumMapped", "files") %in% colnames(x)
+        )
+    }, logical(1))))
 
     gr <- GenomicRanges::GRanges(REGION)
-    regionCov <- lapply(PD,
-        function(x) derfinder::getRegionCoverage(regions = gr,
-            totalMapped = x$sumMapped,
-            files = x$files,
-            verbose = VERBOSE))
+    regionCov <- lapply(
+        PD,
+        function(x) {
+            derfinder::getRegionCoverage(
+                regions = gr,
+                totalMapped = x$sumMapped,
+                files = x$files,
+                verbose = VERBOSE
+            )
+        }
+    )
     return(regionCov)
 }

@@ -4,8 +4,13 @@
 \alias{region_info}
 \title{Print relevant info about candidate probe sequence.}
 \usage{
-region_info(REGION, CSV = TRUE, SEQ = TRUE, OUTDIR = tempdir(),
-  CODING_ONLY = FALSE)
+region_info(
+  REGION,
+  CSV = TRUE,
+  SEQ = TRUE,
+  OUTDIR = tempdir(),
+  CODING_ONLY = FALSE
+)
 }
 \arguments{
 \item{REGION}{Either a single hg19 genomic sequence including the chromosome,
@@ -50,34 +55,36 @@ temporary directory unless otherwise specified in \code{OUTDIR}.
 list of sequences and, if specified, prints the resuts in a .csv file.
 }
 \examples{
-x <- region_info('chr20:10286777-10288069:+', CSV = FALSE)
+x <- region_info("chr20:10286777-10288069:+", CSV = FALSE)
 head(x)
 
 ## You can easily transform this data.frame to a GRanges object
 GenomicRanges::GRanges(x)
 
-y <- region_info(c('chr20:10286777-10288069:+',
-                   'chr18:74690788-74692427:-',
-                   'chr19:49932861-49933829:-'),
-                 CSV = FALSE, SEQ = FALSE)
+y <- region_info(c(
+    "chr20:10286777-10288069:+",
+    "chr18:74690788-74692427:-",
+    "chr19:49932861-49933829:-"
+),
+CSV = FALSE, SEQ = FALSE
+)
 head(y)
 
-candidates <- c('chr20:10286777-10288069:+',
-                'chr18:74690788-74692427:-',
-                'chr19:49932861-49933829:-')
+candidates <- c(
+    "chr20:10286777-10288069:+",
+    "chr18:74690788-74692427:-",
+    "chr19:49932861-49933829:-"
+)
 region_info(candidates, CSV = FALSE)
 
 ## Explore the effect of changing CODING_ONLY
 ## Check how the "distance", "name", "Geneid" among other values change
-region_info('chr10:135379301-135379311:+', CSV = FALSE)
-region_info('chr10:135379301-135379311:+', CSV = FALSE, CODING_ONLY = TRUE)
-
-
+region_info("chr10:135379301-135379311:+", CSV = FALSE)
+region_info("chr10:135379301-135379311:+", CSV = FALSE, CODING_ONLY = TRUE)
 \dontrun{
-region_info(candidates, OUTDIR = '/path/to/directory/')
+region_info(candidates, OUTDIR = "/path/to/directory/")
 
-region_info('chr20:10286777-10288069:+', OUTDIR = '/path/to/directory')
-
+region_info("chr20:10286777-10288069:+", OUTDIR = "/path/to/directory")
 }
 }
 \author{

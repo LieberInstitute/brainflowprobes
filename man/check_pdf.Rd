@@ -27,7 +27,7 @@ This is an utility function used by \link{four_panels} and
 \examples{
 
 ## Choose a random PDF file
-PDF <- paste0('test_', stats::runif(1, max = 1e10))
+PDF <- paste0("test_", stats::runif(1, max = 1e10))
 
 ## Initially this works because the output PDF does not exist.
 PDF <- check_pdf(PDF)
@@ -40,9 +40,10 @@ plot(1, 1)
 dev.off()
 
 ## Now it doesn't work since the PDF file already exists.
-testthat::expect_error(check_pdf(basename(PDF)),
-    'already exists! Rename or erase it')
-
+testthat::expect_error(
+    check_pdf(basename(PDF)),
+    "already exists! Rename or erase it"
+)
 }
 \author{
 Leonardo Collado-Torres

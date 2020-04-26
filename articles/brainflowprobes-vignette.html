@@ -88,7 +88,7 @@
       Lieber Institute for Brain Development, Johns Hopkins Medical Campus<br><a class="author_email" href="mailto:#"></a><a href="mailto:amanda.joy.price@gmail.com" class="email">amanda.joy.price@gmail.com</a>
       </address>
                   
-            <h4 class="date">21 April 2020</h4>
+            <h4 class="date">26 April 2020</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/LieberInstitute/brainflowprobes/blob/master/vignettes/brainflowprobes-vignette.Rmd"><code>vignettes/brainflowprobes-vignette.Rmd</code></a></small>
       <div class="hidden name"><code>brainflowprobes-vignette.Rmd</code></div>
@@ -189,7 +189,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"brainflowprobes"</span>)</pre></body></html></div>
 <p>The next step is to use the <code><a href="../reference/region_info.html">region_info()</a></code> function to annotate the sequence in a <code>.csv</code> file that can be used to custom synthesize a target probe:</p>
 <div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="../reference/region_info.html">region_info</a></span>(<span class="st">"chr2:162279880-162282378:+"</span>, <span class="kw">CSV</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="kw">SEQ</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">OUTDIR</span> <span class="kw">=</span> <span class="st">"."</span>)</pre></body></html></div>
-<pre><code>## using temporary cache /tmp/RtmpqLfzhy/BiocFileCache</code></pre>
+<pre><code>## using temporary cache /tmp/RtmpLU4uS9/BiocFileCache</code></pre>
 <pre><code>## snapshotDate(): 2020-03-31</code></pre>
 <pre><code>## downloading 1 resources</code></pre>
 <pre><code>## retrieving 1 resource</code></pre>
@@ -418,13 +418,13 @@
 <span class="fu"><a href="https://rdrr.io/r/base/files.html">file.remove</a></span>(<span class="st">"brainflowprobes_ref.bib"</span>)</pre></body></html></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>Date the vignette was generated.</p>
-<pre><code>## [1] "2020-04-21 23:08:38 UTC"</code></pre>
+<pre><code>## [1] "2020-04-26 01:52:56 UTC"</code></pre>
 <p>Wallclock time spent generating the vignette.</p>
-<pre><code>## Time difference of 32.871 secs</code></pre>
+<pre><code>## Time difference of 33.632 secs</code></pre>
 <p><code>R</code> session information.</p>
 <pre><code>## ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  setting  value                                             
-##  version  R Under development (unstable) (2020-04-16 r78239)
+##  version  R Under development (unstable) (2020-04-24 r78289)
 ##  os       Debian GNU/Linux 10 (buster)                      
 ##  system   x86_64, linux-gnu                                 
 ##  ui       X11                                               
@@ -432,14 +432,14 @@
 ##  collate  en_US.UTF-8                                       
 ##  ctype    en_US.UTF-8                                       
 ##  tz       UTC                                               
-##  date     2020-04-21                                        
+##  date     2020-04-26                                        
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  package                     * version  date       lib source        
 ##  acepack                       1.4.1    2016-10-29 [1] CRAN (R 4.1.0)
 ##  AnnotationDbi                 1.49.1   2020-01-25 [1] Bioconductor  
 ##  AnnotationFilter              1.11.0   2019-10-29 [1] Bioconductor  
-##  AnnotationHub                 2.19.11  2020-04-16 [1] Bioconductor  
+##  AnnotationHub                 2.19.12  2020-04-21 [1] Bioconductor  
 ##  askpass                       1.1      2019-01-13 [2] CRAN (R 4.1.0)
 ##  assertthat                    0.2.1    2019-03-21 [2] CRAN (R 4.1.0)
 ##  backports                     1.1.6    2020-04-05 [2] CRAN (R 4.1.0)
@@ -449,10 +449,10 @@
 ##  BiocFileCache                 1.11.6   2020-04-16 [1] Bioconductor  
 ##  BiocGenerics                  0.33.3   2020-03-23 [1] Bioconductor  
 ##  BiocManager                   1.30.10  2019-11-16 [2] CRAN (R 4.1.0)
-##  BiocParallel                  1.21.2   2019-12-21 [1] Bioconductor  
+##  BiocParallel                  1.21.3   2020-04-21 [1] Bioconductor  
 ##  BiocStyle                   * 2.15.8   2020-04-19 [1] Bioconductor  
 ##  BiocVersion                   3.11.1   2019-11-13 [2] Bioconductor  
-##  biomaRt                       2.43.5   2020-04-02 [1] Bioconductor  
+##  biomaRt                       2.43.6   2020-04-21 [1] Bioconductor  
 ##  Biostrings                    2.55.7   2020-03-24 [1] Bioconductor  
 ##  biovizBase                    1.35.1   2019-12-03 [1] Bioconductor  
 ##  bit                           1.1-15.2 2020-02-10 [1] CRAN (R 4.1.0)
@@ -460,9 +460,9 @@
 ##  bitops                        1.0-6    2013-08-17 [1] CRAN (R 4.1.0)
 ##  blob                          1.2.1    2020-01-20 [1] CRAN (R 4.1.0)
 ##  bookdown                      0.18     2020-03-05 [1] CRAN (R 4.1.0)
-##  brainflowprobes             * 1.1.1    2020-04-21 [1] Bioconductor  
+##  brainflowprobes             * 1.1.1    2020-04-26 [1] Bioconductor  
 ##  BSgenome                      1.55.4   2020-03-19 [1] Bioconductor  
-##  BSgenome.Hsapiens.UCSC.hg19   1.4.3    2020-04-21 [1] Bioconductor  
+##  BSgenome.Hsapiens.UCSC.hg19   1.4.3    2020-04-26 [1] Bioconductor  
 ##  bumphunter                    1.29.0   2019-10-29 [1] Bioconductor  
 ##  checkmate                     2.0.0    2020-02-06 [1] CRAN (R 4.1.0)
 ##  cli                           2.0.2    2020-02-28 [2] CRAN (R 4.1.0)
@@ -476,9 +476,9 @@
 ##  DBI                           1.1.0    2019-12-15 [1] CRAN (R 4.1.0)
 ##  dbplyr                        1.4.3    2020-04-19 [1] CRAN (R 4.1.0)
 ##  DelayedArray                  0.13.12  2020-04-10 [1] Bioconductor  
-##  derfinder                     1.21.5   2020-04-18 [1] Bioconductor  
+##  derfinder                     1.21.7   2020-04-22 [1] Bioconductor  
 ##  derfinderHelper               1.21.2   2020-04-18 [1] Bioconductor  
-##  derfinderPlot                 1.21.4   2020-04-18 [1] Bioconductor  
+##  derfinderPlot                 1.21.5   2020-04-21 [1] Bioconductor  
 ##  desc                          1.2.0    2018-05-01 [2] CRAN (R 4.1.0)
 ##  dichromat                     2.0-0    2013-01-24 [1] CRAN (R 4.1.0)
 ##  digest                        0.6.25   2020-02-23 [2] CRAN (R 4.1.0)
@@ -495,12 +495,12 @@
 ##  fs                            1.4.1    2020-04-04 [2] CRAN (R 4.1.0)
 ##  generics                      0.0.2    2018-11-29 [1] CRAN (R 4.1.0)
 ##  GenomeInfoDb                  1.23.17  2020-04-13 [1] Bioconductor  
-##  GenomeInfoDbData              1.2.3    2020-04-21 [1] Bioconductor  
+##  GenomeInfoDbData              1.2.3    2020-04-26 [1] Bioconductor  
 ##  GenomicAlignments             1.23.2   2020-03-24 [1] Bioconductor  
 ##  GenomicFeatures               1.39.7   2020-03-19 [1] Bioconductor  
 ##  GenomicFiles                  1.23.2   2020-03-23 [1] Bioconductor  
 ##  GenomicRanges                 1.39.3   2020-03-24 [1] Bioconductor  
-##  GenomicState                  0.99.9   2020-04-21 [1] Bioconductor  
+##  GenomicState                  0.99.9   2020-04-26 [1] Bioconductor  
 ##  GGally                        1.5.0    2020-03-25 [1] CRAN (R 4.1.0)
 ##  ggbio                         1.35.2   2020-04-09 [1] Bioconductor  
 ##  ggplot2                       3.3.0    2020-03-05 [1] CRAN (R 4.1.0)
@@ -577,14 +577,14 @@
 ##  stringr                       1.4.0    2019-02-10 [2] CRAN (R 4.1.0)
 ##  SummarizedExperiment          1.17.5   2020-03-27 [1] Bioconductor  
 ##  survival                      3.1-12   2020-04-10 [3] CRAN (R 4.1.0)
-##  tibble                        3.0.1    2020-04-20 [1] CRAN (R 4.1.0)
+##  tibble                        3.0.1    2020-04-20 [2] CRAN (R 4.1.0)
 ##  tidyselect                    1.0.0    2020-01-27 [1] CRAN (R 4.1.0)
-##  VariantAnnotation             1.33.4   2020-04-09 [1] Bioconductor  
+##  VariantAnnotation             1.33.5   2020-04-23 [1] Bioconductor  
 ##  vctrs                         0.2.4    2020-03-10 [2] CRAN (R 4.1.0)
-##  withr                         2.2.0    2020-04-20 [1] CRAN (R 4.1.0)
+##  withr                         2.2.0    2020-04-20 [2] CRAN (R 4.1.0)
 ##  xfun                          0.13     2020-04-13 [2] CRAN (R 4.1.0)
 ##  XML                           3.99-0.3 2020-01-20 [1] CRAN (R 4.1.0)
-##  xml2                          1.3.1    2020-04-09 [2] CRAN (R 4.1.0)
+##  xml2                          1.3.2    2020-04-23 [2] CRAN (R 4.1.0)
 ##  xtable                        1.8-4    2019-04-21 [1] CRAN (R 4.1.0)
 ##  XVector                       0.27.2   2020-03-24 [1] Bioconductor  
 ##  yaml                          2.2.1    2020-02-01 [2] CRAN (R 4.1.0)
@@ -602,7 +602,7 @@
 <p>[1] J. Allaire, Y. Xie, J. McPherson, J. Luraschi, et al. <em>rmarkdown: Dynamic Documents for R</em>. R package version 2.1. 2020. &lt;URL: <a href="https://github.com/rstudio/rmarkdown" class="uri">https://github.com/rstudio/rmarkdown</a>&gt;.</p>
 <p>[2] C. Boettiger. <em>knitcitations: Citations for ‘Knitr’ Markdown Files</em>. R package version 1.0.10. 2019. &lt;URL: <a href="https://CRAN.R-project.org/package=knitcitations" class="uri">https://CRAN.R-project.org/package=knitcitations</a>&gt;.</p>
 <p>[3] L. Collado-Torres. <em>GenomicState: Build and access GenomicState objects for use with derfinder tools from sources like Gencode</em>. R package version 0.99.9. 2019. &lt;URL: <a href="https://github.com/LieberInstitute/GenomicState" class="uri">https://github.com/LieberInstitute/GenomicState</a>&gt;.</p>
-<p>[4] L. Collado-Torres, A. E. Jaffe, and J. T. Leek. <em>derfinderPlot: Plotting functions for derfinder</em>. <a href="https://github.com/leekgroup/derfinderPlot" class="uri">https://github.com/leekgroup/derfinderPlot</a> - R package version 1.21.4. 2017. DOI: 10.18129/B9.bioc.derfinderPlot. &lt;URL: <a href="http://www.bioconductor.org/packages/derfinderPlot" class="uri">http://www.bioconductor.org/packages/derfinderPlot</a>&gt;.</p>
+<p>[4] L. Collado-Torres, A. E. Jaffe, and J. T. Leek. <em>derfinderPlot: Plotting functions for derfinder</em>. <a href="https://github.com/leekgroup/derfinderPlot" class="uri">https://github.com/leekgroup/derfinderPlot</a> - R package version 1.21.5. 2017. DOI: 10.18129/B9.bioc.derfinderPlot. &lt;URL: <a href="http://www.bioconductor.org/packages/derfinderPlot" class="uri">http://www.bioconductor.org/packages/derfinderPlot</a>&gt;.</p>
 <p>[5] L. Collado-Torres, A. Nellore, A. C. Frazee, C. Wilks, et al. “Flexible expressed region analysis for RNA-seq with derfinder”. In: <em>Nucl. Acids Res.</em> (2017). DOI: 10.1093/nar/gkw852. &lt;URL: <a href="http://nar.oxfordjournals.org/content/early/2016/09/29/nar.gkw852" class="uri">http://nar.oxfordjournals.org/content/early/2016/09/29/nar.gkw852</a>&gt;.</p>
 <p>[6] G. Csárdi, R. core, H. Wickham, W. Chang, et al. <em>sessioninfo: R Session Information</em>. R package version 1.1.1. 2018. &lt;URL: <a href="https://CRAN.R-project.org/package=sessioninfo" class="uri">https://CRAN.R-project.org/package=sessioninfo</a>&gt;.</p>
 <p>[7] A. E. Jaffe, P. Murakami, H. Lee, J. T. Leek, et al. “Bump hunting to identify differentially methylated regions in epigenetic epidemiology studies”. In: <em>International journal of epidemiology</em> 41.1 (2012), pp. 200-209. DOI: 10.1093/ije/dyr238.</p>

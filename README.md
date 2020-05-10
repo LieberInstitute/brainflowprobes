@@ -37,7 +37,7 @@ print(citation('brainflowprobes'), bibtex = TRUE)
 #> probe sequence_. doi: 10.18129/B9.bioc.brainflowprobes (URL:
 #> https://doi.org/10.18129/B9.bioc.brainflowprobes),
 #> https://github.com/LieberInstitute/brainflowprobes - R package version
-#> 1.1.2, <URL: http://www.bioconductor.org/packages/brainflowprobes>.
+#> 1.3.1, <URL: http://www.bioconductor.org/packages/brainflowprobes>.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
@@ -46,7 +46,7 @@ print(citation('brainflowprobes'), bibtex = TRUE)
 #>     author = {Amanda J Price},
 #>     year = {2020},
 #>     url = {http://www.bioconductor.org/packages/brainflowprobes},
-#>     note = {https://github.com/LieberInstitute/brainflowprobes - R package version 1.1.2},
+#>     note = {https://github.com/LieberInstitute/brainflowprobes - R package version 1.3.1},
 #>     doi = {10.18129/B9.bioc.brainflowprobes},
 #>   }
 ```

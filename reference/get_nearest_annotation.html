@@ -170,12 +170,12 @@ and <a href='plot_coverage.html'>plot_coverage</a>.</p>
     <pre class="examples"><div class='input'>
 <span class='no'>gr</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>GenomicRanges</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/GenomicRanges/man/GRanges-class.html'>GRanges</a></span>(<span class='st'>"chr10:135379301-135379311:+"</span>)
 
-<span class='fu'>get_nearest_annotation</span>(<span class='no'>gr</span>)</div><div class='output co'>#&gt; <span class='message'>snapshotDate(): 2020-05-01</span></div><div class='output co'>#&gt; <span class='message'>loading from cache</span></div><div class='output co'>#&gt;   name annotation description region distance   subregion insideDistance
+<span class='fu'>get_nearest_annotation</span>(<span class='no'>gr</span>)</div><div class='output co'>#&gt; <span class='message'>snapshotDate(): 2020-05-23</span></div><div class='output co'>#&gt; <span class='message'>loading from cache</span></div><div class='output co'>#&gt;   name annotation description region distance   subregion insideDistance
 #&gt; 1 &lt;NA&gt;       &lt;NA&gt; inside exon inside        0 inside exon              0
 #&gt;   exonnumber nexons                         UTR strand geneL codingL
 #&gt; 1          1      5 inside transcription region      + 63710      NA
 #&gt;            Geneid subjectHits
-#&gt; 1 ENSG00000288107       62226</div><div class='input'><span class='fu'>get_nearest_annotation</span>(<span class='no'>gr</span>, <span class='kw'>CODING_ONLY</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>snapshotDate(): 2020-05-01</span></div><div class='output co'>#&gt; <span class='message'>loading from cache</span></div><div class='output co'>#&gt;     name          annotation description     region distance subregion
+#&gt; 1 ENSG00000288107       62226</div><div class='input'><span class='fu'>get_nearest_annotation</span>(<span class='no'>gr</span>, <span class='kw'>CODING_ONLY</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>snapshotDate(): 2020-05-23</span></div><div class='output co'>#&gt; <span class='message'>loading from cache</span></div><div class='output co'>#&gt;     name          annotation description     region distance subregion
 #&gt; 1 CYP2E1 NM_000773 NP_000764  downstream downstream    45391      &lt;NA&gt;
 #&gt;   insideDistance exonnumber nexons  UTR strand geneL codingL          Geneid
 #&gt; 1             NA         NA     12 &lt;NA&gt;      + 40814   11568 ENSG00000130649

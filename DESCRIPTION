@@ -1,7 +1,7 @@
 Package: brainflowprobes
 Type: Package
 Title: Plots and annotation for choosing BrainFlow target probe sequence 
-Version: 1.3.1
+Version: 1.4.0
 Date: 2020-05-10
 Authors@R: c(person("Amanda", "Price", email = "amanda.joy.price@gmail.com", 
   role = c("aut", "cre"), comment = c(ORCID = "0000-0001-7352-3732")),

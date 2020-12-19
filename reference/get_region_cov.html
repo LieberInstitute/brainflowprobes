@@ -74,7 +74,7 @@ This is used by four_panels and plot_coverage." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brainflowprobes</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.1</span>
       </span>
     </div>
 
@@ -82,7 +82,7 @@ This is used by four_panels and plot_coverage." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -108,7 +108,7 @@ This is used by four_panels and plot_coverage." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/LieberInstitute/brainflowprobes/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -136,12 +136,12 @@ list (<code>COVERAGE</code>) or computes a new one using <a href='brainflowprobe
 This is used by <a href='four_panels.html'>four_panels</a> and <a href='plot_coverage.html'>plot_coverage</a>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_region_cov</span>(
-  <span class='no'>REGION</span>,
-  <span class='kw'>COVERAGE</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>VERBOSE</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>PD</span> <span class='kw'>=</span> <span class='kw pkg'>brainflowprobes</span><span class='kw ns'>::</span><span class='no'><a href='pd.html'>pd</a></span>
-)</pre>
+    <pre class="usage"><span class='fu'>get_region_cov</span><span class='op'>(</span>
+  <span class='va'>REGION</span>,
+  COVERAGE <span class='op'>=</span> <span class='cn'>NULL</span>,
+  VERBOSE <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  PD <span class='op'>=</span> <span class='fu'>brainflowprobes</span><span class='fu'>::</span><span class='va'><a href='pd.html'>pd</a></span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -179,14 +179,18 @@ columns. Defaults to the data included in this package.</p></td>
     <p>If <code>COVERAGE</code> is provided and all checks pass, then this function
 returns <code>COVERAGE</code>. Otherwise, it computes a new region coverage data.frame
 list using <a href='brainflowprobes_cov.html'>brainflowprobes_cov</a>.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Leonardo Collado-Torres</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'>## If all checks pass, then it returns the COVERAGE</span>
-<span class='fu'><a href='https://rdrr.io/r/base/stopifnot.html'>stopifnot</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/identical.html'>identical</a></span>(
-    <span class='fu'>get_region_cov</span>(<span class='kw'>COVERAGE</span> <span class='kw'>=</span> <span class='no'>four_panels_example_cov</span>),
-    <span class='no'>four_panels_example_cov</span>
-))</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/stopifnot.html'>stopifnot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/identical.html'>identical</a></span><span class='op'>(</span>
+    <span class='fu'>get_region_cov</span><span class='op'>(</span>COVERAGE <span class='op'>=</span> <span class='va'>four_panels_example_cov</span><span class='op'>)</span>,
+    <span class='va'>four_panels_example_cov</span>
+<span class='op'>)</span><span class='op'>)</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -202,7 +206,7 @@ list using <a href='brainflowprobes_cov.html'>brainflowprobes_cov</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

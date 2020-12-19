@@ -73,7 +73,7 @@ overwriting a plot the user has previously made." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brainflowprobes</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.1</span>
       </span>
     </div>
 
@@ -81,7 +81,7 @@ overwriting a plot the user has previously made." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -107,7 +107,7 @@ overwriting a plot the user has previously made." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/LieberInstitute/brainflowprobes/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -134,7 +134,7 @@ overwriting a plot the user has previously made." />
 overwriting a plot the user has previously made.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>check_pdf</span>(<span class='kw'>PDF</span> <span class='kw'>=</span> <span class='st'>"four_panels.pdf"</span>, <span class='kw'>OUTDIR</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())</pre>
+    <pre class="usage"><span class='fu'>check_pdf</span><span class='op'>(</span>PDF <span class='op'>=</span> <span class='st'>"four_panels.pdf"</span>, OUTDIR <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -158,26 +158,32 @@ the pdf file extension if it was absent from <code>PDF</code>.</p>
 
     <p>This is an utility function used by <a href='four_panels.html'>four_panels</a> and
 <a href='plot_coverage.html'>plot_coverage</a>.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Leonardo Collado-Torres</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'>## Choose a random PDF file</span>
-<span class='no'>PDF</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"test_"</span>, <span class='kw pkg'>stats</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>1</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>1e10</span>))
+<span class='va'>PDF</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"test_"</span>, <span class='fu'>stats</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='fl'>1</span>, max <span class='op'>=</span> <span class='fl'>1e10</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'>## Initially this works because the output PDF does not exist.</span>
-<span class='no'>PDF</span> <span class='kw'>&lt;-</span> <span class='fu'>check_pdf</span>(<span class='no'>PDF</span>)
+<span class='va'>PDF</span> <span class='op'>&lt;-</span> <span class='fu'>check_pdf</span><span class='op'>(</span><span class='va'>PDF</span><span class='op'>)</span>
 <span class='co'>## It also adds the PDF extension if the user didn't supply it.</span>
-<span class='no'>PDF</span></div><div class='output co'>#&gt; [1] "/tmp/Rtmpsk9FOG/test_807501375.675201.pdf"</div><div class='input'>
+<span class='va'>PDF</span>
+</div><div class='output co'>#&gt; [1] "/tmp/RtmpLd8CxQ/test_807501375.675201.pdf"</div><div class='input'>
 <span class='co'>## Create a dummy PDF file</span>
-<span class='fu'><a href='https://rdrr.io/r/grDevices/pdf.html'>pdf</a></span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='no'>PDF</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='fl'>1</span>, <span class='fl'>1</span>)
-<span class='fu'><a href='https://rdrr.io/r/grDevices/dev.html'>dev.off</a></span>()</div><div class='output co'>#&gt; pdf 
-#&gt;   2 </div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/grDevices/pdf.html'>pdf</a></span><span class='op'>(</span>file <span class='op'>=</span> <span class='va'>PDF</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/grDevices/dev.html'>dev.off</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; agg_png 
+#&gt;       2 </div><div class='input'>
 <span class='co'>## Now it doesn't work since the PDF file already exists.</span>
-<span class='kw pkg'>testthat</span><span class='kw ns'>::</span><span class='fu'><a href='https://testthat.r-lib.org/reference/expect_error.html'>expect_error</a></span>(
-    <span class='fu'>check_pdf</span>(<span class='fu'><a href='https://rdrr.io/r/base/basename.html'>basename</a></span>(<span class='no'>PDF</span>)),
+<span class='fu'>testthat</span><span class='fu'>::</span><span class='fu'><a href='https://testthat.r-lib.org/reference/expect_error.html'>expect_error</a></span><span class='op'>(</span>
+    <span class='fu'>check_pdf</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/basename.html'>basename</a></span><span class='op'>(</span><span class='va'>PDF</span><span class='op'>)</span><span class='op'>)</span>,
     <span class='st'>"already exists! Rename or erase it"</span>
-)</div></pre>
+<span class='op'>)</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -193,7 +199,7 @@ the pdf file extension if it was absent from <code>PDF</code>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

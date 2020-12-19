@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brainflowprobes</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.1</span>
       </span>
     </div>
 
@@ -39,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -65,7 +65,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/LieberInstitute/brainflowprobes/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -79,7 +79,7 @@
 
       
 
-      </header><div class="row">
+      </header><script src="brainflowprobes-vignette_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>brainflowprobes user guide</h1>
@@ -88,7 +88,7 @@
       Lieber Institute for Brain Development, Johns Hopkins Medical Campus<br><a class="author_email" href="mailto:#"></a><a href="mailto:amanda.joy.price@gmail.com" class="email">amanda.joy.price@gmail.com</a>
       </address>
                   
-            <h4 class="date">27 May 2020</h4>
+            <h4 class="date">19 December 2020</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/LieberInstitute/brainflowprobes/blob/master/vignettes/brainflowprobes-vignette.Rmd"><code>vignettes/brainflowprobes-vignette.Rmd</code></a></small>
       <div class="hidden name"><code>brainflowprobes-vignette.Rmd</code></div>
@@ -105,19 +105,20 @@
 <a href="#install-brainflowprobes" class="anchor"></a>Install <em><a href="https://bioconductor.org/packages/3.12/brainflowprobes">brainflowprobes</a></em>
 </h2>
 <p><code>R</code> is an open-source statistical environment which can be easily modified to enhance its functionality via packages. <em><a href="https://bioconductor.org/packages/3.12/brainflowprobes">brainflowprobes</a></em> is an <code>R</code> package available via the <a href="http://bioconductor/packages/brainflowprobes">Bioconductor</a> repository for packages. <code>R</code> can be installed on any operating system from <a href="https://cran.r-project.org/">CRAN</a> after which you can install <em><a href="https://bioconductor.org/packages/3.12/brainflowprobes">brainflowprobes</a></em> by using the following commands in your <code>R</code> session:</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="kw">if</span> (!<span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span>(<span class="st">"BiocManager"</span>, <span class="kw">quietly</span> <span class="kw">=</span> <span class="fl">TRUE</span>)) {
-      <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"BiocManager"</span>)
-  }
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+      <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span>
+  <span class="op">}</span>
 
-<span class="kw pkg">BiocManager</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span>(<span class="st">"brainflowprobes"</span>)
+<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span><span class="op">(</span><span class="st">"brainflowprobes"</span><span class="op">)</span>
 
 <span class="co">## Check that you have a valid Bioconductor installation</span>
-<span class="kw pkg">BiocManager</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/valid.html">valid</a></span>()
+<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/valid.html">valid</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="co">## If you want to force the installation of the development version, you can</span>
 <span class="co">## do so by running. However, we suggest that you wait for Bioconductor to</span>
 <span class="co">## run checks and build the latest release.</span>
-<span class="kw pkg">BiocManager</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span>(<span class="st">"LieberInstitute/brainflowprobes"</span>)</pre></body></html></div>
+<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span><span class="op">(</span><span class="st">"LieberInstitute/brainflowprobes"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="required-knowledge" class="section level2">
 <h2 class="hasAnchor">
@@ -135,14 +136,15 @@
 <a href="#citing-brainflowprobes" class="anchor"></a>Citing <em><a href="https://bioconductor.org/packages/3.12/brainflowprobes">brainflowprobes</a></em>
 </h2>
 <p>We hope that <em><a href="https://bioconductor.org/packages/3.12/brainflowprobes">brainflowprobes</a></em> will be useful for your research. Please use the following information to cite the package and the overall approach. Thank you!</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co">## Citation info</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span>(<span class="st">"brainflowprobes"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Citation info</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span><span class="op">(</span><span class="st">"brainflowprobes"</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ## Price AJ (2020). _Plots and annotation for choosing BrainFlow target
 ## probe sequence_. doi: 10.18129/B9.bioc.brainflowprobes (URL:
 ## https://doi.org/10.18129/B9.bioc.brainflowprobes),
 ## https://github.com/LieberInstitute/brainflowprobes - R package version
-## 1.3.1, &lt;URL: http://www.bioconductor.org/packages/brainflowprobes&gt;.
+## 1.5.1, &lt;URL: http://www.bioconductor.org/packages/brainflowprobes&gt;.
 ## 
 ## A BibTeX entry for LaTeX users is
 ## 
@@ -151,7 +153,7 @@
 ##     author = {Amanda J Price},
 ##     year = {2020},
 ##     url = {http://www.bioconductor.org/packages/brainflowprobes},
-##     note = {https://github.com/LieberInstitute/brainflowprobes - R package version 1.3.1},
+##     note = {https://github.com/LieberInstitute/brainflowprobes - R package version 1.5.1},
 ##     doi = {10.18129/B9.bioc.brainflowprobes},
 ##   }</code></pre>
 </div>
@@ -185,12 +187,14 @@
 <a href="#annotating-a-candidate-sequence" class="anchor"></a>Annotating a candidate sequence</h1>
 <p>Let’s say you want to design a probe to target deep layer pyramidal neurons in the prefrontal cortex. You choose TBR1 because of its role in neuronal identity specification in these cells, and you want to see if the last exon of this gene, a ~2.5 Kb sequence, would make for a good probe target. You find using the UCSC Genome browser (for instance) that the hg19 coordinates for this exon are <code>chr2:162279880-162282378:+</code>, where <code>chr2</code> is the chromosome, <code>162279880-162282378</code> is the start and end of the exon, and <code><a href="https://rdrr.io/r/base/Arithmetic.html">+</a></code> means that it is on the plus strand.</p>
 <p>Before any of the <em><a href="https://bioconductor.org/packages/3.12/brainflowprobes">brainflowprobes</a></em> functions can be used, the package must be loaded and attached:</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="co">## Load brainflowprobes R package</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"brainflowprobes"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Load brainflowprobes R package</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/LieberInstitute/brainflowprobes">"brainflowprobes"</a></span><span class="op">)</span></code></pre></div>
 <p>The next step is to use the <code><a href="../reference/region_info.html">region_info()</a></code> function to annotate the sequence in a <code>.csv</code> file that can be used to custom synthesize a target probe:</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="../reference/region_info.html">region_info</a></span>(<span class="st">"chr2:162279880-162282378:+"</span>, <span class="kw">CSV</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="kw">SEQ</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">OUTDIR</span> <span class="kw">=</span> <span class="st">"."</span>)</pre></body></html></div>
-<pre><code>## using temporary cache /tmp/Rtmp3n782r/BiocFileCache</code></pre>
-<pre><code>## snapshotDate(): 2020-05-23</code></pre>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/region_info.html">region_info</a></span><span class="op">(</span><span class="st">"chr2:162279880-162282378:+"</span>, CSV <span class="op">=</span> <span class="cn">FALSE</span>, SEQ <span class="op">=</span> <span class="cn">TRUE</span>, OUTDIR <span class="op">=</span> <span class="st">"."</span><span class="op">)</span></code></pre></div>
+<pre><code>## using temporary cache /tmp/RtmpMtd8S9/BiocFileCache</code></pre>
+<pre><code>## snapshotDate(): 2020-10-27</code></pre>
 <pre><code>## downloading 1 resources</code></pre>
 <pre><code>## retrieving 1 resource</code></pre>
 <pre><code>## loading from cache</code></pre>
@@ -272,32 +276,36 @@
 <a href="#plotting-expression-coverage-across-a-candidate-region" class="anchor"></a>Plotting expression coverage across a candidate region</h1>
 <p><em><a href="https://bioconductor.org/packages/3.12/brainflowprobes">brainflowprobes</a></em> includes two functions that visualize expression information about candidate target regions based on four external datasets. Coverage data for these external datasets are stored online as BigWig tracks that unfortunately cannot be called using <code>R</code> on a Windows operating system. For users with Mac or Linux machines, expression of candidate regions in these datasets can be loaded and visualized using <code><a href="../reference/plot_coverage.html">plot_coverage()</a></code> and <code><a href="../reference/four_panels.html">four_panels()</a></code>.</p>
 <p><code><a href="../reference/plot_coverage.html">plot_coverage()</a></code> uses the <code>getRegionCoverage()</code> function from the <em><a href="https://bioconductor.org/packages/3.12/derfinder">derfinder</a></em> package to cut the coverage values for region(s) of interest (specified in the <code>REGION</code> option) in a set of nuclear (N) and cytoplasmic (C) RNA-seq samples derived from adult (A) and fetal (F) human cortex. In this dataset, two different RNA-seq libraries based on either polyA-enrichment (P) or rRNA depletion (R) were generated and sequenced for each fraction-age pair, resulting in eight groups of samples. Optimal candidate target probe sequences will be highly and uniformly expressed across the region.</p>
-<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="fu"><a href="../reference/plot_coverage.html">plot_coverage</a></span>(<span class="st">"chr2:162279880-162282378:+"</span>,
-    <span class="kw">PDF</span> <span class="kw">=</span> <span class="st">"regionCoverage_fractionedData.pdf"</span>,
-    <span class="kw">OUTDIR</span> <span class="kw">=</span> <span class="st">"."</span>,
-    <span class="kw">COVERAGE</span> <span class="kw">=</span> <span class="kw">NULL</span>, <span class="kw">VERBOSE</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-)</pre></body></html></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/plot_coverage.html">plot_coverage</a></span><span class="op">(</span><span class="st">"chr2:162279880-162282378:+"</span>,
+    PDF <span class="op">=</span> <span class="st">"regionCoverage_fractionedData.pdf"</span>,
+    OUTDIR <span class="op">=</span> <span class="st">"."</span>,
+    COVERAGE <span class="op">=</span> <span class="cn">NULL</span>, VERBOSE <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span></code></pre></div>
 <embed src="regionCoverage_fractionedData.pdf" height="850" style="display: block; margin: auto;" type="application/pdf"></embed><p>In this example, this exon is highly expressed in both nuclear and cytoplasmic RNA but is not uniformly expressed. 2.5 Kb (the length of this exon) is longer than the minimum for probe synthesis, so we can limit the coordinates to exclude the lower-expressed sequence:</p>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="fu"><a href="../reference/plot_coverage.html">plot_coverage</a></span>(<span class="st">"chr2:162280900-162282378:+"</span>,
-    <span class="kw">PDF</span> <span class="kw">=</span> <span class="st">"regionCoverage_fractionedData_shorter.pdf"</span>,
-    <span class="kw">OUTDIR</span> <span class="kw">=</span> <span class="st">"."</span>,
-    <span class="kw">COVERAGE</span> <span class="kw">=</span> <span class="kw">NULL</span>, <span class="kw">VERBOSE</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-)</pre></body></html></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/plot_coverage.html">plot_coverage</a></span><span class="op">(</span><span class="st">"chr2:162280900-162282378:+"</span>,
+    PDF <span class="op">=</span> <span class="st">"regionCoverage_fractionedData_shorter.pdf"</span>,
+    OUTDIR <span class="op">=</span> <span class="st">"."</span>,
+    COVERAGE <span class="op">=</span> <span class="cn">NULL</span>, VERBOSE <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span></code></pre></div>
 <embed src="regionCoverage_fractionedData_shorter.pdf" height="850" style="display: block; margin: auto;" type="application/pdf"></embed><p>These new coordinates are now evenly expressed across a ~1.5 Kb region.</p>
 </div>
 <div id="assessing-other-parameters-for-a-candidate-region-using-four_panels" class="section level1">
 <h1 class="hasAnchor">
 <a href="#assessing-other-parameters-for-a-candidate-region-using-four_panels" class="anchor"></a>Assessing other parameters for a candidate region using four_panels()</h1>
 <p>Calculating coverage can take several minutes depending on the number of candidate regions being assessed. The coverage can also be pre-computed outside the context of the plotting functions using <code><a href="../reference/brainflowprobes_cov.html">brainflowprobes_cov()</a></code>, and then specified in the <code>COVERAGE</code> parameter of either <code><a href="../reference/plot_coverage.html">plot_coverage()</a></code> or <code><a href="../reference/four_panels.html">four_panels()</a></code>.</p>
-<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="no">tbr1.cov</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/brainflowprobes_cov.html">brainflowprobes_cov</a></span>(<span class="st">"chr2:162280900-162282378:+"</span>, <span class="kw">VERBOSE</span> <span class="kw">=</span> <span class="fl">FALSE</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tbr1.cov</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/brainflowprobes_cov.html">brainflowprobes_cov</a></span><span class="op">(</span><span class="st">"chr2:162280900-162282378:+"</span>, VERBOSE <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p>This example takes ~10 minutes to run. The resulting <code>tbr1.cov</code> object includes a list for each of the four external datasets of coverage across each region being assayed. In this case, coverage at each of the 1479 bases of the TBR1 exon is reported for each sample of the four datasets.</p>
 <p>A snapshot of coverage, degradation and cell type specificity can be visualized using the <code><a href="../reference/four_panels.html">four_panels()</a></code> function:</p>
-<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="fu"><a href="../reference/four_panels.html">four_panels</a></span>(<span class="st">"chr2:162280900-162282378:+"</span>,
-    <span class="kw">PDF</span> <span class="kw">=</span> <span class="st">"four_panels.pdf"</span>,
-    <span class="kw">OUTDIR</span> <span class="kw">=</span> <span class="st">"."</span>,
-    <span class="kw">JUNCTIONS</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-    <span class="kw">COVERAGE</span> <span class="kw">=</span> <span class="no">tbr1.cov</span>, <span class="kw">VERBOSE</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-)</pre></body></html></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/four_panels.html">four_panels</a></span><span class="op">(</span><span class="st">"chr2:162280900-162282378:+"</span>,
+    PDF <span class="op">=</span> <span class="st">"four_panels.pdf"</span>,
+    OUTDIR <span class="op">=</span> <span class="st">"."</span>,
+    JUNCTIONS <span class="op">=</span> <span class="cn">FALSE</span>,
+    COVERAGE <span class="op">=</span> <span class="va">tbr1.cov</span>, VERBOSE <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span></code></pre></div>
 <embed src="four_panels.pdf" height="1000" style="display: block; margin: auto;" type="application/pdf"></embed><p>The upper left panel (<strong>Separation</strong>) shows a boxplot of the mean transformed coverage value across the 1.5 Kb region in the fractionated data used by <code>plot_coverage</code> described above. This region is expressed at about the same level in both nuclear (N) and cytoplasmic (C) samples, making this a good candidate so far.</p>
 <p>The upper right panel (<strong>Degradation</strong>) plots the mean transformed coverage in cortical tissue samples left on a benchtop at room temperature for 0-60 minutes (x-axis) before RNA extraction and sequencing using either polyA selection (“polyA”) or rRNA depletion (“Ribo”) library preparation kits. Expression coverage of this region does not reduce after an hour at room temperature, meaning that this sequence may be a good candidate for target probe synthesis.</p>
 <p>The lower left panel (<strong>Sorted</strong>) shows expression of the region in nuclear RNA that has been sorted based on NeuN antibody labeling and sequenced using two library preparation strategies: polyA selection (“PolyA”) or rRNA depletion (“RiboGone”). NeuN+ (positive) samples are enriched for neurons, while NeuN- (negative) samples are enriched for non-neurons such as the subclasses of glia or epithelial cells. Although these samples were collected using a different protocol, as products of flow cytometric sorting of postmortem brain tissue, they provide insight to the level of detectable expression that may be expected from sorted nuclear RNA. If your target gene is cell type-specific (such as TBR1), it can also be used as a sanity check for the expected neuronal-enriched expression pattern of that gene.</p>
@@ -309,14 +317,15 @@
 <h1 class="hasAnchor">
 <a href="#assessing-many-candidate-sequences-at-a-time" class="anchor"></a>Assessing many candidate sequences at a time</h1>
 <p>Say rather than one candidate you have a list of differentially expressed regions that are upregulated in your cell population of interest and you want to see which would make the best BrainFlow target probes. In this case, you can input a list of coordinates:</p>
-<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="no">candidates</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">candidates</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
     <span class="st">"chr2:162279880-162282378:+"</span>,
     <span class="st">"chr11:31806351-31811553"</span>,
     <span class="st">"chr7:103112236-103113354"</span>
-)
+<span class="op">)</span>
 
-<span class="fu"><a href="../reference/region_info.html">region_info</a></span>(<span class="no">candidates</span>, <span class="kw">CSV</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="kw">SEQ</span> <span class="kw">=</span> <span class="fl">FALSE</span>)</pre></body></html></div>
-<pre><code>## snapshotDate(): 2020-05-23</code></pre>
+<span class="fu"><a href="../reference/region_info.html">region_info</a></span><span class="op">(</span><span class="va">candidates</span>, CSV <span class="op">=</span> <span class="cn">FALSE</span>, SEQ <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<pre><code>## snapshotDate(): 2020-10-27</code></pre>
 <pre><code>## loading from cache</code></pre>
 <pre><code>## Completed! If CSV=TRUE, check for region_info.csv in the temporary
 ## directory (i.e. tempdir()) unless otherwise specified in OUTDIR.</code></pre>
@@ -338,24 +347,26 @@
 ## 3 inside transcription region  68800      NA ENSG00000234715</code></pre>
 <p>Each candidate target probe region will be output as a row in the <code>region_info.csv</code> table.</p>
 <p>When multiple regions are assessed concurrently using <code><a href="../reference/plot_coverage.html">plot_coverage()</a></code> and <code><a href="../reference/four_panels.html">four_panels()</a></code>, each region will be plotted and saved as individual pages in a pdf. It is recommended to not assess more than 50 or so regions as a time because of size and ease of interpretibility. An example would look like this (this example won’t run in this vignette to keep loading time down):</p>
-<div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="fu"><a href="../reference/plot_coverage.html">plot_coverage</a></span>(<span class="no">candidates</span>,
-    <span class="kw">PDF</span> <span class="kw">=</span> <span class="st">"regionCoverage_fractionedData_multiple.pdf"</span>, <span class="kw">OUTDIR</span> <span class="kw">=</span> <span class="st">"."</span>
-)
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/plot_coverage.html">plot_coverage</a></span><span class="op">(</span><span class="va">candidates</span>,
+    PDF <span class="op">=</span> <span class="st">"regionCoverage_fractionedData_multiple.pdf"</span>, OUTDIR <span class="op">=</span> <span class="st">"."</span>
+<span class="op">)</span>
 
-<span class="fu"><a href="../reference/four_panels.html">four_panels</a></span>(<span class="no">candidates</span>, <span class="kw">PDF</span> <span class="kw">=</span> <span class="st">"four_panels_multiple.pdf"</span>, <span class="kw">OUTDIR</span> <span class="kw">=</span> <span class="st">"."</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/four_panels.html">four_panels</a></span><span class="op">(</span><span class="va">candidates</span>, PDF <span class="op">=</span> <span class="st">"four_panels_multiple.pdf"</span>, OUTDIR <span class="op">=</span> <span class="st">"."</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="spanning-splice-junctions" class="section level1">
 <h1 class="hasAnchor">
 <a href="#spanning-splice-junctions" class="anchor"></a>Spanning splice junctions</h1>
 <p>Sometimes a gene may be too short to avoid a sequence that spans splice junctions, or you may be interested in creating a target probe that matches a probe that has been designed for another assay (sich as FISH). In this case, the start and end of the entire spliced sequence can be used as input to both <code><a href="../reference/region_info.html">region_info()</a></code> and <code><a href="../reference/plot_coverage.html">plot_coverage()</a></code>. Because <code><a href="../reference/four_panels.html">four_panels()</a></code> averages the coverage across each candidate region, you want to exclude intron sequence. In this case, you may input the coordinates of the exons within a transcript of interest and specify that <code>JUNCTIONS = TRUE</code>. For instance, when designing a probe for PENK we wanted to target bases 2-1273 of NM_001135690.2 to match another probe from a different assay. From the UCSC genome browser, one can identify the coordinates of the exons within this transcript:</p>
-<div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="no">PENK_exons</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">PENK_exons</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
     <span class="st">"chr8:57353587-57354496:-"</span>,
     <span class="st">"chr8:57358375-57358515:-"</span>,
     <span class="st">"chr8:57358985-57359040:-"</span>,
     <span class="st">"chr8:57359128-57359292:-"</span>
-)
+<span class="op">)</span>
 
-<span class="fu"><a href="../reference/four_panels.html">four_panels</a></span>(<span class="no">PENK_exons</span>, <span class="kw">JUNCTIONS</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">PDF</span> <span class="kw">=</span> <span class="st">"PENK_panels.pdf"</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/four_panels.html">four_panels</a></span><span class="op">(</span><span class="va">PENK_exons</span>, JUNCTIONS <span class="op">=</span> <span class="cn">TRUE</span>, PDF <span class="op">=</span> <span class="st">"PENK_panels.pdf"</span><span class="op">)</span></code></pre></div>
 <p>By specifying <code>JUNCTIONS = TRUE</code>, <code><a href="../reference/four_panels.html">four_panels()</a></code> will average the coverage of the four exons rather than plotting each exon on an individual pdf page.</p>
 </div>
 <div id="final-considerations" class="section level1">
@@ -370,253 +381,289 @@
 <a href="#reproducibility" class="anchor"></a>Reproducibility</h1>
 <p>The <em><a href="https://bioconductor.org/packages/3.12/brainflowprobes">brainflowprobes</a></em> package was made possible thanks to:</p>
 <ul>
-<li>R <a id="cite-R_Core_Team_2020"></a>(<a href="https://www.R-project.org/">R Core Team, 2020</a>)</li>
+<li>R (R Core Team, 2020)</li>
 <li>
-<em><a href="https://bioconductor.org/packages/3.12/BiocStyle">BiocStyle</a></em> <a id="cite-Oles_2020"></a>(<a href="https://github.com/Bioconductor/BiocStyle">Oleś, Morgan, and Huber, 2020</a>)</li>
+<em><a href="https://bioconductor.org/packages/3.12/BiocStyle">BiocStyle</a></em> (Oleś, Morgan, and Huber, 2020)</li>
 <li>
-<em><a href="https://bioconductor.org/packages/3.12/Biostrings">Biostrings</a></em> <a id="cite-Pages_2020"></a>(<a href="#bib-Pages_2020">Pagès, Aboyoun, Gentleman, and DebRoy, 2020</a>)</li>
+<em><a href="https://bioconductor.org/packages/3.12/Biostrings">Biostrings</a></em> (Pagès, Aboyoun, Gentleman, and DebRoy, 2020)</li>
 <li>
-<em><a href="https://bioconductor.org/packages/3.12/BSgenome.Hsapiens.UCSC.hg19">BSgenome.Hsapiens.UCSC.hg19</a></em> <a id="cite-Team_2020"></a>(<a href="#bib-Team_2020">Team, 2020</a>)</li>
+<em><a href="https://bioconductor.org/packages/3.12/BSgenome.Hsapiens.UCSC.hg19">BSgenome.Hsapiens.UCSC.hg19</a></em> (Team, 2020)</li>
 <li>
-<em><a href="https://bioconductor.org/packages/3.12/bumphunter">bumphunter</a></em> <a id="cite-bumphunter"></a>(<a href="https://doi.org/10.1093/ije/dyr238">Jaffe, Murakami, Lee, Leek, et al., 2012</a>)</li>
+<em><a href="https://bioconductor.org/packages/3.12/bumphunter">bumphunter</a></em> (Jaffe, Murakami, Lee, Leek, Fallin, Feinberg, and Irizarry, 2012)</li>
 <li>
-<em><a href="https://CRAN.R-project.org/package=cowplot">cowplot</a></em> <a id="cite-Wilke_2019"></a>(<a href="https://wilkelab.org/cowplot">Wilke, 2019</a>)</li>
+<em><a href="https://CRAN.R-project.org/package=cowplot">cowplot</a></em> (Wilke, 2020)</li>
 <li>
-<em><a href="https://bioconductor.org/packages/3.12/derfinder">derfinder</a></em> <a id="cite-Collado-Torres_2017"></a>(<a href="http://nar.oxfordjournals.org/content/early/2016/09/29/nar.gkw852">Collado-Torres, Nellore, Frazee, Wilks, et al., 2017</a>)</li>
+<em><a href="https://bioconductor.org/packages/3.12/derfinder">derfinder</a></em> (Collado-Torres, Nellore, Frazee, Wilks, Love, Langmead, Irizarry, Leek, and Jaffe, 2017)</li>
 <li>
-<em><a href="https://bioconductor.org/packages/3.12/derfinderPlot">derfinderPlot</a></em> <a id="cite-Collado-Torres_2017a"></a>(<a href="http://www.bioconductor.org/packages/derfinderPlot">Collado-Torres, Jaffe, and Leek, 2017</a>)</li>
+<em><a href="https://bioconductor.org/packages/3.12/derfinderPlot">derfinderPlot</a></em> (Collado-Torres, Jaffe, and Leek, 2017)</li>
 <li>
-<em><a href="https://CRAN.R-project.org/package=sessioninfo">sessioninfo</a></em> <a id="cite-Csardi_2018"></a>(<a href="https://github.com/r-lib/sessioninfo#readme">Csárdi, core, Wickham, Chang, et al., 2018</a>)</li>
+<em><a href="https://CRAN.R-project.org/package=sessioninfo">sessioninfo</a></em> (Csárdi, core, Wickham, Chang, Flight, Müller, and Hester, 2018)</li>
 <li>
-<em><a href="https://bioconductor.org/packages/3.12/GenomicRanges">GenomicRanges</a></em> <a id="cite-Lawrence_2013"></a>(<a href="http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1003118">Lawrence, Huber, Pagès, Aboyoun, et al., 2013</a>)</li>
+<em><a href="https://bioconductor.org/packages/3.12/GenomicRanges">GenomicRanges</a></em> (Lawrence, Huber, Pagès, Aboyoun, Carlson, Gentleman, Morgan, and Carey, 2013)</li>
 <li>
-<em><a href="https://bioconductor.org/packages/3.12/GenomicState">GenomicState</a></em> <a id="cite-Collado-Torres_2019"></a>(<a href="https://github.com/LieberInstitute/GenomicState">Collado-Torres, 2019</a>)</li>
+<em><a href="https://bioconductor.org/packages/3.12/GenomicState">GenomicState</a></em> (Collado-Torres, 2019)</li>
 <li>
-<em><a href="https://CRAN.R-project.org/package=ggplot2">ggplot2</a></em> <a id="cite-Wickham_2016"></a>(<a href="https://ggplot2.tidyverse.org">Wickham, 2016</a>)</li>
+<em><a href="https://CRAN.R-project.org/package=ggplot2">ggplot2</a></em> (Wickham, 2016)</li>
 <li>
-<em><a href="https://CRAN.R-project.org/package=knitcitations">knitcitations</a></em> <a id="cite-Boettiger_2019"></a>(<a href="https://github.com/cboettig/knitcitations">Boettiger, 2019</a>)</li>
+<em><a href="https://CRAN.R-project.org/package=knitr">knitr</a></em> (Xie, 2014)</li>
 <li>
-<em><a href="https://CRAN.R-project.org/package=knitr">knitr</a></em> <a id="cite-Xie_2014"></a>(<a href="http://www.crcpress.com/product/isbn/9781466561595">Xie, 2014</a>)</li>
+<em><a href="https://CRAN.R-project.org/package=RColorBrewer">RColorBrewer</a></em> (Neuwirth, 2014)</li>
 <li>
-<em><a href="https://CRAN.R-project.org/package=RColorBrewer">RColorBrewer</a></em> <a id="cite-Neuwirth_2014"></a>(<a href="#bib-Neuwirth_2014">Neuwirth, 2014</a>)</li>
+<em><a href="https://CRAN.R-project.org/package=RefManageR">RefManageR</a></em> (McLean, 2017)</li>
 <li>
-<em><a href="https://bioconductor.org/packages/3.12/rtracklayer">rtracklayer</a></em> <a id="cite-Lawrence_2009"></a>(<a href="http://bioinformatics.oxfordjournals.org/content/25/14/1841.abstract">Lawrence, Gentleman, and Carey, 2009</a>)</li>
+<em><a href="https://bioconductor.org/packages/3.12/rtracklayer">rtracklayer</a></em> (Lawrence, Gentleman, and Carey, 2009)</li>
 <li>
-<em><a href="https://CRAN.R-project.org/package=rmarkdown">rmarkdown</a></em> <a id="cite-Allaire_2020"></a>(<a href="https://github.com/rstudio/rmarkdown">Allaire, Xie, McPherson, Luraschi, et al., 2020</a>)</li>
+<em><a href="https://CRAN.R-project.org/package=rmarkdown">rmarkdown</a></em> (Allaire, Xie, McPherson, Luraschi, Ushey, Atkins, Wickham, Cheng, Chang, and Iannone, 2020)</li>
 <li>
-<em><a href="https://CRAN.R-project.org/package=testthat">testthat</a></em> <a id="cite-Wickham_2011"></a>(<a href="https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf">Wickham, 2011</a>)</li>
+<em><a href="https://CRAN.R-project.org/package=testthat">testthat</a></em> (Wickham, 2011)</li>
 </ul>
 <p>Code for creating the vignette</p>
-<div class="sourceCode" id="cb24"><html><body><pre class="r"><span class="co">## Create the vignette</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"rmarkdown"</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/rmarkdown/man/render.html">render</a></span>(<span class="st">"brainflowprobes-vignette.Rmd"</span>, <span class="st">"BiocStyle::html_document"</span>))
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Create the vignette</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/rstudio/rmarkdown">"rmarkdown"</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/rmarkdown/man/render.html">render</a></span><span class="op">(</span><span class="st">"brainflowprobes-vignette.Rmd"</span>, <span class="st">"BiocStyle::html_document"</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co">## Extract the R code</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"knitr"</span>)
-<span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html">knit</a></span>(<span class="st">"brainflowprobes-vignette.Rmd"</span>, <span class="kw">tangle</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
-<div class="sourceCode" id="cb25"><html><body><pre class="r"><span class="co">## Clean up</span>
-<span class="fu"><a href="https://rdrr.io/r/base/files.html">file.remove</a></span>(<span class="st">"brainflowprobes_ref.bib"</span>)</pre></body></html></div>
-<pre><code>## [1] TRUE</code></pre>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://yihui.org/knitr/">"knitr"</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html">knit</a></span><span class="op">(</span><span class="st">"brainflowprobes-vignette.Rmd"</span>, tangle <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>Date the vignette was generated.</p>
-<pre><code>## [1] "2020-05-27 06:01:49 UTC"</code></pre>
+<pre><code>## [1] "2020-12-19 01:35:42 UTC"</code></pre>
 <p>Wallclock time spent generating the vignette.</p>
-<pre><code>## Time difference of 34.101 secs</code></pre>
+<pre><code>## Time difference of 41.156 secs</code></pre>
 <p><code>R</code> session information.</p>
 <pre><code>## ─ Session info ───────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  setting  value                       
-##  version  R version 4.0.0 (2020-04-24)
-##  os       Ubuntu 18.04.4 LTS          
+##  version  R version 4.0.3 (2020-10-10)
+##  os       Ubuntu 20.04 LTS            
 ##  system   x86_64, linux-gnu           
 ##  ui       X11                         
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
-##  tz       UTC                         
-##  date     2020-05-27                  
+##  tz       Etc/UTC                     
+##  date     2020-12-19                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────
-##  package                     * version    date       lib source                        
-##  acepack                       1.4.1      2016-10-29 [1] RSPM (R 4.0.0)                
-##  AnnotationDbi                 1.51.0     2020-04-27 [1] Bioconductor                  
-##  AnnotationFilter              1.13.0     2020-04-27 [1] Bioconductor                  
-##  AnnotationHub                 2.21.0     2020-05-01 [1] Bioconductor                  
-##  askpass                       1.1        2019-01-13 [2] RSPM (R 4.0.0)                
-##  assertthat                    0.2.1      2019-03-21 [2] RSPM (R 4.0.0)                
-##  backports                     1.1.7      2020-05-13 [2] RSPM (R 4.0.0)                
-##  base64enc                     0.1-3      2015-07-28 [1] RSPM (R 4.0.0)                
-##  bibtex                        0.4.2.2    2020-01-02 [1] RSPM (R 4.0.0)                
-##  Biobase                       2.49.0     2020-04-27 [1] Bioconductor                  
-##  BiocFileCache                 1.13.0     2020-04-27 [1] Bioconductor                  
-##  BiocGenerics                  0.35.2     2020-05-06 [1] Bioconductor                  
-##  BiocManager                   1.30.10    2019-11-16 [2] CRAN (R 4.0.0)                
-##  BiocParallel                  1.23.0     2020-04-27 [1] Bioconductor                  
-##  BiocStyle                   * 2.17.0     2020-04-27 [1] Bioconductor                  
-##  BiocVersion                   3.12.0     2020-04-27 [2] Bioconductor                  
-##  biomaRt                       2.45.0     2020-04-27 [1] Bioconductor                  
-##  Biostrings                    2.57.1     2020-05-21 [1] Bioconductor                  
-##  biovizBase                    1.37.0     2020-04-27 [1] Bioconductor                  
-##  bit                           1.1-15.2   2020-02-10 [1] RSPM (R 4.0.0)                
-##  bit64                         0.9-7      2017-05-08 [1] RSPM (R 4.0.0)                
-##  bitops                        1.0-6      2013-08-17 [1] RSPM (R 4.0.0)                
-##  blob                          1.2.1      2020-01-20 [1] RSPM (R 4.0.0)                
-##  bookdown                      0.19       2020-05-15 [1] RSPM (R 4.0.0)                
-##  brainflowprobes             * 1.3.1      2020-05-27 [1] Bioconductor                  
-##  BSgenome                      1.57.0     2020-04-27 [1] Bioconductor                  
-##  BSgenome.Hsapiens.UCSC.hg19   1.4.3      2020-05-27 [1] Bioconductor                  
-##  bumphunter                    1.31.0     2020-04-28 [1] Bioconductor                  
-##  checkmate                     2.0.0      2020-02-06 [1] RSPM (R 4.0.0)                
-##  cli                           2.0.2      2020-02-28 [2] RSPM (R 4.0.0)                
-##  cluster                       2.1.0      2019-06-19 [3] CRAN (R 4.0.0)                
-##  codetools                     0.2-16     2018-12-24 [3] CRAN (R 4.0.0)                
-##  colorspace                    1.4-1      2019-03-18 [1] RSPM (R 4.0.0)                
-##  cowplot                       1.0.0      2019-07-11 [1] RSPM (R 4.0.0)                
-##  crayon                        1.3.4      2017-09-16 [2] RSPM (R 4.0.0)                
-##  curl                          4.3        2019-12-02 [2] RSPM (R 4.0.0)                
-##  data.table                    1.12.8     2019-12-09 [1] RSPM (R 4.0.0)                
-##  DBI                           1.1.0      2019-12-15 [1] RSPM (R 4.0.0)                
-##  dbplyr                        1.4.3      2020-04-19 [1] RSPM (R 4.0.0)                
-##  DelayedArray                  0.15.1     2020-05-01 [1] Bioconductor                  
-##  derfinder                     1.23.1     2020-05-10 [1] Bioconductor                  
-##  derfinderHelper               1.23.1     2020-05-10 [1] Bioconductor                  
-##  derfinderPlot                 1.23.1     2020-05-10 [1] Bioconductor                  
-##  desc                          1.2.0      2018-05-01 [2] RSPM (R 4.0.0)                
-##  dichromat                     2.0-0      2013-01-24 [1] RSPM (R 4.0.0)                
-##  digest                        0.6.25     2020-02-23 [2] RSPM (R 4.0.0)                
-##  doRNG                         1.8.2      2020-01-27 [1] RSPM (R 4.0.0)                
-##  dplyr                         0.8.5      2020-03-07 [1] RSPM (R 4.0.0)                
-##  ellipsis                      0.3.1      2020-05-15 [2] RSPM (R 4.0.0)                
-##  ensembldb                     2.13.1     2020-05-06 [1] Bioconductor                  
-##  evaluate                      0.14       2019-05-28 [2] RSPM (R 4.0.0)                
-##  fansi                         0.4.1      2020-01-08 [2] RSPM (R 4.0.0)                
-##  fastmap                       1.0.1      2019-10-08 [1] RSPM (R 4.0.0)                
-##  foreach                       1.5.0      2020-03-30 [1] RSPM (R 4.0.0)                
-##  foreign                       0.8-78     2020-04-13 [3] CRAN (R 4.0.0)                
-##  Formula                       1.2-3      2018-05-03 [1] RSPM (R 4.0.0)                
-##  fs                            1.4.1      2020-04-04 [2] RSPM (R 4.0.0)                
-##  generics                      0.0.2      2018-11-29 [1] RSPM (R 4.0.0)                
-##  GenomeInfoDb                  1.25.0     2020-04-27 [1] Bioconductor                  
-##  GenomeInfoDbData              1.2.3      2020-05-27 [1] Bioconductor                  
-##  GenomicAlignments             1.25.1     2020-05-21 [1] Bioconductor                  
-##  GenomicFeatures               1.41.0     2020-04-27 [1] Bioconductor                  
-##  GenomicFiles                  1.25.0     2020-04-27 [1] Bioconductor                  
-##  GenomicRanges                 1.41.1     2020-05-02 [1] Bioconductor                  
-##  GenomicState                  0.99.9     2020-05-27 [1] Bioconductor                  
-##  GGally                        1.5.0      2020-03-25 [1] RSPM (R 4.0.0)                
-##  ggbio                         1.37.0     2020-04-27 [1] Bioconductor                  
-##  ggplot2                       3.3.0      2020-03-05 [1] RSPM (R 4.0.0)                
-##  glue                          1.4.1      2020-05-13 [2] RSPM (R 4.0.0)                
-##  graph                         1.67.0     2020-04-27 [1] Bioconductor                  
-##  gridExtra                     2.3        2017-09-09 [1] RSPM (R 4.0.0)                
-##  gtable                        0.3.0      2019-03-25 [1] RSPM (R 4.0.0)                
-##  Hmisc                         4.4-0      2020-03-23 [1] RSPM (R 4.0.0)                
-##  hms                           0.5.3      2020-01-08 [1] RSPM (R 4.0.0)                
-##  htmlTable                     1.13.3     2019-12-04 [1] RSPM (R 4.0.0)                
-##  htmltools                     0.4.0      2019-10-04 [2] RSPM (R 4.0.0)                
-##  htmlwidgets                   1.5.1      2019-10-08 [2] RSPM (R 4.0.0)                
-##  httpuv                        1.5.2      2019-09-11 [1] RSPM (R 4.0.0)                
-##  httr                          1.4.1      2019-08-05 [2] RSPM (R 4.0.0)                
-##  interactiveDisplayBase        1.27.2     2020-05-21 [1] Bioconductor                  
-##  IRanges                       2.23.5     2020-05-21 [1] Bioconductor                  
-##  iterators                     1.0.12     2019-07-26 [1] RSPM (R 4.0.0)                
-##  jpeg                          0.1-8.1    2019-10-24 [1] RSPM (R 4.0.0)                
-##  jsonlite                      1.6.1      2020-02-02 [2] RSPM (R 4.0.0)                
-##  knitcitations               * 1.0.10     2019-09-15 [1] RSPM (R 4.0.0)                
-##  knitr                         1.28       2020-02-06 [2] RSPM (R 4.0.0)                
-##  later                         1.0.0      2019-10-04 [2] RSPM (R 4.0.0)                
-##  lattice                       0.20-41    2020-04-02 [3] CRAN (R 4.0.0)                
-##  latticeExtra                  0.6-29     2019-12-19 [1] RSPM (R 4.0.0)                
-##  lazyeval                      0.2.2      2019-03-15 [2] RSPM (R 4.0.0)                
-##  lifecycle                     0.2.0      2020-03-06 [2] RSPM (R 4.0.0)                
-##  limma                         3.45.0     2020-04-27 [1] Bioconductor                  
-##  locfit                        1.5-9.4    2020-03-25 [1] RSPM (R 4.0.0)                
-##  lubridate                     1.7.8      2020-04-06 [1] RSPM (R 4.0.0)                
-##  magrittr                      1.5        2014-11-22 [2] RSPM (R 4.0.0)                
-##  MASS                          7.3-51.5   2019-12-20 [3] CRAN (R 4.0.0)                
-##  Matrix                        1.2-18     2019-11-27 [3] CRAN (R 4.0.0)                
-##  matrixStats                   0.56.0     2020-03-13 [1] RSPM (R 4.0.0)                
-##  memoise                       1.1.0      2017-04-21 [2] RSPM (R 4.0.0)                
-##  mime                          0.9        2020-02-04 [2] RSPM (R 4.0.0)                
-##  munsell                       0.5.0      2018-06-12 [1] RSPM (R 4.0.0)                
-##  nnet                          7.3-13     2020-02-25 [3] CRAN (R 4.0.0)                
-##  openssl                       1.4.1      2019-07-18 [2] RSPM (R 4.0.0)                
-##  OrganismDbi                   1.31.0     2020-04-27 [1] Bioconductor                  
-##  pillar                        1.4.4      2020-05-05 [2] RSPM (R 4.0.0)                
-##  pkgconfig                     2.0.3      2019-09-22 [2] RSPM (R 4.0.0)                
-##  pkgdown                       1.5.1.9000 2020-05-27 [1] Github (r-lib/pkgdown@ac78596)
-##  plyr                          1.8.6      2020-03-03 [1] RSPM (R 4.0.0)                
-##  png                           0.1-7      2013-12-03 [1] RSPM (R 4.0.0)                
-##  prettyunits                   1.1.1      2020-01-24 [2] RSPM (R 4.0.0)                
-##  progress                      1.2.2      2019-05-16 [1] RSPM (R 4.0.0)                
-##  promises                      1.1.0      2019-10-04 [2] RSPM (R 4.0.0)                
-##  ProtGenerics                  1.21.0     2020-04-27 [1] Bioconductor                  
-##  purrr                         0.3.4      2020-04-17 [2] RSPM (R 4.0.0)                
-##  qvalue                        2.21.0     2020-04-27 [1] Bioconductor                  
-##  R6                            2.4.1      2019-11-12 [2] RSPM (R 4.0.0)                
-##  rappdirs                      0.3.1      2016-03-28 [1] RSPM (R 4.0.0)                
-##  RBGL                          1.65.0     2020-04-27 [1] Bioconductor                  
-##  RColorBrewer                  1.1-2      2014-12-07 [1] RSPM (R 4.0.0)                
-##  Rcpp                          1.0.4.6    2020-04-09 [2] RSPM (R 4.0.0)                
-##  RCurl                         1.98-1.2   2020-04-18 [1] RSPM (R 4.0.0)                
-##  RefManageR                    1.2.12     2019-04-03 [1] RSPM (R 4.0.0)                
-##  reshape                       0.8.8      2018-10-23 [1] RSPM (R 4.0.0)                
-##  reshape2                      1.4.4      2020-04-09 [1] RSPM (R 4.0.0)                
-##  rlang                         0.4.6      2020-05-02 [2] RSPM (R 4.0.0)                
-##  rmarkdown                     2.1        2020-01-20 [1] RSPM (R 4.0.0)                
-##  rngtools                      1.5        2020-01-23 [1] RSPM (R 4.0.0)                
-##  rpart                         4.1-15     2019-04-12 [3] CRAN (R 4.0.0)                
-##  rprojroot                     1.3-2      2018-01-03 [2] RSPM (R 4.0.0)                
-##  Rsamtools                     2.5.1      2020-05-21 [1] Bioconductor                  
-##  RSQLite                       2.2.0      2020-01-07 [1] RSPM (R 4.0.0)                
-##  rstudioapi                    0.11       2020-02-07 [2] RSPM (R 4.0.0)                
-##  rtracklayer                   1.49.2     2020-05-21 [1] Bioconductor                  
-##  S4Vectors                     0.27.8     2020-05-24 [1] Bioconductor                  
-##  scales                        1.1.1      2020-05-11 [1] RSPM (R 4.0.0)                
-##  sessioninfo                 * 1.1.1      2018-11-05 [2] RSPM (R 4.0.0)                
-##  shiny                         1.4.0.2    2020-03-13 [1] RSPM (R 4.0.0)                
-##  stringi                       1.4.6      2020-02-17 [2] RSPM (R 4.0.0)                
-##  stringr                       1.4.0      2019-02-10 [2] RSPM (R 4.0.0)                
-##  SummarizedExperiment          1.19.4     2020-05-17 [1] Bioconductor                  
-##  survival                      3.1-12     2020-04-10 [3] CRAN (R 4.0.0)                
-##  tibble                        3.0.1      2020-04-20 [2] RSPM (R 4.0.0)                
-##  tidyselect                    1.1.0      2020-05-11 [1] RSPM (R 4.0.0)                
-##  VariantAnnotation             1.35.0     2020-04-27 [1] Bioconductor                  
-##  vctrs                         0.3.0      2020-05-11 [2] RSPM (R 4.0.0)                
-##  withr                         2.2.0      2020-04-20 [2] RSPM (R 4.0.0)                
-##  xfun                          0.14       2020-05-20 [2] RSPM (R 4.0.0)                
-##  XML                           3.99-0.3   2020-01-20 [1] RSPM (R 4.0.0)                
-##  xml2                          1.3.2      2020-04-23 [2] RSPM (R 4.0.0)                
-##  xtable                        1.8-4      2019-04-21 [1] RSPM (R 4.0.0)                
-##  XVector                       0.29.1     2020-05-21 [1] Bioconductor                  
-##  yaml                          2.2.1      2020-02-01 [2] RSPM (R 4.0.0)                
-##  zlibbioc                      1.35.0     2020-04-27 [1] Bioconductor                  
+##  package                     * version  date       lib source        
+##  AnnotationDbi                 1.52.0   2020-10-27 [1] Bioconductor  
+##  AnnotationFilter              1.14.0   2020-10-27 [1] Bioconductor  
+##  AnnotationHub                 2.22.0   2020-10-27 [1] Bioconductor  
+##  askpass                       1.1      2019-01-13 [2] RSPM (R 4.0.0)
+##  assertthat                    0.2.1    2019-03-21 [2] RSPM (R 4.0.0)
+##  backports                     1.2.1    2020-12-09 [1] RSPM (R 4.0.3)
+##  base64enc                     0.1-3    2015-07-28 [2] RSPM (R 4.0.0)
+##  Biobase                       2.50.0   2020-10-27 [1] Bioconductor  
+##  BiocFileCache                 1.14.0   2020-10-27 [1] Bioconductor  
+##  BiocGenerics                  0.36.0   2020-10-27 [1] Bioconductor  
+##  BiocManager                   1.30.10  2019-11-16 [2] CRAN (R 4.0.3)
+##  BiocParallel                  1.24.1   2020-11-06 [1] Bioconductor  
+##  BiocStyle                   * 2.18.1   2020-11-24 [1] Bioconductor  
+##  BiocVersion                   3.12.0   2020-04-27 [2] Bioconductor  
+##  biomaRt                       2.46.0   2020-10-27 [1] Bioconductor  
+##  Biostrings                    2.58.0   2020-10-27 [1] Bioconductor  
+##  biovizBase                    1.38.0   2020-10-27 [1] Bioconductor  
+##  bit                           4.0.4    2020-08-04 [1] RSPM (R 4.0.2)
+##  bit64                         4.0.5    2020-08-30 [1] RSPM (R 4.0.2)
+##  bitops                        1.0-6    2013-08-17 [1] RSPM (R 4.0.0)
+##  blob                          1.2.1    2020-01-20 [1] RSPM (R 4.0.0)
+##  bookdown                      0.21     2020-10-13 [1] RSPM (R 4.0.2)
+##  brainflowprobes             * 1.5.1    2020-12-19 [1] Bioconductor  
+##  BSgenome                      1.58.0   2020-10-27 [1] Bioconductor  
+##  BSgenome.Hsapiens.UCSC.hg19   1.4.3    2020-12-19 [1] Bioconductor  
+##  bumphunter                    1.32.0   2020-10-27 [1] Bioconductor  
+##  checkmate                     2.0.0    2020-02-06 [1] RSPM (R 4.0.0)
+##  cli                           2.2.0    2020-11-20 [2] RSPM (R 4.0.3)
+##  cluster                       2.1.0    2019-06-19 [3] CRAN (R 4.0.3)
+##  codetools                     0.2-18   2020-11-04 [3] RSPM (R 4.0.3)
+##  colorspace                    2.0-0    2020-11-11 [1] RSPM (R 4.0.3)
+##  cowplot                       1.1.0    2020-09-08 [1] RSPM (R 4.0.2)
+##  crayon                        1.3.4    2017-09-16 [2] RSPM (R 4.0.0)
+##  curl                          4.3      2019-12-02 [2] RSPM (R 4.0.0)
+##  data.table                    1.13.4   2020-12-08 [1] RSPM (R 4.0.3)
+##  DBI                           1.1.0    2019-12-15 [1] RSPM (R 4.0.0)
+##  dbplyr                        2.0.0    2020-11-03 [1] RSPM (R 4.0.3)
+##  DelayedArray                  0.16.0   2020-10-27 [1] Bioconductor  
+##  derfinder                     1.24.0   2020-10-27 [1] Bioconductor  
+##  derfinderHelper               1.24.0   2020-10-27 [1] Bioconductor  
+##  derfinderPlot                 1.24.0   2020-10-27 [1] Bioconductor  
+##  desc                          1.2.0    2018-05-01 [2] RSPM (R 4.0.0)
+##  dichromat                     2.0-0    2013-01-24 [1] RSPM (R 4.0.0)
+##  digest                        0.6.27   2020-10-24 [2] RSPM (R 4.0.3)
+##  doRNG                         1.8.2    2020-01-27 [1] RSPM (R 4.0.0)
+##  dplyr                         1.0.2    2020-08-18 [1] RSPM (R 4.0.2)
+##  ellipsis                      0.3.1    2020-05-15 [2] RSPM (R 4.0.0)
+##  ensembldb                     2.14.0   2020-10-27 [1] Bioconductor  
+##  evaluate                      0.14     2019-05-28 [2] RSPM (R 4.0.0)
+##  fansi                         0.4.1    2020-01-08 [2] RSPM (R 4.0.0)
+##  fastmap                       1.0.1    2019-10-08 [1] RSPM (R 4.0.0)
+##  foreach                       1.5.1    2020-10-15 [1] RSPM (R 4.0.2)
+##  foreign                       0.8-80   2020-05-24 [3] CRAN (R 4.0.3)
+##  Formula                       1.2-4    2020-10-16 [1] RSPM (R 4.0.2)
+##  fs                            1.5.0    2020-07-31 [2] RSPM (R 4.0.2)
+##  generics                      0.1.0    2020-10-31 [1] RSPM (R 4.0.3)
+##  GenomeInfoDb                  1.26.2   2020-12-08 [1] Bioconductor  
+##  GenomeInfoDbData              1.2.4    2020-12-19 [1] Bioconductor  
+##  GenomicAlignments             1.26.0   2020-10-27 [1] Bioconductor  
+##  GenomicFeatures               1.42.1   2020-11-12 [1] Bioconductor  
+##  GenomicFiles                  1.26.0   2020-10-27 [1] Bioconductor  
+##  GenomicRanges                 1.42.0   2020-10-27 [1] Bioconductor  
+##  GenomicState                  0.99.9   2020-12-19 [1] Bioconductor  
+##  GGally                        2.0.0    2020-06-06 [1] RSPM (R 4.0.0)
+##  ggbio                         1.38.0   2020-10-27 [1] Bioconductor  
+##  ggplot2                       3.3.2    2020-06-19 [1] RSPM (R 4.0.1)
+##  glue                          1.4.2    2020-08-27 [2] RSPM (R 4.0.2)
+##  graph                         1.68.0   2020-10-27 [1] Bioconductor  
+##  gridExtra                     2.3      2017-09-09 [1] RSPM (R 4.0.0)
+##  gtable                        0.3.0    2019-03-25 [1] RSPM (R 4.0.0)
+##  Hmisc                         4.4-2    2020-11-29 [1] RSPM (R 4.0.3)
+##  hms                           0.5.3    2020-01-08 [1] RSPM (R 4.0.0)
+##  htmlTable                     2.1.0    2020-09-16 [1] RSPM (R 4.0.2)
+##  htmltools                     0.5.0    2020-06-16 [2] RSPM (R 4.0.1)
+##  htmlwidgets                   1.5.3    2020-12-10 [2] RSPM (R 4.0.3)
+##  httpuv                        1.5.4    2020-06-06 [1] RSPM (R 4.0.2)
+##  httr                          1.4.2    2020-07-20 [2] RSPM (R 4.0.2)
+##  interactiveDisplayBase        1.28.0   2020-10-27 [1] Bioconductor  
+##  IRanges                       2.24.1   2020-12-12 [1] Bioconductor  
+##  iterators                     1.0.13   2020-10-15 [1] RSPM (R 4.0.2)
+##  jpeg                          0.1-8.1  2019-10-24 [1] RSPM (R 4.0.0)
+##  jsonlite                      1.7.2    2020-12-09 [2] RSPM (R 4.0.3)
+##  knitr                         1.30     2020-09-22 [2] RSPM (R 4.0.2)
+##  later                         1.1.0.1  2020-06-05 [2] RSPM (R 4.0.2)
+##  lattice                       0.20-41  2020-04-02 [3] CRAN (R 4.0.3)
+##  latticeExtra                  0.6-29   2019-12-19 [1] RSPM (R 4.0.0)
+##  lazyeval                      0.2.2    2019-03-15 [2] RSPM (R 4.0.0)
+##  lifecycle                     0.2.0    2020-03-06 [2] RSPM (R 4.0.0)
+##  limma                         3.46.0   2020-10-27 [1] Bioconductor  
+##  locfit                        1.5-9.4  2020-03-25 [1] RSPM (R 4.0.0)
+##  lubridate                     1.7.9.2  2020-11-13 [1] RSPM (R 4.0.3)
+##  magrittr                      2.0.1    2020-11-17 [2] RSPM (R 4.0.3)
+##  Matrix                        1.2-18   2019-11-27 [3] CRAN (R 4.0.3)
+##  MatrixGenerics                1.2.0    2020-10-27 [1] Bioconductor  
+##  matrixStats                   0.57.0   2020-09-25 [1] RSPM (R 4.0.2)
+##  memoise                       1.1.0    2017-04-21 [2] RSPM (R 4.0.0)
+##  mime                          0.9      2020-02-04 [2] RSPM (R 4.0.0)
+##  munsell                       0.5.0    2018-06-12 [1] RSPM (R 4.0.0)
+##  nnet                          7.3-14   2020-04-26 [3] CRAN (R 4.0.3)
+##  openssl                       1.4.3    2020-09-18 [2] RSPM (R 4.0.2)
+##  OrganismDbi                   1.32.0   2020-10-27 [1] Bioconductor  
+##  pillar                        1.4.7    2020-11-20 [2] RSPM (R 4.0.3)
+##  pkgconfig                     2.0.3    2019-09-22 [2] RSPM (R 4.0.0)
+##  pkgdown                       1.6.1    2020-09-12 [1] RSPM (R 4.0.2)
+##  plyr                          1.8.6    2020-03-03 [1] RSPM (R 4.0.2)
+##  png                           0.1-7    2013-12-03 [1] RSPM (R 4.0.0)
+##  prettyunits                   1.1.1    2020-01-24 [2] RSPM (R 4.0.0)
+##  progress                      1.2.2    2019-05-16 [1] RSPM (R 4.0.0)
+##  promises                      1.1.1    2020-06-09 [2] RSPM (R 4.0.2)
+##  ProtGenerics                  1.22.0   2020-10-27 [1] Bioconductor  
+##  purrr                         0.3.4    2020-04-17 [2] RSPM (R 4.0.0)
+##  qvalue                        2.22.0   2020-10-27 [1] Bioconductor  
+##  R6                            2.5.0    2020-10-28 [2] RSPM (R 4.0.3)
+##  ragg                          0.4.0    2020-10-05 [1] RSPM (R 4.0.3)
+##  rappdirs                      0.3.1    2016-03-28 [2] RSPM (R 4.0.0)
+##  RBGL                          1.66.0   2020-10-27 [1] Bioconductor  
+##  RColorBrewer                  1.1-2    2014-12-07 [1] RSPM (R 4.0.0)
+##  Rcpp                          1.0.5    2020-07-06 [2] RSPM (R 4.0.2)
+##  RCurl                         1.98-1.2 2020-04-18 [1] RSPM (R 4.0.0)
+##  RefManageR                  * 1.3.0    2020-11-13 [1] RSPM (R 4.0.3)
+##  reshape                       0.8.8    2018-10-23 [1] RSPM (R 4.0.0)
+##  reshape2                      1.4.4    2020-04-09 [1] RSPM (R 4.0.2)
+##  rlang                         0.4.9    2020-11-26 [2] RSPM (R 4.0.3)
+##  rmarkdown                     2.6      2020-12-14 [1] RSPM (R 4.0.3)
+##  rngtools                      1.5      2020-01-23 [1] RSPM (R 4.0.0)
+##  rpart                         4.1-15   2019-04-12 [3] CRAN (R 4.0.3)
+##  rprojroot                     2.0.2    2020-11-15 [2] RSPM (R 4.0.3)
+##  Rsamtools                     2.6.0    2020-10-27 [1] Bioconductor  
+##  RSQLite                       2.2.1    2020-09-30 [1] RSPM (R 4.0.2)
+##  rstudioapi                    0.13     2020-11-12 [2] RSPM (R 4.0.3)
+##  rtracklayer                   1.50.0   2020-10-27 [1] Bioconductor  
+##  S4Vectors                     0.28.1   2020-12-09 [1] Bioconductor  
+##  scales                        1.1.1    2020-05-11 [1] RSPM (R 4.0.0)
+##  sessioninfo                 * 1.1.1    2018-11-05 [2] RSPM (R 4.0.0)
+##  shiny                         1.5.0    2020-06-23 [1] RSPM (R 4.0.2)
+##  stringi                       1.5.3    2020-09-09 [2] RSPM (R 4.0.2)
+##  stringr                       1.4.0    2019-02-10 [2] RSPM (R 4.0.0)
+##  SummarizedExperiment          1.20.0   2020-10-27 [1] Bioconductor  
+##  survival                      3.2-7    2020-09-28 [3] CRAN (R 4.0.3)
+##  systemfonts                   0.3.2    2020-09-29 [1] RSPM (R 4.0.3)
+##  textshaping                   0.2.1    2020-11-13 [1] RSPM (R 4.0.3)
+##  tibble                        3.0.4    2020-10-12 [2] RSPM (R 4.0.2)
+##  tidyselect                    1.1.0    2020-05-11 [1] RSPM (R 4.0.0)
+##  VariantAnnotation             1.36.0   2020-10-27 [1] Bioconductor  
+##  vctrs                         0.3.6    2020-12-17 [2] RSPM (R 4.0.3)
+##  withr                         2.3.0    2020-09-22 [2] RSPM (R 4.0.2)
+##  xfun                          0.19     2020-10-30 [2] RSPM (R 4.0.3)
+##  XML                           3.99-0.5 2020-07-23 [1] RSPM (R 4.0.2)
+##  xml2                          1.3.2    2020-04-23 [2] RSPM (R 4.0.0)
+##  xtable                        1.8-4    2019-04-21 [1] RSPM (R 4.0.0)
+##  XVector                       0.30.0   2020-10-27 [1] Bioconductor  
+##  yaml                          2.2.1    2020-02-01 [2] RSPM (R 4.0.0)
+##  zlibbioc                      1.36.0   2020-10-27 [1] Bioconductor  
 ## 
-## [1] /usr/local/lib/R/host-site-library
+## [1] /__w/_temp/Library
 ## [2] /usr/local/lib/R/site-library
 ## [3] /usr/local/lib/R/library</code></pre>
 </div>
 <div id="bibliography" class="section level1">
 <h1 class="hasAnchor">
 <a href="#bibliography" class="anchor"></a>Bibliography</h1>
-<p>This vignette was generated using <em><a href="https://bioconductor.org/packages/3.12/BiocStyle">BiocStyle</a></em> (<a href="https://github.com/Bioconductor/BiocStyle">Oleś, Morgan, and Huber, 2020</a>) with <em><a href="https://CRAN.R-project.org/package=knitr">knitr</a></em> (<a href="http://www.crcpress.com/product/isbn/9781466561595">Xie, 2014</a>) and <em><a href="https://CRAN.R-project.org/package=rmarkdown">rmarkdown</a></em> (<a href="https://github.com/rstudio/rmarkdown">Allaire, Xie, McPherson, Luraschi, et al., 2020</a>) running behind the scenes.</p>
-<p>Citations made with <em><a href="https://CRAN.R-project.org/package=knitcitations">knitcitations</a></em> (<a href="https://github.com/cboettig/knitcitations">Boettiger, 2019</a>).</p>
-<p>[1] J. Allaire, Y. Xie, J. McPherson, J. Luraschi, et al. <em>rmarkdown: Dynamic Documents for R</em>. R package version 2.1. 2020. &lt;URL: <a href="https://github.com/rstudio/rmarkdown" class="uri">https://github.com/rstudio/rmarkdown</a>&gt;.</p>
-<p>[2] C. Boettiger. <em>knitcitations: Citations for ‘Knitr’ Markdown Files</em>. R package version 1.0.10. 2019. &lt;URL: <a href="https://github.com/cboettig/knitcitations" class="uri">https://github.com/cboettig/knitcitations</a>&gt;.</p>
-<p>[3] L. Collado-Torres. <em>GenomicState: Build and access GenomicState objects for use with derfinder tools from sources like Gencode</em>. R package version 0.99.9. 2019. &lt;URL: <a href="https://github.com/LieberInstitute/GenomicState" class="uri">https://github.com/LieberInstitute/GenomicState</a>&gt;.</p>
-<p>[4] L. Collado-Torres, A. E. Jaffe, and J. T. Leek. <em>derfinderPlot: Plotting functions for derfinder</em>. <a href="https://github.com/leekgroup/derfinderPlot" class="uri">https://github.com/leekgroup/derfinderPlot</a> - R package version 1.23.1. 2017. DOI: 10.18129/B9.bioc.derfinderPlot. &lt;URL: <a href="http://www.bioconductor.org/packages/derfinderPlot" class="uri">http://www.bioconductor.org/packages/derfinderPlot</a>&gt;.</p>
-<p>[5] L. Collado-Torres, A. Nellore, A. C. Frazee, C. Wilks, et al. “Flexible expressed region analysis for RNA-seq with derfinder”. In: <em>Nucl. Acids Res.</em> (2017). DOI: 10.1093/nar/gkw852. &lt;URL: <a href="http://nar.oxfordjournals.org/content/early/2016/09/29/nar.gkw852" class="uri">http://nar.oxfordjournals.org/content/early/2016/09/29/nar.gkw852</a>&gt;.</p>
-<p>[6] G. Csárdi, R. core, H. Wickham, W. Chang, et al. <em>sessioninfo: R Session Information</em>. R package version 1.1.1. 2018. &lt;URL: <a href="https://github.com/r-lib/sessioninfo#readme" class="uri">https://github.com/r-lib/sessioninfo#readme</a>&gt;.</p>
-<p>[7] A. E. Jaffe, P. Murakami, H. Lee, J. T. Leek, et al. “Bump hunting to identify differentially methylated regions in epigenetic epidemiology studies”. In: <em>International journal of epidemiology</em> 41.1 (2012), pp. 200-209. DOI: 10.1093/ije/dyr238.</p>
-<p>[8] M. Lawrence, R. Gentleman, and V. Carey. “rtracklayer: an R package for interfacing with genome browsers”. In: <em>Bioinformatics</em> 25 (2009), pp. 1841-1842. DOI: 10.1093/bioinformatics/btp328. &lt;URL: <a href="http://bioinformatics.oxfordjournals.org/content/25/14/1841.abstract" class="uri">http://bioinformatics.oxfordjournals.org/content/25/14/1841.abstract</a>&gt;.</p>
-<p>[9] M. Lawrence, W. Huber, H. Pagès, P. Aboyoun, et al. “Software for Computing and Annotating Genomic Ranges”. In: <em>PLoS Computational Biology</em> 9 (8 2013). DOI: 10.1371/journal.pcbi.1003118. &lt;URL: <a href="http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1003118" class="uri">http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1003118</a>}.&gt;</p>
-<p>[10] E. Neuwirth. <em>RColorBrewer: ColorBrewer Palettes</em>. R package version 1.1-2. 2014.</p>
-<p>[11] A. Oleś, M. Morgan, and W. Huber. <em>BiocStyle: Standard styles for vignettes and other Bioconductor documents</em>. R package version 2.17.0. 2020. &lt;URL: <a href="https://github.com/Bioconductor/BiocStyle" class="uri">https://github.com/Bioconductor/BiocStyle</a>&gt;.</p>
-<p>[12] H. Pagès, P. Aboyoun, R. Gentleman, and S. DebRoy. <em>Biostrings: Efficient manipulation of biological strings</em>. R package version 2.57.1. 2020.</p>
-<p>[13] R Core Team. <em>R: A Language and Environment for Statistical Computing</em>. R Foundation for Statistical Computing. Vienna, Austria, 2020. &lt;URL: <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>&gt;.</p>
-<p>[14] T. B. D. Team. <em>BSgenome.Hsapiens.UCSC.hg19: Full genome sequences for Homo sapiens (UCSC version hg19, based on GRCh37.p13)</em>. R package version 1.4.3. 2020.</p>
-<p>[15] H. Wickham. <em>ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York, 2016. ISBN: 978-3-319-24277-4. &lt;URL: <a href="https://ggplot2.tidyverse.org" class="uri">https://ggplot2.tidyverse.org</a>&gt;.</p>
-<p>[16] H. Wickham. “testthat: Get Started with Testing”. In: <em>The R Journal</em> 3 (2011), pp. 5-10. &lt;URL: <a href="https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf" class="uri">https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf</a>&gt;.</p>
-<p>[17] C. Wilke. <em>cowplot: Streamlined Plot Theme and Plot Annotations for ‘ggplot2’</em>. R package version 1.0.0. 2019. &lt;URL: <a href="https://wilkelab.org/cowplot" class="uri">https://wilkelab.org/cowplot</a>&gt;.</p>
-<p>[18] Y. Xie. “knitr: A Comprehensive Tool for Reproducible Research in R”. In: <em>Implementing Reproducible Computational Research</em>. Ed. by V. Stodden, F. Leisch and R. D. Peng. ISBN 978-1466561595. Chapman and Hall/CRC, 2014. &lt;URL: <a href="http://www.crcpress.com/product/isbn/9781466561595" class="uri">http://www.crcpress.com/product/isbn/9781466561595</a>&gt;.</p>
+<p>This vignette was generated using <em><a href="https://bioconductor.org/packages/3.12/BiocStyle">BiocStyle</a></em> (Oleś, Morgan, and Huber, 2020) with <em><a href="https://CRAN.R-project.org/package=knitr">knitr</a></em> (Xie, 2014) and <em><a href="https://CRAN.R-project.org/package=rmarkdown">rmarkdown</a></em> (Allaire, Xie, McPherson, et al., 2020) running behind the scenes.</p>
+<p>Citations made with <em><a href="https://CRAN.R-project.org/package=RefManageR">RefManageR</a></em> (McLean, 2017).</p>
+<p>
+<a id="bib-allaire2020rmarkdown"></a><a href="#cite-allaire2020rmarkdown">[1]</a><cite> J. Allaire, Y. Xie, J. McPherson, et al. <em>rmarkdown: Dynamic Documents for R</em>. R package version 2.6. 2020. URL: <a href="https://github.com/rstudio/rmarkdown">https://github.com/rstudio/rmarkdown</a>.</cite>
+</p>
+<p>
+<a id="bib-colladotorres2019genomicstate"></a><a href="#cite-colladotorres2019genomicstate">[2]</a><cite> L. Collado-Torres. <em>GenomicState: Build and access GenomicState objects for use with derfinder tools from sources like Gencode</em>. R package version 0.99.9. 2019. URL: <a href="https://github.com/LieberInstitute/GenomicState">https://github.com/LieberInstitute/GenomicState</a>.</cite>
+</p>
+<p>
+<a id="bib-colladotorres2017derfinderplot"></a><a href="#cite-colladotorres2017derfinderplot">[3]</a><cite> L. Collado-Torres, A. E. Jaffe, and J. T. Leek. <em>derfinderPlot: Plotting functions for derfinder</em>. <a href="https://github.com/leekgroup/derfinderPlot" class="uri">https://github.com/leekgroup/derfinderPlot</a> - R package version 1.24.0. 2017. DOI: <a href="https://doi.org/10.18129/B9.bioc.derfinderPlot">10.18129/B9.bioc.derfinderPlot</a>. URL: <a href="http://www.bioconductor.org/packages/derfinderPlot">http://www.bioconductor.org/packages/derfinderPlot</a>.</cite>
+</p>
+<p>
+<a id="bib-colladotorres2017flexible"></a><a href="#cite-colladotorres2017flexible">[4]</a><cite> L. Collado-Torres, A. Nellore, A. C. Frazee, et al. “Flexible expressed region analysis for RNA-seq with derfinder”. In: <em>Nucl. Acids Res.</em> (2017). DOI: <a href="https://doi.org/10.1093/nar/gkw852">10.1093/nar/gkw852</a>. URL: <a href="http://nar.oxfordjournals.org/content/early/2016/09/29/nar.gkw852">http://nar.oxfordjournals.org/content/early/2016/09/29/nar.gkw852</a>.</cite>
+</p>
+<p>
+<a id="bib-csrdi2018sessioninfo"></a><a href="#cite-csrdi2018sessioninfo">[5]</a><cite> G. Csárdi, R. core, H. Wickham, et al. <em>sessioninfo: R Session Information</em>. R package version 1.1.1. 2018. URL: <a href="https://github.com/r-lib/sessioninfo#readme">https://github.com/r-lib/sessioninfo#readme</a>.</cite>
+</p>
+<p>
+<a id="bib-bumphunter"></a><a href="#cite-bumphunter">[6]</a><cite> A. E. Jaffe, P. Murakami, H. Lee, et al. “Bump hunting to identify differentially methylated regions in epigenetic epidemiology studies”. In: <em>International journal of epidemiology</em> 41.1 (2012), pp. 200–209. DOI: <a href="https://doi.org/10.1093/ije/dyr238">10.1093/ije/dyr238</a>.</cite>
+</p>
+<p>
+<a id="bib-lawrence2009rtracklayer"></a><a href="#cite-lawrence2009rtracklayer">[7]</a><cite> M. Lawrence, R. Gentleman, and V. Carey. “rtracklayer: an R package for interfacing with genome browsers”. In: <em>Bioinformatics</em> 25 (2009), pp. 1841-1842. DOI: <a href="https://doi.org/10.1093/bioinformatics/btp328">10.1093/bioinformatics/btp328</a>. URL: <a href="http://bioinformatics.oxfordjournals.org/content/25/14/1841.abstract">http://bioinformatics.oxfordjournals.org/content/25/14/1841.abstract</a>.</cite>
+</p>
+<p>
+<a id="bib-lawrence2013software"></a><a href="#cite-lawrence2013software">[8]</a><cite> M. Lawrence, W. Huber, H. Pagès, et al. “Software for Computing and Annotating Genomic Ranges”. In: <em>PLoS Computational Biology</em> 9 (8 2013). DOI: <a href="https://doi.org/10.1371/journal.pcbi.1003118">10.1371/journal.pcbi.1003118</a>. URL: <a href="http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1003118%7D."></a><a href="http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1003118" class="uri">http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1003118</a>}.
+</cite></p>
+
+
+<p>
+<a id="bib-mclean2017refmanager"></a><a href="#cite-mclean2017refmanager">[9]</a><cite> M. W. McLean. “RefManageR: Import and Manage BibTeX and BibLaTeX References in R”. In: <em>The Journal of Open Source Software</em> (2017). DOI: <a href="https://doi.org/10.21105/joss.00338">10.21105/joss.00338</a>.</cite>
+</p>
+<p>
+<a id="bib-neuwirth2014rcolorbrewer"></a><a href="#cite-neuwirth2014rcolorbrewer">[10]</a><cite> E. Neuwirth. <em>RColorBrewer: ColorBrewer Palettes</em>. R package version 1.1-2. 2014.</cite>
+</p>
+<p>
+<a id="bib-ole2020biocstyle"></a><a href="#cite-ole2020biocstyle">[11]</a><cite> A. Oleś, M. Morgan, and W. Huber. <em>BiocStyle: Standard styles for vignettes and other Bioconductor documents</em>. R package version 2.18.1. 2020. URL: <a href="https://github.com/Bioconductor/BiocStyle">https://github.com/Bioconductor/BiocStyle</a>.</cite>
+</p>
+<p>
+<a id="bib-pags2020biostrings"></a><a href="#cite-pags2020biostrings">[12]</a><cite> H. Pagès, P. Aboyoun, R. Gentleman, et al. <em>Biostrings: Efficient manipulation of biological strings</em>. R package version 2.58.0. 2020. URL: <a href="https://bioconductor.org/packages/Biostrings">https://bioconductor.org/packages/Biostrings</a>.</cite>
+</p>
+<p>
+<a id="bib-2020language"></a><a href="#cite-2020language">[13]</a><cite> R Core Team. <em>R: A Language and Environment for Statistical Computing</em>. R Foundation for Statistical Computing. Vienna, Austria, 2020. URL: <a href="https://www.R-project.org/">https://www.R-project.org/</a>.</cite>
+</p>
+<p>
+<a id="bib-team2020bsgenome"></a><a href="#cite-team2020bsgenome">[14]</a><cite> T. B. D. Team. <em>BSgenome.Hsapiens.UCSC.hg19: Full genome sequences for Homo sapiens (UCSC version hg19, based on GRCh37.p13)</em>. R package version 1.4.3. 2020.</cite>
+</p>
+<p>
+<a id="bib-wickham2016ggplot2"></a><a href="#cite-wickham2016ggplot2">[15]</a><cite> H. Wickham. <em>ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York, 2016. ISBN: 978-3-319-24277-4. URL: <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.</cite>
+</p>
+<p>
+<a id="bib-wickham2011testthat"></a><a href="#cite-wickham2011testthat">[16]</a><cite> H. Wickham. “testthat: Get Started with Testing”. In: <em>The R Journal</em> 3 (2011), pp. 5–10. URL: <a href="https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf">https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf</a>.</cite>
+</p>
+<p>
+<a id="bib-wilke2020cowplot"></a><a href="#cite-wilke2020cowplot">[17]</a><cite> C. Wilke. <em>cowplot: Streamlined Plot Theme and Plot Annotations for ‘ggplot2’</em>. R package version 1.1.0. 2020. URL: <a href="https://wilkelab.org/cowplot/">https://wilkelab.org/cowplot/</a>.</cite>
+</p>
+<p>
+<a id="bib-xie2014knitr"></a><a href="#cite-xie2014knitr">[18]</a><cite> Y. Xie. “knitr: A Comprehensive Tool for Reproducible Research in R”. In: <em>Implementing Reproducible Computational Research</em>. Ed. by V. Stodden, F. Leisch and R. D. Peng. ISBN 978-1466561595. Chapman and Hall/CRC, 2014. URL: <a href="http://www.crcpress.com/product/isbn/9781466561595">http://www.crcpress.com/product/isbn/9781466561595</a>.</cite>
+</p>
 </div>
   </div>
 
@@ -635,7 +682,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

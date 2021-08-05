@@ -47,6 +47,8 @@ This is used by four_panels and plot_coverage." />
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -58,9 +60,15 @@ This is used by four_panels and plot_coverage." />
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -74,19 +82,13 @@ This is used by four_panels and plot_coverage." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brainflowprobes</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -136,12 +138,12 @@ list (<code>COVERAGE</code>) or computes a new one using <a href='brainflowprobe
 This is used by <a href='four_panels.html'>four_panels</a> and <a href='plot_coverage.html'>plot_coverage</a>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_region_cov</span><span class='op'>(</span>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>get_region_cov</span><span class='op'>(</span>
   <span class='va'>REGION</span>,
   COVERAGE <span class='op'>=</span> <span class='cn'>NULL</span>,
   VERBOSE <span class='op'>=</span> <span class='cn'>TRUE</span>,
   PD <span class='op'>=</span> <span class='fu'>brainflowprobes</span><span class='fu'>::</span><span class='va'><a href='pd.html'>pd</a></span>
-<span class='op'>)</span></pre>
+<span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -184,13 +186,13 @@ list using <a href='brainflowprobes_cov.html'>brainflowprobes_cov</a>.</p>
     <p>Leonardo Collado-Torres</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'>## If all checks pass, then it returns the COVERAGE</span>
-<span class='fu'><a href='https://rdrr.io/r/base/stopifnot.html'>stopifnot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/identical.html'>identical</a></span><span class='op'>(</span>
-    <span class='fu'>get_region_cov</span><span class='op'>(</span>COVERAGE <span class='op'>=</span> <span class='va'>four_panels_example_cov</span><span class='op'>)</span>,
-    <span class='va'>four_panels_example_cov</span>
-<span class='op'>)</span><span class='op'>)</span>
-</div></pre>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'></span>
+<span class='r-in'><span class='co'>## If all checks pass, then it returns the COVERAGE</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/stopifnot.html'>stopifnot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/identical.html'>identical</a></span><span class='op'>(</span></span>
+<span class='r-in'>    <span class='fu'>get_region_cov</span><span class='op'>(</span>COVERAGE <span class='op'>=</span> <span class='va'>four_panels_example_cov</span><span class='op'>)</span>,</span>
+<span class='r-in'>    <span class='va'>four_panels_example_cov</span></span>
+<span class='r-in'><span class='op'>)</span><span class='op'>)</span></span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -202,11 +204,11 @@ list using <a href='brainflowprobes_cov.html'>brainflowprobes_cov</a>.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Amanda Price.</p>
+  <p><p>Developed by Amanda Price.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -214,6 +216,8 @@ list using <a href='brainflowprobes_cov.html'>brainflowprobes_cov</a>.</p>
 
   
 
+
+  
 
   </body>
 </html>

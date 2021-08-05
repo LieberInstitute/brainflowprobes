@@ -46,6 +46,8 @@ list of sequences and, if specified, prints the resuts in a .csv file." />
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -57,9 +59,15 @@ list of sequences and, if specified, prints the resuts in a .csv file." />
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -73,19 +81,13 @@ list of sequences and, if specified, prints the resuts in a .csv file." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brainflowprobes</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -134,13 +136,13 @@ list of sequences and, if specified, prints the resuts in a .csv file." />
 list of sequences and, if specified, prints the resuts in a .csv file.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>region_info</span><span class='op'>(</span>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>region_info</span><span class='op'>(</span>
   <span class='va'>REGION</span>,
   CSV <span class='op'>=</span> <span class='cn'>TRUE</span>,
   SEQ <span class='op'>=</span> <span class='cn'>TRUE</span>,
   OUTDIR <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>,
   CODING_ONLY <span class='op'>=</span> <span class='cn'>FALSE</span>
-<span class='op'>)</span></pre>
+<span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -154,7 +156,7 @@ Must be character. Chromosome must be proceeded by 'chr'.</p></td>
     </tr>
     <tr>
       <th>CSV</th>
-      <td><p>A <code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code> value indicating if the results should be exported
+      <td><p>A <code>logical(1)</code> value indicating if the results should be exported
 in a .csv file.</p></td>
     </tr>
     <tr>
@@ -197,110 +199,131 @@ temporary directory unless otherwise specified in <code>OUTDIR</code>.</p>
     <p>Amanda J Price</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>region_info</span><span class='op'>(</span><span class='st'>"chr20:10286777-10288069:+"</span>, CSV <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>snapshotDate(): 2020-10-27</span></div><div class='output co'>#&gt; <span class='message'>loading from cache</span></div><div class='output co'>#&gt; <span class='message'>Completed! If CSV=TRUE, check for region_info.csv in the temporary</span>
-#&gt; <span class='message'>directory (i.e. tempdir()) unless otherwise specified in OUTDIR.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   seqnames    start      end width strand   name
-#&gt; 1    chr20 10286777 10288069  1293      + SNAP25
-#&gt;                                                                                                                                                                                                                                                                                                                                                        annotation
-#&gt; 1 NM_001322902 NM_001322903 NM_001322904 NM_001322905 NM_001322906 NM_001322907 NM_001322908 NM_001322909 NM_001322910 NM_003081 NM_130811 NP_001309831 NP_001309832 NP_001309833 NP_001309834 NP_001309835 NP_001309836 NP_001309837 NP_001309838 NP_001309839 NP_003072 NP_570824 XM_005260808 XM_017028021 XM_017028022 XP_005260865 XP_016883510 XP_016883511
-#&gt;   description      region distance                subregion insideDistance
-#&gt; 1 overlaps 3' overlaps 3'    87299 overlaps exon downstream              0
-#&gt;   exonnumber nexons            UTR geneL codingL          Geneid
-#&gt; 1         10     10 overlaps 3'UTR 88588   30705 ENSG00000132639
-#&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Sequence
-#&gt; 1 GCTGATTCCAACAAAACCAGAATTGATGAGGCCAACCAACGTGCAACAAAGATGCTGGGAAGTGGTTAAGTGTGCCCACCCGTGTTCTCCTCCAAATGCTGTCGGGCAAGATAGCTCCTTCATGCTTTTCTCATGGTATTATCTAGTAGGTCTGCACACATAACACACATCAGTCCACCCCCATTGTGAATGTTGTCCTGTGTCATCTGTCAGCTTCCCAACAATACTTTGTGTCTTTTGTTCTCTCTTGGTCTCTTTCTTTCCAAAGGTTGTACATAGTGGTCATTTGGTGGCTCTAACTCCTTGAGGTCTTGAGTTTCATTTTTCATTTTCTCTCCTCGGTGGCATTTGCTGAATAACAACAATTTAGGAATGCTCAATGTGCTGTTGATTCTTTCAATCCACAGTATTGTTCTTGTAAAACTGTGACATTCCACAGAGTTACTGCCACGGTCCTTTGAGTGTCAGGCTCTGAATCTCTCAAAATGTGCCGTCTTTGGTTCCTCATGGCTGTTATCTGTCTTTATGATTTCATGATTAGACAATGTGGAATTACATAACAGGCATTGCACTAAAAGTGATGTGATTTATGCATTTATGCATGAGAACTAAATAGATTTTTAGATTCCTACTTAAACAAAAACTTTCCATGACAGTAGCATACTGATGAGACAACACACACACACACAAAACAACAGCAACAACAACAGAACAACAACAAAGCATGCTCAGTATTGAGACACTGTCAAGATTAAGTTATACCAGCAAAAGTGCAGTAGTGTCACTTTTTTCCTGTCAATATATAGAGACTTCTAAATCATAATCATCCTTTTTTAAAAAAAAGAATTTTAAAAAAGATGGATTTGACACACTCACCATTTAATCATTTCCAGCAAAATATATGTTTGGCTGAAATTATGTCAAATGGATGTAATATAGGGTTTGTTTGCTGCTTTTGATGGCTATGTTTTGGAGAGAGCAATCTTGCTGTGAAACAGTGTGGATGTAAATTTTATAAGGCTGACTCTTACTAACCACCATTTCCCCTGTGGTTTGTTATCAGTACAATTCTTTGTTGCTTAATCTAGAGCTATGCACACCAAATTGCTGAGATGTTTAGTAGCTGATAAAGAAACCTTTTAAAAAAATAATATAAATGAATGAAATATAAACTGTGAGATAAATATCATTATAGCATGTAATATTAAATTCCTCCTGTCTCCTCTGTCAGTTTGTGAAGTGATTGACATTTTGTAGCTAGTTTAAAATTATTAAAAATTATAGACTCCAGAT</div><div class='input'>
-<span class='co'>## You can easily transform this data.frame to a GRanges object</span>
-<span class='fu'>GenomicRanges</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/GenomicRanges/man/GRanges-class.html'>GRanges</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; GRanges object with 1 range and 14 metadata columns:
-#&gt;       seqnames            ranges strand |        name             annotation
-#&gt;          &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt; | &lt;character&gt;            &lt;character&gt;
-#&gt;   [1]    chr20 10286777-10288069      + |      SNAP25 NM_001322902 NM_0013..
-#&gt;       description      region  distance                subregion insideDistance
-#&gt;          &lt;factor&gt;    &lt;factor&gt; &lt;numeric&gt;                 &lt;factor&gt;      &lt;numeric&gt;
-#&gt;   [1] overlaps 3' overlaps 3'     87299 overlaps exon downstream              0
-#&gt;       exonnumber    nexons            UTR     geneL   codingL          Geneid
-#&gt;        &lt;numeric&gt; &lt;integer&gt;       &lt;factor&gt; &lt;numeric&gt; &lt;numeric&gt;     &lt;character&gt;
-#&gt;   [1]         10        10 overlaps 3'UTR     88588     30705 ENSG00000132639
-#&gt;                     Sequence
-#&gt;                  &lt;character&gt;
-#&gt;   [1] GCTGATTCCAACAAAACCAG..
-#&gt;   -------
-#&gt;   seqinfo: 1 sequence from an unspecified genome; no seqlengths</div><div class='input'>
-<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'>region_info</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
-    <span class='st'>"chr20:10286777-10288069:+"</span>,
-    <span class='st'>"chr18:74690788-74692427:-"</span>,
-    <span class='st'>"chr19:49932861-49933829:-"</span>
-<span class='op'>)</span>,
-CSV <span class='op'>=</span> <span class='cn'>FALSE</span>, SEQ <span class='op'>=</span> <span class='cn'>FALSE</span>
-<span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>snapshotDate(): 2020-10-27</span></div><div class='output co'>#&gt; <span class='message'>loading from cache</span></div><div class='output co'>#&gt; <span class='message'>Completed! If CSV=TRUE, check for region_info.csv in the temporary</span>
-#&gt; <span class='message'>directory (i.e. tempdir()) unless otherwise specified in OUTDIR.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   seqnames    start      end width strand    name
-#&gt; 1    chr20 10286777 10288069  1293      +  SNAP25
-#&gt; 2    chr18 74690788 74692427  1640      -     MBP
-#&gt; 3    chr19 49932861 49933829   969      - SLC17A7
-#&gt;                                                                                                                                                                                                                                                                                                                                                                                        annotation
-#&gt; 1                                 NM_001322902 NM_001322903 NM_001322904 NM_001322905 NM_001322906 NM_001322907 NM_001322908 NM_001322909 NM_001322910 NM_003081 NM_130811 NP_001309831 NP_001309832 NP_001309833 NP_001309834 NP_001309835 NP_001309836 NP_001309837 NP_001309838 NP_001309839 NP_003072 NP_570824 XM_005260808 XM_017028021 XM_017028022 XP_005260865 XP_016883510 XP_016883511
-#&gt; 2 NM_001025081 NM_001025090 NM_001025092 NM_001025094 NM_001025098 NM_001025100 NM_001025101 NM_002385 NP_001020252 NP_001020261 NP_001020263 NP_001020271 NP_001020272 NP_002376 XM_017025778 XM_017025780 XM_024451185 XM_024451186 XM_024451187 XM_024451188 XM_024451189 XP_016881267 XP_016881269 XP_024306953 XP_024306954 XP_024306955 XP_024306956 XP_024306957 XR_001753201 XR_001753202
-#&gt; 3                                                                                                                                                                                                                                                                                                                                                                             NM_020309 NP_064705
-#&gt;   description      region distance                subregion insideDistance
-#&gt; 1 overlaps 3' overlaps 3'    87299 overlaps exon downstream              0
-#&gt; 2 inside exon      inside   153212              inside exon              0
-#&gt; 3 inside exon      inside    11788              inside exon              0
-#&gt;   exonnumber nexons            UTR  geneL codingL          Geneid
-#&gt; 1         10     10 overlaps 3'UTR  88588   30705 ENSG00000132639
-#&gt; 2         17     17 overlaps 3'UTR 154856  125322 ENSG00000197971
-#&gt; 3         13     13 overlaps 3'UTR  12959   10860 ENSG00000104888</div><div class='input'>
-<span class='va'>candidates</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
-    <span class='st'>"chr20:10286777-10288069:+"</span>,
-    <span class='st'>"chr18:74690788-74692427:-"</span>,
-    <span class='st'>"chr19:49932861-49933829:-"</span>
-<span class='op'>)</span>
-<span class='fu'>region_info</span><span class='op'>(</span><span class='va'>candidates</span>, CSV <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>snapshotDate(): 2020-10-27</span></div><div class='output co'>#&gt; <span class='message'>loading from cache</span></div><div class='output co'>#&gt; <span class='message'>Completed! If CSV=TRUE, check for region_info.csv in the temporary</span>
-#&gt; <span class='message'>directory (i.e. tempdir()) unless otherwise specified in OUTDIR.</span></div><div class='output co'>#&gt;   seqnames    start      end width strand    name
-#&gt; 1    chr20 10286777 10288069  1293      +  SNAP25
-#&gt; 2    chr18 74690788 74692427  1640      -     MBP
-#&gt; 3    chr19 49932861 49933829   969      - SLC17A7
-#&gt;                                                                                                                                                                                                                                                                                                                                                                                        annotation
-#&gt; 1                                 NM_001322902 NM_001322903 NM_001322904 NM_001322905 NM_001322906 NM_001322907 NM_001322908 NM_001322909 NM_001322910 NM_003081 NM_130811 NP_001309831 NP_001309832 NP_001309833 NP_001309834 NP_001309835 NP_001309836 NP_001309837 NP_001309838 NP_001309839 NP_003072 NP_570824 XM_005260808 XM_017028021 XM_017028022 XP_005260865 XP_016883510 XP_016883511
-#&gt; 2 NM_001025081 NM_001025090 NM_001025092 NM_001025094 NM_001025098 NM_001025100 NM_001025101 NM_002385 NP_001020252 NP_001020261 NP_001020263 NP_001020271 NP_001020272 NP_002376 XM_017025778 XM_017025780 XM_024451185 XM_024451186 XM_024451187 XM_024451188 XM_024451189 XP_016881267 XP_016881269 XP_024306953 XP_024306954 XP_024306955 XP_024306956 XP_024306957 XR_001753201 XR_001753202
-#&gt; 3                                                                                                                                                                                                                                                                                                                                                                             NM_020309 NP_064705
-#&gt;   description      region distance                subregion insideDistance
-#&gt; 1 overlaps 3' overlaps 3'    87299 overlaps exon downstream              0
-#&gt; 2 inside exon      inside   153212              inside exon              0
-#&gt; 3 inside exon      inside    11788              inside exon              0
-#&gt;   exonnumber nexons            UTR  geneL codingL          Geneid
-#&gt; 1         10     10 overlaps 3'UTR  88588   30705 ENSG00000132639
-#&gt; 2         17     17 overlaps 3'UTR 154856  125322 ENSG00000197971
-#&gt; 3         13     13 overlaps 3'UTR  12959   10860 ENSG00000104888
-#&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   Sequence
-#&gt; 1                                                                                                                                                                                                                                                                                                                                                            GCTGATTCCAACAAAACCAGAATTGATGAGGCCAACCAACGTGCAACAAAGATGCTGGGAAGTGGTTAAGTGTGCCCACCCGTGTTCTCCTCCAAATGCTGTCGGGCAAGATAGCTCCTTCATGCTTTTCTCATGGTATTATCTAGTAGGTCTGCACACATAACACACATCAGTCCACCCCCATTGTGAATGTTGTCCTGTGTCATCTGTCAGCTTCCCAACAATACTTTGTGTCTTTTGTTCTCTCTTGGTCTCTTTCTTTCCAAAGGTTGTACATAGTGGTCATTTGGTGGCTCTAACTCCTTGAGGTCTTGAGTTTCATTTTTCATTTTCTCTCCTCGGTGGCATTTGCTGAATAACAACAATTTAGGAATGCTCAATGTGCTGTTGATTCTTTCAATCCACAGTATTGTTCTTGTAAAACTGTGACATTCCACAGAGTTACTGCCACGGTCCTTTGAGTGTCAGGCTCTGAATCTCTCAAAATGTGCCGTCTTTGGTTCCTCATGGCTGTTATCTGTCTTTATGATTTCATGATTAGACAATGTGGAATTACATAACAGGCATTGCACTAAAAGTGATGTGATTTATGCATTTATGCATGAGAACTAAATAGATTTTTAGATTCCTACTTAAACAAAAACTTTCCATGACAGTAGCATACTGATGAGACAACACACACACACACAAAACAACAGCAACAACAACAGAACAACAACAAAGCATGCTCAGTATTGAGACACTGTCAAGATTAAGTTATACCAGCAAAAGTGCAGTAGTGTCACTTTTTTCCTGTCAATATATAGAGACTTCTAAATCATAATCATCCTTTTTTAAAAAAAAGAATTTTAAAAAAGATGGATTTGACACACTCACCATTTAATCATTTCCAGCAAAATATATGTTTGGCTGAAATTATGTCAAATGGATGTAATATAGGGTTTGTTTGCTGCTTTTGATGGCTATGTTTTGGAGAGAGCAATCTTGCTGTGAAACAGTGTGGATGTAAATTTTATAAGGCTGACTCTTACTAACCACCATTTCCCCTGTGGTTTGTTATCAGTACAATTCTTTGTTGCTTAATCTAGAGCTATGCACACCAAATTGCTGAGATGTTTAGTAGCTGATAAAGAAACCTTTTAAAAAAATAATATAAATGAATGAAATATAAACTGTGAGATAAATATCATTATAGCATGTAATATTAAATTCCTCCTGTCTCCTCTGTCAGTTTGTGAAGTGATTGACATTTTGTAGCTAGTTTAAAATTATTAAAAATTATAGACTCCAGAT
-#&gt; 2 GGAGGAAGAGATAGTCGCTCTGGATCACCCATGGCTAGACGCTGAAAACCCACCTGGTTCCGGAATCCTGTCCTCAGCTTCTTAATATAACTGCCTTAAAACTTTAATCCCACTTGCCCCTGTTACCTAATTAGAGCAGATGACCCCTCCCCTAATGCCTGCGGAGTTGTGCACGTAGTAGGGTCAGGCCACGGCAGCCTACCGGCAATTTCCGGCCAACAGTTAAATGAGAACATGAAAACAGAAAACGGTTAAAACTGTCCCTTTCTGTGTGAAGATCACGTTCCTTCCCCCGCAATGTGCCCCCAGACGCACGTGGGTCTTCAGGGGGCCAGGTGCACAGACGTCCCTCCACGTTCACCCCTCCACCCTTGGACTTTCTTTTCGCCGTGGCTGCGGCACCCTTGCGCTTTTGCTGGTCACTGCCATGGAGGCACACAGCTGCAGAGACAGAGAGGACGTGGGCGGCAGAGAGGACTGTTGACATCCAAGCTTCCTTTGTTTTTTTTTCCTGTCCTTCTCTCACCTCCTAAAGTAGACTTCATTTTTCCTAACAGGATTAGACAGTCAAGGAGTGGCTTACTACATGTGGGAGCTTTTGGTATGTGACATGCGGGCTGGGCAGCTGTTAGAGTCCAACGTGGGGCAGCACAGAGAGGGGGCCACCTCCCCAGGCCGTGGCTGCCCACACACCCCAATTAGCTGAATTCGCGTGTGGCAGAGGGAGGAAAAGGAGGCAAACGTGGGCTGGGCAATGGCCTCACATAGGAAACAGGGTCTTCCTGGAGATTTGGTGATGGAGATGTCAAGCAGGTGGCCTCTGGACGTCACCGTTGCCCTGCATGGTGGCCCCAGAGCAGCCTCTATGAACAACCTCGTTTCCAAACCACAGCCCACAGCCGGAGAGTCCAGGAAGACTTGCGCACTCAGAGCAGAAGGGTAGGAGTCCTCTAGACAGCCTCGCAGCCGCGCCAGTCGCCCATAGACACTGGCTGTGACCGGGCGTGCTGGCAGCGGCAGTGCACAGTGGCCAGCACTAACCCTCCCTGAGAAGATAACCGGCTCATTCACTTCCTCCCAGAAGACGCGTGGTAGCGAGTAGGCACAGGCGTGCACCTGCTCCCGAATTACTCACCGAGACACACGGGCTGAGCAGACGGCCCCGTGGATGGAGACAAAGAGCTCTTCTGACCATATCCTTCTTAACACCCGCTGGCATCTCCTTTCGCGCCTCCCTCCCTAACCTACTGACCCACCTTTTGATTTTAGCGCACCTGTGATTGATAGGCCTTCCAAAGAGTCCCACGCTGGCATCACCCTCCCCGAGGACGGAGATGAGGAGTAGTCAGCGTGATGCCAAAACGCGTCTTCTTAATCCAATTCTAATTCTGAATGTTTCGTGTGGGCTTAATACCATGTCTATTAATATATAGCCTCGATGATGAGAGAGTTACAAAGAACAAAACTCCAGACACAAACCTCCAAATTTTTCAGCAGAAGCACTCTGCGTCGCTGAGCTGAGGTCGGCTCTGCGATCCATACGTGGCCGCACCCACACAGCACGTGCTGTGACGATGGCTGAACGGAAAGTGTACACTGTTCCTGAATATTGAAATAAAACAATAAACTTTTAATGGTAT
-#&gt; 3                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ACACACAGCACATTTCAGCCCCCCAGGCCCCCACCCCCTGTCCGGGACTACTGACCATGTGCCTCCCACTGAATGGCAGTTTCCAGGACCTCCATTCCACTCATCTCTGGCCTGAGTGACAGTGTCAAGGAACCCTGCTCCTCTCTGTCCTGCCTCAGGCCTAAGAAGCACTCTCCCTTGTTCCCAGTGCTGTCAAATCCTCTTTCCTTCCCAATTGCCTCTCAGGGGTAGTGAAGCTGCAGACTGACAGTTTCAAGGATACCCAAATTCCCCTAAAGGTTCCCTCTCCACCCGTTCTGCCTCAGTGGTTTCAAATCTCTCCTTTCAGGGCTTTATTTGAATGGACAGTTCGACCTCTTACTCTCTCTTGTGGTTTTGAGGCACCCACACCCCCCGCTTTCCTTTATCTCCAGGGACTCTCAGGCTAACCTTTGAGATCACTCAGCTCCCATCTCCTTTCAGAAAAATTCAAGGTCCTCCTCTAGAAGTTTCAAATCTCTCCCAACTCTGTTCTGCATCTTCCAGATTGGTTTAACCAATTACTCGTCCCCGCCATTCCAGGGATTGATTCTCACCAGCGTTTCTGATGGAAAATGGCGGTTTCAAGTCCCCGATTCCGTGCCCACTTCACATCTCCCCTACCAGCAGATTCTGCGAAAGCACCAAATTTCTCAAGACCCTCTTCTCCCTAGCTTAGCATAATGTCTGGGGAAACAACCAAAATCGCAATTTTAACAATATGCCTCTCTACCCCCGTGCACTTTTTCTGACATGGTTTTCAGGTCTAAATAGTGGCTGCTCCAGTCCATGAACTCAAAGGTTTGAAGCTACCACCATTGAACTCCCCCATGGTGGTTTCATGATGCCCCCTCCCCAATTCCTCGCACTTTATTCTCCTGGGTGGTTTCGAACTACCCTGTTTCTCAGTGGCCATTTGTTGTGTCCCTCAGGGGCTTAATGACTCAAAAT</div><div class='input'>
-<span class='co'>## Explore the effect of changing CODING_ONLY</span>
-<span class='co'>## Check how the "distance", "name", "Geneid" among other values change</span>
-<span class='fu'>region_info</span><span class='op'>(</span><span class='st'>"chr10:135379301-135379311:+"</span>, CSV <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>snapshotDate(): 2020-10-27</span></div><div class='output co'>#&gt; <span class='message'>loading from cache</span></div><div class='output co'>#&gt; <span class='message'>Completed! If CSV=TRUE, check for region_info.csv in the temporary</span>
-#&gt; <span class='message'>directory (i.e. tempdir()) unless otherwise specified in OUTDIR.</span></div><div class='output co'>#&gt;   seqnames     start       end width strand name annotation description region
-#&gt; 1    chr10 135379301 135379311    11      + &lt;NA&gt;       &lt;NA&gt; inside exon inside
-#&gt;   distance   subregion insideDistance exonnumber nexons
-#&gt; 1        0 inside exon              0          1      5
-#&gt;                           UTR geneL codingL          Geneid    Sequence
-#&gt; 1 inside transcription region 63710      NA ENSG00000288107 GCATGTGCGCT</div><div class='input'><span class='fu'>region_info</span><span class='op'>(</span><span class='st'>"chr10:135379301-135379311:+"</span>, CSV <span class='op'>=</span> <span class='cn'>FALSE</span>, CODING_ONLY <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>snapshotDate(): 2020-10-27</span></div><div class='output co'>#&gt; <span class='message'>loading from cache</span></div><div class='output co'>#&gt; <span class='message'>Completed! If CSV=TRUE, check for region_info.csv in the temporary</span>
-#&gt; <span class='message'>directory (i.e. tempdir()) unless otherwise specified in OUTDIR.</span></div><div class='output co'>#&gt;   seqnames     start       end width strand   name          annotation
-#&gt; 1    chr10 135379301 135379311    11      + CYP2E1 NM_000773 NP_000764
-#&gt;   description     region distance subregion insideDistance exonnumber nexons
-#&gt; 1  downstream downstream    45391      &lt;NA&gt;             NA         NA     12
-#&gt;    UTR geneL codingL          Geneid    Sequence
-#&gt; 1 &lt;NA&gt; 40814   11568 ENSG00000130649 GCATGTGCGCT</div><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='fu'>region_info</span><span class='op'>(</span><span class='va'>candidates</span>, OUTDIR <span class='op'>=</span> <span class='st'>"/path/to/directory/"</span><span class='op'>)</span>
-
-<span class='fu'>region_info</span><span class='op'>(</span><span class='st'>"chr20:10286777-10288069:+"</span>, OUTDIR <span class='op'>=</span> <span class='st'>"/path/to/directory"</span><span class='op'>)</span>
-<span class='op'>}</span>
-</div></pre>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>region_info</span><span class='op'>(</span><span class='st'>"chr20:10286777-10288069:+"</span>, CSV <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> snapshotDate(): 2021-08-03</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> loading from cache</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Completed! If CSV=TRUE, check for region_info.csv in the temporary</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> directory (i.e. tempdir()) unless otherwise specified in OUTDIR.</span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   seqnames    start      end width strand   name</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1    chr20 10286777 10288069  1293      + SNAP25</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                                                                                                                                                                                                                                                                                                                        annotation</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1 NM_001322902 NM_001322903 NM_001322904 NM_001322905 NM_001322906 NM_001322907 NM_001322908 NM_001322909 NM_001322910 NM_003081 NM_130811 NP_001309831 NP_001309832 NP_001309833 NP_001309834 NP_001309835 NP_001309836 NP_001309837 NP_001309838 NP_001309839 NP_003072 NP_570824 XM_005260808 XM_017028021 XM_017028022 XP_005260865 XP_016883510 XP_016883511</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   description      region distance                subregion insideDistance</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1 overlaps 3' overlaps 3'    87299 overlaps exon downstream              0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   exonnumber nexons            UTR geneL codingL          Geneid</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1         10     10 overlaps 3'UTR 88588   30705 ENSG00000132639</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Sequence</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1 GCTGATTCCAACAAAACCAGAATTGATGAGGCCAACCAACGTGCAACAAAGATGCTGGGAAGTGGTTAAGTGTGCCCACCCGTGTTCTCCTCCAAATGCTGTCGGGCAAGATAGCTCCTTCATGCTTTTCTCATGGTATTATCTAGTAGGTCTGCACACATAACACACATCAGTCCACCCCCATTGTGAATGTTGTCCTGTGTCATCTGTCAGCTTCCCAACAATACTTTGTGTCTTTTGTTCTCTCTTGGTCTCTTTCTTTCCAAAGGTTGTACATAGTGGTCATTTGGTGGCTCTAACTCCTTGAGGTCTTGAGTTTCATTTTTCATTTTCTCTCCTCGGTGGCATTTGCTGAATAACAACAATTTAGGAATGCTCAATGTGCTGTTGATTCTTTCAATCCACAGTATTGTTCTTGTAAAACTGTGACATTCCACAGAGTTACTGCCACGGTCCTTTGAGTGTCAGGCTCTGAATCTCTCAAAATGTGCCGTCTTTGGTTCCTCATGGCTGTTATCTGTCTTTATGATTTCATGATTAGACAATGTGGAATTACATAACAGGCATTGCACTAAAAGTGATGTGATTTATGCATTTATGCATGAGAACTAAATAGATTTTTAGATTCCTACTTAAACAAAAACTTTCCATGACAGTAGCATACTGATGAGACAACACACACACACACAAAACAACAGCAACAACAACAGAACAACAACAAAGCATGCTCAGTATTGAGACACTGTCAAGATTAAGTTATACCAGCAAAAGTGCAGTAGTGTCACTTTTTTCCTGTCAATATATAGAGACTTCTAAATCATAATCATCCTTTTTTAAAAAAAAGAATTTTAAAAAAGATGGATTTGACACACTCACCATTTAATCATTTCCAGCAAAATATATGTTTGGCTGAAATTATGTCAAATGGATGTAATATAGGGTTTGTTTGCTGCTTTTGATGGCTATGTTTTGGAGAGAGCAATCTTGCTGTGAAACAGTGTGGATGTAAATTTTATAAGGCTGACTCTTACTAACCACCATTTCCCCTGTGGTTTGTTATCAGTACAATTCTTTGTTGCTTAATCTAGAGCTATGCACACCAAATTGCTGAGATGTTTAGTAGCTGATAAAGAAACCTTTTAAAAAAATAATATAAATGAATGAAATATAAACTGTGAGATAAATATCATTATAGCATGTAATATTAAATTCCTCCTGTCTCCTCTGTCAGTTTGTGAAGTGATTGACATTTTGTAGCTAGTTTAAAATTATTAAAAATTATAGACTCCAGAT</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## You can easily transform this data.frame to a GRanges object</span></span>
+<span class='r-in'><span class='fu'>GenomicRanges</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/GenomicRanges/man/GRanges-class.html'>GRanges</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> GRanges object with 1 range and 14 metadata columns:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       seqnames            ranges strand |        name             annotation</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>          &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt; | &lt;character&gt;            &lt;character&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   [1]    chr20 10286777-10288069      + |      SNAP25 NM_001322902 NM_0013..</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       description      region  distance                subregion insideDistance</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>          &lt;factor&gt;    &lt;factor&gt; &lt;numeric&gt;                 &lt;factor&gt;      &lt;numeric&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   [1] overlaps 3' overlaps 3'     87299 overlaps exon downstream              0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       exonnumber    nexons            UTR     geneL   codingL          Geneid</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        &lt;numeric&gt; &lt;integer&gt;       &lt;factor&gt; &lt;numeric&gt; &lt;numeric&gt;     &lt;character&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   [1]         10        10 overlaps 3'UTR     88588     30705 ENSG00000132639</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                     Sequence</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                  &lt;character&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   [1] GCTGATTCCAACAAAACCAG..</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   -------</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   seqinfo: 1 sequence from an unspecified genome; no seqlengths</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'>region_info</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span></span>
+<span class='r-in'>    <span class='st'>"chr20:10286777-10288069:+"</span>,</span>
+<span class='r-in'>    <span class='st'>"chr18:74690788-74692427:-"</span>,</span>
+<span class='r-in'>    <span class='st'>"chr19:49932861-49933829:-"</span></span>
+<span class='r-in'><span class='op'>)</span>,</span>
+<span class='r-in'>CSV <span class='op'>=</span> <span class='cn'>FALSE</span>, SEQ <span class='op'>=</span> <span class='cn'>FALSE</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> snapshotDate(): 2021-08-03</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> loading from cache</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Completed! If CSV=TRUE, check for region_info.csv in the temporary</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> directory (i.e. tempdir()) unless otherwise specified in OUTDIR.</span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   seqnames    start      end width strand    name</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1    chr20 10286777 10288069  1293      +  SNAP25</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2    chr18 74690788 74692427  1640      -     MBP</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3    chr19 49932861 49933829   969      - SLC17A7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                                                                                                                                                                                                                                                                                                                                                        annotation</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                                 NM_001322902 NM_001322903 NM_001322904 NM_001322905 NM_001322906 NM_001322907 NM_001322908 NM_001322909 NM_001322910 NM_003081 NM_130811 NP_001309831 NP_001309832 NP_001309833 NP_001309834 NP_001309835 NP_001309836 NP_001309837 NP_001309838 NP_001309839 NP_003072 NP_570824 XM_005260808 XM_017028021 XM_017028022 XP_005260865 XP_016883510 XP_016883511</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2 NM_001025081 NM_001025090 NM_001025092 NM_001025094 NM_001025098 NM_001025100 NM_001025101 NM_002385 NP_001020252 NP_001020261 NP_001020263 NP_001020271 NP_001020272 NP_002376 XM_017025778 XM_017025780 XM_024451185 XM_024451186 XM_024451187 XM_024451188 XM_024451189 XP_016881267 XP_016881269 XP_024306953 XP_024306954 XP_024306955 XP_024306956 XP_024306957 XR_001753201 XR_001753202</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3                                                                                                                                                                                                                                                                                                                                                                             NM_020309 NP_064705</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   description      region distance                subregion insideDistance</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1 overlaps 3' overlaps 3'    87299 overlaps exon downstream              0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2 inside exon      inside   153212              inside exon              0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3 inside exon      inside    11788              inside exon              0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   exonnumber nexons            UTR  geneL codingL          Geneid</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1         10     10 overlaps 3'UTR  88588   30705 ENSG00000132639</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2         17     17 overlaps 3'UTR 154856  125322 ENSG00000197971</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3         13     13 overlaps 3'UTR  12959   10860 ENSG00000104888</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>candidates</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span></span>
+<span class='r-in'>    <span class='st'>"chr20:10286777-10288069:+"</span>,</span>
+<span class='r-in'>    <span class='st'>"chr18:74690788-74692427:-"</span>,</span>
+<span class='r-in'>    <span class='st'>"chr19:49932861-49933829:-"</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>region_info</span><span class='op'>(</span><span class='va'>candidates</span>, CSV <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> snapshotDate(): 2021-08-03</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> loading from cache</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Completed! If CSV=TRUE, check for region_info.csv in the temporary</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> directory (i.e. tempdir()) unless otherwise specified in OUTDIR.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   seqnames    start      end width strand    name</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1    chr20 10286777 10288069  1293      +  SNAP25</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2    chr18 74690788 74692427  1640      -     MBP</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3    chr19 49932861 49933829   969      - SLC17A7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                                                                                                                                                                                                                                                                                                                                                        annotation</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                                 NM_001322902 NM_001322903 NM_001322904 NM_001322905 NM_001322906 NM_001322907 NM_001322908 NM_001322909 NM_001322910 NM_003081 NM_130811 NP_001309831 NP_001309832 NP_001309833 NP_001309834 NP_001309835 NP_001309836 NP_001309837 NP_001309838 NP_001309839 NP_003072 NP_570824 XM_005260808 XM_017028021 XM_017028022 XP_005260865 XP_016883510 XP_016883511</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2 NM_001025081 NM_001025090 NM_001025092 NM_001025094 NM_001025098 NM_001025100 NM_001025101 NM_002385 NP_001020252 NP_001020261 NP_001020263 NP_001020271 NP_001020272 NP_002376 XM_017025778 XM_017025780 XM_024451185 XM_024451186 XM_024451187 XM_024451188 XM_024451189 XP_016881267 XP_016881269 XP_024306953 XP_024306954 XP_024306955 XP_024306956 XP_024306957 XR_001753201 XR_001753202</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3                                                                                                                                                                                                                                                                                                                                                                             NM_020309 NP_064705</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   description      region distance                subregion insideDistance</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1 overlaps 3' overlaps 3'    87299 overlaps exon downstream              0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2 inside exon      inside   153212              inside exon              0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3 inside exon      inside    11788              inside exon              0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   exonnumber nexons            UTR  geneL codingL          Geneid</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1         10     10 overlaps 3'UTR  88588   30705 ENSG00000132639</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2         17     17 overlaps 3'UTR 154856  125322 ENSG00000197971</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3         13     13 overlaps 3'UTR  12959   10860 ENSG00000104888</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   Sequence</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                                                                                                                                                                                                                                                                                                                                                            GCTGATTCCAACAAAACCAGAATTGATGAGGCCAACCAACGTGCAACAAAGATGCTGGGAAGTGGTTAAGTGTGCCCACCCGTGTTCTCCTCCAAATGCTGTCGGGCAAGATAGCTCCTTCATGCTTTTCTCATGGTATTATCTAGTAGGTCTGCACACATAACACACATCAGTCCACCCCCATTGTGAATGTTGTCCTGTGTCATCTGTCAGCTTCCCAACAATACTTTGTGTCTTTTGTTCTCTCTTGGTCTCTTTCTTTCCAAAGGTTGTACATAGTGGTCATTTGGTGGCTCTAACTCCTTGAGGTCTTGAGTTTCATTTTTCATTTTCTCTCCTCGGTGGCATTTGCTGAATAACAACAATTTAGGAATGCTCAATGTGCTGTTGATTCTTTCAATCCACAGTATTGTTCTTGTAAAACTGTGACATTCCACAGAGTTACTGCCACGGTCCTTTGAGTGTCAGGCTCTGAATCTCTCAAAATGTGCCGTCTTTGGTTCCTCATGGCTGTTATCTGTCTTTATGATTTCATGATTAGACAATGTGGAATTACATAACAGGCATTGCACTAAAAGTGATGTGATTTATGCATTTATGCATGAGAACTAAATAGATTTTTAGATTCCTACTTAAACAAAAACTTTCCATGACAGTAGCATACTGATGAGACAACACACACACACACAAAACAACAGCAACAACAACAGAACAACAACAAAGCATGCTCAGTATTGAGACACTGTCAAGATTAAGTTATACCAGCAAAAGTGCAGTAGTGTCACTTTTTTCCTGTCAATATATAGAGACTTCTAAATCATAATCATCCTTTTTTAAAAAAAAGAATTTTAAAAAAGATGGATTTGACACACTCACCATTTAATCATTTCCAGCAAAATATATGTTTGGCTGAAATTATGTCAAATGGATGTAATATAGGGTTTGTTTGCTGCTTTTGATGGCTATGTTTTGGAGAGAGCAATCTTGCTGTGAAACAGTGTGGATGTAAATTTTATAAGGCTGACTCTTACTAACCACCATTTCCCCTGTGGTTTGTTATCAGTACAATTCTTTGTTGCTTAATCTAGAGCTATGCACACCAAATTGCTGAGATGTTTAGTAGCTGATAAAGAAACCTTTTAAAAAAATAATATAAATGAATGAAATATAAACTGTGAGATAAATATCATTATAGCATGTAATATTAAATTCCTCCTGTCTCCTCTGTCAGTTTGTGAAGTGATTGACATTTTGTAGCTAGTTTAAAATTATTAAAAATTATAGACTCCAGAT</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2 GGAGGAAGAGATAGTCGCTCTGGATCACCCATGGCTAGACGCTGAAAACCCACCTGGTTCCGGAATCCTGTCCTCAGCTTCTTAATATAACTGCCTTAAAACTTTAATCCCACTTGCCCCTGTTACCTAATTAGAGCAGATGACCCCTCCCCTAATGCCTGCGGAGTTGTGCACGTAGTAGGGTCAGGCCACGGCAGCCTACCGGCAATTTCCGGCCAACAGTTAAATGAGAACATGAAAACAGAAAACGGTTAAAACTGTCCCTTTCTGTGTGAAGATCACGTTCCTTCCCCCGCAATGTGCCCCCAGACGCACGTGGGTCTTCAGGGGGCCAGGTGCACAGACGTCCCTCCACGTTCACCCCTCCACCCTTGGACTTTCTTTTCGCCGTGGCTGCGGCACCCTTGCGCTTTTGCTGGTCACTGCCATGGAGGCACACAGCTGCAGAGACAGAGAGGACGTGGGCGGCAGAGAGGACTGTTGACATCCAAGCTTCCTTTGTTTTTTTTTCCTGTCCTTCTCTCACCTCCTAAAGTAGACTTCATTTTTCCTAACAGGATTAGACAGTCAAGGAGTGGCTTACTACATGTGGGAGCTTTTGGTATGTGACATGCGGGCTGGGCAGCTGTTAGAGTCCAACGTGGGGCAGCACAGAGAGGGGGCCACCTCCCCAGGCCGTGGCTGCCCACACACCCCAATTAGCTGAATTCGCGTGTGGCAGAGGGAGGAAAAGGAGGCAAACGTGGGCTGGGCAATGGCCTCACATAGGAAACAGGGTCTTCCTGGAGATTTGGTGATGGAGATGTCAAGCAGGTGGCCTCTGGACGTCACCGTTGCCCTGCATGGTGGCCCCAGAGCAGCCTCTATGAACAACCTCGTTTCCAAACCACAGCCCACAGCCGGAGAGTCCAGGAAGACTTGCGCACTCAGAGCAGAAGGGTAGGAGTCCTCTAGACAGCCTCGCAGCCGCGCCAGTCGCCCATAGACACTGGCTGTGACCGGGCGTGCTGGCAGCGGCAGTGCACAGTGGCCAGCACTAACCCTCCCTGAGAAGATAACCGGCTCATTCACTTCCTCCCAGAAGACGCGTGGTAGCGAGTAGGCACAGGCGTGCACCTGCTCCCGAATTACTCACCGAGACACACGGGCTGAGCAGACGGCCCCGTGGATGGAGACAAAGAGCTCTTCTGACCATATCCTTCTTAACACCCGCTGGCATCTCCTTTCGCGCCTCCCTCCCTAACCTACTGACCCACCTTTTGATTTTAGCGCACCTGTGATTGATAGGCCTTCCAAAGAGTCCCACGCTGGCATCACCCTCCCCGAGGACGGAGATGAGGAGTAGTCAGCGTGATGCCAAAACGCGTCTTCTTAATCCAATTCTAATTCTGAATGTTTCGTGTGGGCTTAATACCATGTCTATTAATATATAGCCTCGATGATGAGAGAGTTACAAAGAACAAAACTCCAGACACAAACCTCCAAATTTTTCAGCAGAAGCACTCTGCGTCGCTGAGCTGAGGTCGGCTCTGCGATCCATACGTGGCCGCACCCACACAGCACGTGCTGTGACGATGGCTGAACGGAAAGTGTACACTGTTCCTGAATATTGAAATAAAACAATAAACTTTTAATGGTAT</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ACACACAGCACATTTCAGCCCCCCAGGCCCCCACCCCCTGTCCGGGACTACTGACCATGTGCCTCCCACTGAATGGCAGTTTCCAGGACCTCCATTCCACTCATCTCTGGCCTGAGTGACAGTGTCAAGGAACCCTGCTCCTCTCTGTCCTGCCTCAGGCCTAAGAAGCACTCTCCCTTGTTCCCAGTGCTGTCAAATCCTCTTTCCTTCCCAATTGCCTCTCAGGGGTAGTGAAGCTGCAGACTGACAGTTTCAAGGATACCCAAATTCCCCTAAAGGTTCCCTCTCCACCCGTTCTGCCTCAGTGGTTTCAAATCTCTCCTTTCAGGGCTTTATTTGAATGGACAGTTCGACCTCTTACTCTCTCTTGTGGTTTTGAGGCACCCACACCCCCCGCTTTCCTTTATCTCCAGGGACTCTCAGGCTAACCTTTGAGATCACTCAGCTCCCATCTCCTTTCAGAAAAATTCAAGGTCCTCCTCTAGAAGTTTCAAATCTCTCCCAACTCTGTTCTGCATCTTCCAGATTGGTTTAACCAATTACTCGTCCCCGCCATTCCAGGGATTGATTCTCACCAGCGTTTCTGATGGAAAATGGCGGTTTCAAGTCCCCGATTCCGTGCCCACTTCACATCTCCCCTACCAGCAGATTCTGCGAAAGCACCAAATTTCTCAAGACCCTCTTCTCCCTAGCTTAGCATAATGTCTGGGGAAACAACCAAAATCGCAATTTTAACAATATGCCTCTCTACCCCCGTGCACTTTTTCTGACATGGTTTTCAGGTCTAAATAGTGGCTGCTCCAGTCCATGAACTCAAAGGTTTGAAGCTACCACCATTGAACTCCCCCATGGTGGTTTCATGATGCCCCCTCCCCAATTCCTCGCACTTTATTCTCCTGGGTGGTTTCGAACTACCCTGTTTCTCAGTGGCCATTTGTTGTGTCCCTCAGGGGCTTAATGACTCAAAAT</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Explore the effect of changing CODING_ONLY</span></span>
+<span class='r-in'><span class='co'>## Check how the "distance", "name", "Geneid" among other values change</span></span>
+<span class='r-in'><span class='fu'>region_info</span><span class='op'>(</span><span class='st'>"chr10:135379301-135379311:+"</span>, CSV <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> snapshotDate(): 2021-08-03</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> loading from cache</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Completed! If CSV=TRUE, check for region_info.csv in the temporary</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> directory (i.e. tempdir()) unless otherwise specified in OUTDIR.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   seqnames     start       end width strand name annotation description region</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1    chr10 135379301 135379311    11      + &lt;NA&gt;       &lt;NA&gt; inside exon inside</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   distance   subregion insideDistance exonnumber nexons</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1        0 inside exon              0          1      5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                           UTR geneL codingL          Geneid    Sequence</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1 inside transcription region 63710      NA ENSG00000288107 GCATGTGCGCT</span>
+<span class='r-in'><span class='fu'>region_info</span><span class='op'>(</span><span class='st'>"chr10:135379301-135379311:+"</span>, CSV <span class='op'>=</span> <span class='cn'>FALSE</span>, CODING_ONLY <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> snapshotDate(): 2021-08-03</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> loading from cache</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Completed! If CSV=TRUE, check for region_info.csv in the temporary</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> directory (i.e. tempdir()) unless otherwise specified in OUTDIR.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   seqnames     start       end width strand   name          annotation</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1    chr10 135379301 135379311    11      + CYP2E1 NM_000773 NP_000764</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   description     region distance subregion insideDistance exonnumber nexons</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1  downstream downstream    45391      &lt;NA&gt;             NA         NA     12</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    UTR geneL codingL          Geneid    Sequence</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1 &lt;NA&gt; 40814   11568 ENSG00000130649 GCATGTGCGCT</span>
+<span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span class='r-in'><span class='fu'>region_info</span><span class='op'>(</span><span class='va'>candidates</span>, OUTDIR <span class='op'>=</span> <span class='st'>"/path/to/directory/"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>region_info</span><span class='op'>(</span><span class='st'>"chr20:10286777-10288069:+"</span>, OUTDIR <span class='op'>=</span> <span class='st'>"/path/to/directory"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>}</span></span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -312,11 +335,11 @@ CSV <span class='op'>=</span> <span class='cn'>FALSE</span>, SEQ <span class='op
 
       <footer>
       <div class="copyright">
-  <p>Developed by Amanda Price.</p>
+  <p><p>Developed by Amanda Price.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -324,6 +347,8 @@ CSV <span class='op'>=</span> <span class='cn'>FALSE</span>, SEQ <span class='op
 
   
 
+
+  
 
   </body>
 </html>

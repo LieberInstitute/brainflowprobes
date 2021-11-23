@@ -49,8 +49,6 @@ be highly and evenly expressed in nuclear RNA." />
 
 
 
-
-
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -62,15 +60,9 @@ be highly and evenly expressed in nuclear RNA." />
 
 
 
-  
-
-  
-
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    
-
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -84,13 +76,19 @@ be highly and evenly expressed in nuclear RNA." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brainflowprobes</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.9.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
+  <a href="../index.html">
+    <span class="fas fa-home fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -142,14 +140,14 @@ junctions, the plot will include the introns. A good candidate sequence will
 be highly and evenly expressed in nuclear RNA.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>plot_coverage</span><span class='op'>(</span>
+    <pre class="usage"><span class='fu'>plot_coverage</span><span class='op'>(</span>
   <span class='va'>REGION</span>,
   PDF <span class='op'>=</span> <span class='st'>"regionCoverage_fractionedData.pdf"</span>,
   OUTDIR <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>,
   COVERAGE <span class='op'>=</span> <span class='cn'>NULL</span>,
   CODING_ONLY <span class='op'>=</span> <span class='cn'>FALSE</span>,
   VERBOSE <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span></code></pre></div>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -215,19 +213,19 @@ in a temporary directory unless otherwise specified with <code>OUTDIR</code>.</p
     <p>Amanda J Price</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'></span>
+    <pre class="examples"><span class='r-in'></span>
 <span class='r-in'><span class='co'>## Here we use the pre-saved example coverage data such that this example</span></span>
 <span class='r-in'><span class='co'>## will run fast!</span></span>
 <span class='r-in'><span class='fu'>plot_coverage</span><span class='op'>(</span><span class='st'>"chr20:10286777-10288069:+"</span>,</span>
 <span class='r-in'>    COVERAGE <span class='op'>=</span> <span class='va'>four_panels_example_cov</span></span>
 <span class='r-in'><span class='op'>)</span></span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> snapshotDate(): 2021-08-03</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> snapshotDate(): 2021-10-20</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> loading from cache</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> snapshotDate(): 2021-08-03</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> snapshotDate(): 2021-10-20</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> loading from cache</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:00 annotateRegions: counting</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:02 annotateRegions: annotating</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:02 Completed! Check for /tmp/Rtmp2CVMWs/regionCoverage_fractionedData.pdf.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:31:49 annotateRegions: counting</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:31:51 annotateRegions: annotating</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:31:51 Completed! Check for /tmp/RtmpftNADa/regionCoverage_fractionedData.pdf.</span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'>## Without using COVERAGE, this function reads BigWig files from the web</span></span>
 <span class='r-in'><span class='co'>## using rtracklayer and this functionality is not supported on Windows</span></span>
@@ -237,43 +235,43 @@ in a temporary directory unless otherwise specified with <code>OUTDIR</code>.</p
 <span class='r-in'>        PDF <span class='op'>=</span> <span class='st'>"regionCoverage_fractionedData_fromScratch.pdf"</span></span>
 <span class='r-in'>    <span class='op'>)</span></span>
 <span class='r-in'><span class='op'>}</span></span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> snapshotDate(): 2021-08-03</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> snapshotDate(): 2021-10-20</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> loading from cache</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> snapshotDate(): 2021-08-03</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> snapshotDate(): 2021-10-20</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> loading from cache</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:20 annotateRegions: counting</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:21 annotateRegions: annotating</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:21 getRegionCoverage : attempting to load coverage data from 'files'.</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:21 fullCoverage: processing chromosome chr20</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:21 loadCoverage: finding chromosome lengths</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:21 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br1113C1_polyA.bw</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:21 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br1113N1_polyA.bw</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:22 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br2046C_polyA.bw</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:22 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br2046N_polyA.bw</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:23 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br2074C_polyA.bw</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:23 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br2074N_polyA.bw</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:23 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br5339C1_polyA.bw</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:24 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br5339N1_polyA.bw</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:24 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br5340C1_polyA.bw</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:25 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br5340N1_polyA.bw</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:25 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br5341C1_polyA.bw</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:25 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br5341N1_polyA.bw</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:26 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br1113C1_RiboZero.bw</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:26 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br2046C_RiboZero.bw</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:26 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br2046N_RiboZero.bw</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:27 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br2074C_RiboZero.bw</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:27 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br2074N_RiboZero.bw</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:28 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br5339C1_RiboZero.bw</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:28 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br5339N1_RiboZero.bw</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:28 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br5340C1_RiboZero.bw</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:29 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br5340N1_RiboZero.bw</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:29 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br5341C1_RiboZero.bw</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:30 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br5341N1_RiboZero.bw</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:30 loadCoverage: applying the cutoff to the merged data</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:30 filterData: originally there were 63025520 rows, now there are 63025520 rows. Meaning that 0 percent was filtered.</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:30 getRegionCoverage: processing chr20</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:30 getRegionCoverage: done processing chr20</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-08-10 00:34:31 Completed! Check for /tmp/Rtmp2CVMWs/regionCoverage_fractionedData_fromScratch.pdf.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:32:13 annotateRegions: counting</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:32:13 annotateRegions: annotating</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:32:13 getRegionCoverage : attempting to load coverage data from 'files'.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:32:13 fullCoverage: processing chromosome chr20</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:32:14 loadCoverage: finding chromosome lengths</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:32:14 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br1113C1_polyA.bw</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:32:15 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br1113N1_polyA.bw</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:32:16 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br2046C_polyA.bw</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:32:17 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br2046N_polyA.bw</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:32:18 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br2074C_polyA.bw</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:32:19 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br2074N_polyA.bw</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:32:20 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br5339C1_polyA.bw</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:32:21 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br5339N1_polyA.bw</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:32:22 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br5340C1_polyA.bw</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:32:23 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br5340N1_polyA.bw</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:32:24 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br5341C1_polyA.bw</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:32:25 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br5341N1_polyA.bw</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:32:26 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br1113C1_RiboZero.bw</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:32:27 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br2046C_RiboZero.bw</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:32:28 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br2046N_RiboZero.bw</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:32:29 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br2074C_RiboZero.bw</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:32:30 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br2074N_RiboZero.bw</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:32:31 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br5339C1_RiboZero.bw</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:32:32 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br5339N1_RiboZero.bw</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:32:34 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br5340C1_RiboZero.bw</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:32:35 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br5340N1_RiboZero.bw</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:32:36 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br5341C1_RiboZero.bw</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:32:37 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br5341N1_RiboZero.bw</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:32:38 loadCoverage: applying the cutoff to the merged data</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:32:38 filterData: originally there were 63025520 rows, now there are 63025520 rows. Meaning that 0 percent was filtered.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:32:38 getRegionCoverage: processing chr20</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:32:38 getRegionCoverage: done processing chr20</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> 2021-11-23 04:32:38 Completed! Check for /tmp/RtmpftNADa/regionCoverage_fractionedData_fromScratch.pdf.</span>
 <span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'>## These examples will take a few minutes to run!</span></span>
@@ -310,7 +308,7 @@ in a temporary directory unless otherwise specified with <code>OUTDIR</code>.</p
 <span class='r-in'><span class='op'>)</span></span>
 <span class='r-in'><span class='op'>}</span></span>
 <span class='r-in'></span>
-</code></pre></div>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -322,11 +320,11 @@ in a temporary directory unless otherwise specified with <code>OUTDIR</code>.</p
 
       <footer>
       <div class="copyright">
-  <p><p>Developed by Amanda Price.</p></p>
+  <p>Developed by Amanda Price.</p>
 </div>
 
 <div class="pkgdown">
-  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
@@ -334,8 +332,6 @@ in a temporary directory unless otherwise specified with <code>OUTDIR</code>.</p
 
   
 
-
-  
 
   </body>
 </html>

@@ -11,7 +11,8 @@
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Plots and annotation for choosing BrainFlow target probe sequence ">
+<script src="pkgdown.js"></script><link href="extra.css" rel="stylesheet">
+<meta property="og:title" content="Plots and annotation for choosing BrainFlow target probe sequence ">
 <meta property="og:description" content="Use these functions to characterize genomic regions for
   BrainFlow target probe design.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -94,8 +95,9 @@
 </h2>
 <p>Get the latest stable <code>R</code> release from <a href="http://cran.r-project.org/" class="external-link">CRAN</a>. Then install <code>brainflowprobes</code> from <a href="http://bioconductor.org/" class="external-link">Bioconductor</a> using the following code:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
 <span></span>
 <span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"brainflowprobes"</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -104,22 +106,24 @@
 </h2>
 <p>Below is the citation output from using <code>citation('brainflowprobes')</code> in R. Please run this yourself to check for any updates on how to cite <strong>brainflowprobes</strong>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">'brainflowprobes'</span><span class="op">)</span>, bibtex <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"brainflowprobes"</span><span class="op">)</span>, bibtex <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; To cite package 'brainflowprobes' in publications use:</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Price AJ (2020). _Plots and annotation for choosing BrainFlow target</span></span>
-<span><span class="co">#&gt; probe sequence_. doi: 10.18129/B9.bioc.brainflowprobes (URL:</span></span>
-<span><span class="co">#&gt; https://doi.org/10.18129/B9.bioc.brainflowprobes),</span></span>
-<span><span class="co">#&gt; https://github.com/LieberInstitute/brainflowprobes - R package version</span></span>
-<span><span class="co">#&gt; 1.3.1, &lt;URL: http://www.bioconductor.org/packages/brainflowprobes&gt;.</span></span>
+<span><span class="co">#&gt;   Price AJ (2023). _Plots and annotation for choosing BrainFlow target</span></span>
+<span><span class="co">#&gt;   probe sequence_. doi:10.18129/B9.bioc.brainflowprobes</span></span>
+<span><span class="co">#&gt;   &lt;https://doi.org/10.18129/B9.bioc.brainflowprobes&gt;,</span></span>
+<span><span class="co">#&gt;   https://github.com/LieberInstitute/brainflowprobes - R package</span></span>
+<span><span class="co">#&gt;   version 1.15.0,</span></span>
+<span><span class="co">#&gt;   &lt;http://www.bioconductor.org/packages/brainflowprobes&gt;.</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; A BibTeX entry for LaTeX users is</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;   @Manual{,</span></span>
 <span><span class="co">#&gt;     title = {Plots and annotation for choosing BrainFlow target probe sequence},</span></span>
 <span><span class="co">#&gt;     author = {Amanda J Price},</span></span>
-<span><span class="co">#&gt;     year = {2020},</span></span>
+<span><span class="co">#&gt;     year = {2023},</span></span>
 <span><span class="co">#&gt;     url = {http://www.bioconductor.org/packages/brainflowprobes},</span></span>
-<span><span class="co">#&gt;     note = {https://github.com/LieberInstitute/brainflowprobes - R package version 1.3.1},</span></span>
+<span><span class="co">#&gt;     note = {https://github.com/LieberInstitute/brainflowprobes - R package version 1.15.0},</span></span>
 <span><span class="co">#&gt;     doi = {10.18129/B9.bioc.brainflowprobes},</span></span>
 <span><span class="co">#&gt;   }</span></span></code></pre></div>
 <p>Please note that the <code>brainflowprobes</code> was only made possible thanks to many other R and bioinformatics software authors, which are cited either in the vignettes and/or the paper(s) describing this package.</p>
@@ -133,7 +137,7 @@
 <h2 id="development-tools">Development tools<a class="anchor" aria-label="anchor" href="#development-tools"></a>
 </h2>
 <ul>
-<li>Continuous code testing is possible thanks to <a href="https://www.tidyverse.org/blog/2020/04/usethis-1-6-0/" class="external-link">GitHub actions</a> through <em><a href="https://CRAN.R-project.org/package=usethis" class="external-link">usethis</a></em>, <em><a href="https://CRAN.R-project.org/package=remotes" class="external-link">remotes</a></em>, <em><a href="https://github.com/r-hub/sysreqs" class="external-link">sysreqs</a></em> and <em><a href="https://CRAN.R-project.org/package=rcmdcheck" class="external-link">rcmdcheck</a></em> customized to use <a href="https://www.bioconductor.org/help/docker/" class="external-link">Bioconductor’s docker containers</a> and <em><a href="https://bioconductor.org/packages/3.11/BiocCheck" class="external-link">BiocCheck</a></em>.</li>
+<li>Continuous code testing is possible thanks to <a href="https://www.tidyverse.org/blog/2020/04/usethis-1-6-0/" class="external-link">GitHub actions</a> through <em><a href="https://CRAN.R-project.org/package=usethis" class="external-link">usethis</a></em>, <em><a href="https://CRAN.R-project.org/package=remotes" class="external-link">remotes</a></em>, <em><a href="https://github.com/r-hub/sysreqs" class="external-link">sysreqs</a></em> and <em><a href="https://CRAN.R-project.org/package=rcmdcheck" class="external-link">rcmdcheck</a></em> customized to use <a href="https://www.bioconductor.org/help/docker/" class="external-link">Bioconductor’s docker containers</a> and <em><a href="https://bioconductor.org/packages/3.17/BiocCheck" class="external-link">BiocCheck</a></em>.</li>
 <li>Code coverage assessment is possible thanks to <a href="https://codecov.io/gh" class="external-link">codecov</a> and <em><a href="https://CRAN.R-project.org/package=covr" class="external-link">covr</a></em>.</li>
 <li>The <a href="http://lieberinstitute.github.io/brainflowprobes" class="external-link">documentation website</a> is automatically updated thanks to <em><a href="https://CRAN.R-project.org/package=pkgdown" class="external-link">pkgdown</a></em>.</li>
 <li>The code is styled automatically thanks to <em><a href="https://CRAN.R-project.org/package=styler" class="external-link">styler</a></em>.</li>
@@ -188,13 +192,18 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://www.tidyverse.org/lifecycle/#stable" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a></li>
-<li><a href="https://bioconductor.org/checkResults/release/bioc-LATEST/brainflowprobes" class="external-link"><img src="http://www.bioconductor.org/shields/build/release/bioc/brainflowprobes.svg" alt="BioC status"></a></li>
-<li><a href="https://bioconductor.org/checkResults/devel/bioc-LATEST/brainflowprobes" class="external-link"><img src="http://www.bioconductor.org/shields/build/devel/bioc/brainflowprobes.svg" alt="BioC dev status"></a></li>
-<li><a href="https://codecov.io/gh/LieberInstitute/brainflowprobes?branch=master" class="external-link"><img src="https://codecov.io/gh/LieberInstitute/brainflowprobes/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html#stable" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a></li>
+<li><a href="https://bioconductor.org/checkResults/release/bioc-LATEST/brainflowprobes" class="external-link"><img src="http://www.bioconductor.org/shields/build/release/bioc/brainflowprobes.svg" alt="Bioc release status"></a></li>
+<li><a href="https://bioconductor.org/checkResults/devel/bioc-LATEST/brainflowprobes" class="external-link"><img src="http://www.bioconductor.org/shields/build/devel/bioc/brainflowprobes.svg" alt="Bioc devel status"></a></li>
+<li><a href="http://bioconductor.org/packages/stats/bioc/brainflowprobes/" class="external-link"><img src="https://bioconductor.org/shields/downloads/release/brainflowprobes.svg" alt="Bioc downloads rank"></a></li>
+<li><a href="https://support.bioconductor.org/tag/brainflowprobes" class="external-link"><img src="https://bioconductor.org/shields/posts/brainflowprobes.svg" alt="Bioc support"></a></li>
+<li><a href="https://bioconductor.org/packages/release/bioc/html/brainflowprobes.html#since" class="external-link"><img src="https://bioconductor.org/shields/years-in-bioc/brainflowprobes.svg" alt="Bioc history"></a></li>
+<li><a href="http://bioconductor.org/checkResults/devel/bioc-LATEST/brainflowprobes/" class="external-link"><img src="https://bioconductor.org/shields/lastcommit/devel/bioc/brainflowprobes.svg" alt="Bioc last commit"></a></li>
+<li><a href="https://bioconductor.org/packages/release/bioc/html/brainflowprobes.html#since" class="external-link"><img src="https://bioconductor.org/shields/dependencies/release/brainflowprobes.svg" alt="Bioc dependencies"></a></li>
+<li><a href="https://codecov.io/gh/LieberInstitute/brainflowprobes?branch=devel" class="external-link"><img src="https://codecov.io/gh/LieberInstitute/brainflowprobes/branch/devel/graph/badge.svg" alt="Codecov test coverage"></a></li>
 <li><a href="https://github.com/LieberInstitute/brainflowprobes/actions" class="external-link"><img src="https://github.com/LieberInstitute/brainflowprobes/workflows/R-CMD-check-bioc/badge.svg" alt="R build status"></a></li>
-<li><a href="https://support.bioconductor.org/t/brainflowprobes/" class="external-link"><img src="http://www.bioconductor.org/shields/posts/brainflowprobes.svg" alt="Support site activity, last 6 months: tagged questions/avg. answers per question/avg. comments per question/accepted answers, or 0 if no tagged posts."></a></li>
 <li><a href="https://github.com/LieberInstitute/brainflowprobes/issues" class="external-link"><img src="https://img.shields.io/github/issues/LieberInstitute/brainflowprobes" alt="GitHub issues"></a></li>
+<li><a href="https://github.com/LieberInstitute/brainflowprobes/pulls" class="external-link"><img src="https://img.shields.io/github/issues-pr/LieberInstitute/brainflowprobes" alt="GitHub pulls"></a></li>
 </ul>
 </div>
 

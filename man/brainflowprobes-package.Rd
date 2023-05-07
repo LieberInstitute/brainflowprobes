@@ -6,14 +6,13 @@
 \alias{brainflowprobes-package}
 \title{brainflowprobes: Plots and annotation for choosing BrainFlow target probe sequence}
 \description{
-Use these functions to characterize genomic regions for
-  BrainFlow target probe design.
+Use these functions to characterize genomic regions for BrainFlow target probe design.
 }
 \seealso{
 Useful links:
 \itemize{
   \item \url{https://github.com/LieberInstitute/brainflowprobes}
-  \item Report bugs at \url{https://github.com/LieberInstitute/brainflowprobes/issues}
+  \item Report bugs at \url{https://support.bioconductor.org/t/brainflowprobes}
 }
 
 }

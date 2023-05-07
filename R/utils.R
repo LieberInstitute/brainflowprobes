@@ -36,17 +36,18 @@
 check_pdf <- function(PDF = "four_panels.pdf", OUTDIR = tempdir()) {
     pdf_file <- file.path(OUTDIR, PDF)
     if (!grepl("pdf$", tolower(pdf_file))) {
-          pdf_file <- paste0(pdf_file, ".pdf")
-      }
+        pdf_file <- paste0(pdf_file, ".pdf")
+    }
     if (file.exists(pdf_file)) {
-          stop(paste(
-              "The file",
-              pdf_file,
-              "\nalready exists! Rename or erase it before proceeding."
-          ),
-          call. = FALSE
-          )
-      }
+        stop(
+            paste(
+                "The file",
+                pdf_file,
+                "\nalready exists! Rename or erase it before proceeding."
+            ),
+            call. = FALSE
+        )
+    }
     return(pdf_file)
 }
 
@@ -114,8 +115,9 @@ get_nearest_annotation <- function(gr, CODING_ONLY = FALSE) {
 #'     get_region_cov(COVERAGE = four_panels_example_cov),
 #'     four_panels_example_cov
 #' ))
-get_region_cov <- function(REGION, COVERAGE = NULL, VERBOSE = TRUE,
-    PD = brainflowprobes::pd) {
+get_region_cov <- function(
+        REGION, COVERAGE = NULL, VERBOSE = TRUE,
+        PD = brainflowprobes::pd) {
     if (is.null(COVERAGE)) {
         regionCov <- brainflowprobes_cov(
             REGION = REGION,

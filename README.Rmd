@@ -6,23 +6,28 @@ output: github_document
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
+    collapse = TRUE,
+    comment = "#>",
+    fig.path = "man/figures/README-",
+    out.width = "100%"
 )
 ```
 
 # brainflowprobes
 
 <!-- badges: start -->
-[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
-[![BioC status](http://www.bioconductor.org/shields/build/release/bioc/brainflowprobes.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/brainflowprobes)
-[![BioC dev status](http://www.bioconductor.org/shields/build/devel/bioc/brainflowprobes.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/brainflowprobes)
-[![Codecov test coverage](https://codecov.io/gh/LieberInstitute/brainflowprobes/branch/master/graph/badge.svg)](https://codecov.io/gh/LieberInstitute/brainflowprobes?branch=master)
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![Bioc release status](http://www.bioconductor.org/shields/build/release/bioc/brainflowprobes.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/brainflowprobes)
+[![Bioc devel status](http://www.bioconductor.org/shields/build/devel/bioc/brainflowprobes.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/brainflowprobes)
+[![Bioc downloads rank](https://bioconductor.org/shields/downloads/release/brainflowprobes.svg)](http://bioconductor.org/packages/stats/bioc/brainflowprobes/)
+[![Bioc support](https://bioconductor.org/shields/posts/brainflowprobes.svg)](https://support.bioconductor.org/tag/brainflowprobes)
+[![Bioc history](https://bioconductor.org/shields/years-in-bioc/brainflowprobes.svg)](https://bioconductor.org/packages/release/bioc/html/brainflowprobes.html#since)
+[![Bioc last commit](https://bioconductor.org/shields/lastcommit/devel/bioc/brainflowprobes.svg)](http://bioconductor.org/checkResults/devel/bioc-LATEST/brainflowprobes/)
+[![Bioc dependencies](https://bioconductor.org/shields/dependencies/release/brainflowprobes.svg)](https://bioconductor.org/packages/release/bioc/html/brainflowprobes.html#since)
+[![Codecov test coverage](https://codecov.io/gh/LieberInstitute/brainflowprobes/branch/devel/graph/badge.svg)](https://codecov.io/gh/LieberInstitute/brainflowprobes?branch=devel)
 [![R build status](https://github.com/LieberInstitute/brainflowprobes/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/LieberInstitute/brainflowprobes/actions)
-[![Support site activity, last 6 months: tagged questions/avg. answers per question/avg. comments per question/accepted answers, or 0 if no tagged posts.](http://www.bioconductor.org/shields/posts/brainflowprobes.svg)](https://support.bioconductor.org/t/brainflowprobes/)
 [![GitHub issues](https://img.shields.io/github/issues/LieberInstitute/brainflowprobes)](https://github.com/LieberInstitute/brainflowprobes/issues)
+[![GitHub pulls](https://img.shields.io/github/issues-pr/LieberInstitute/brainflowprobes)](https://github.com/LieberInstitute/brainflowprobes/pulls)
 <!-- badges: end -->
 
 This package can be used to annotate candidate target probe sequences designed to label RNA in nuclei isolated from human postmortem brain for flow cytometry. This package also includes functions that visualize candidate sequence expression in four postmortem brain datasets that address nuclear expression, effects of RNA degradation and flow cytometric sorting, and cell type-specific expression to increase the likelihood of success as a custom target probe. Please refer to the BrainFlow publication or the [PrimeFlow RNA(TM) Assay Kit](https://www.thermofisher.com/order/catalog/product/88-18005-204) literature for more information.
@@ -36,8 +41,9 @@ For more information about `brainflowprobes` check the vignettes [through Biocon
 Get the latest stable `R` release from [CRAN](http://cran.r-project.org/). Then install `brainflowprobes` from [Bioconductor](http://bioconductor.org/) using the following code:
 
 ```{r 'install', eval = FALSE}
-if (!requireNamespace("BiocManager", quietly = TRUE))
+if (!requireNamespace("BiocManager", quietly = TRUE)) {
     install.packages("BiocManager")
+}
 
 BiocManager::install("brainflowprobes")
 ```
@@ -48,7 +54,7 @@ Below is the citation output from using `citation('brainflowprobes')` in R. Plea
 run this yourself to check for any updates on how to cite __brainflowprobes__.
 
 ```{r 'citation', eval = requireNamespace('brainflowprobes')}
-print(citation('brainflowprobes'), bibtex = TRUE)
+print(citation("brainflowprobes"), bibtex = TRUE)
 ```
 
 Please note that the `brainflowprobes` was only made possible thanks to many other R and bioinformatics software authors, which are cited either in the vignettes and/or the paper(s) describing this package.

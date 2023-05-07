@@ -86,13 +86,13 @@
 #' @author Amanda J Price
 
 
-plot_coverage <- function(REGION,
-    PDF = "regionCoverage_fractionedData.pdf",
-    OUTDIR = tempdir(),
-    COVERAGE = NULL,
-    CODING_ONLY = FALSE,
-    VERBOSE = TRUE) {
-
+plot_coverage <- function(
+        REGION,
+        PDF = "regionCoverage_fractionedData.pdf",
+        OUTDIR = tempdir(),
+        COVERAGE = NULL,
+        CODING_ONLY = FALSE,
+        VERBOSE = TRUE) {
     ## Check the PDF file
     pdf_file <- check_pdf(PDF, OUTDIR)
 
@@ -142,6 +142,6 @@ plot_coverage <- function(REGION,
 .view_pdf <- function(pdf_file) {
     message(paste0(Sys.time(), " Completed! Check for ", pdf_file, "."))
     if (interactive()) {
-          utils::browseURL(pdf_file)
-      }
+        utils::browseURL(pdf_file)
+    }
 }

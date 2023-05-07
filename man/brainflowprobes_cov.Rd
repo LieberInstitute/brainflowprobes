@@ -41,7 +41,6 @@ also used by \link{plot_coverage}.
 ## This function loads data from BigWig files using the rtracklayer package.
 ## This functionality is not supported on Windows OS machines!
 if (.Platform$OS.type != "windows") {
-
     ## How long this takes to run will depend on your internet connection.
     example_cov <- brainflowprobes_cov("chr20:10286777-10288069:+",
         PD = lapply(brainflowprobes::pd, head, n = 2)

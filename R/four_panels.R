@@ -119,15 +119,14 @@
 #' @author Amanda J Price
 
 
-four_panels <- function(REGION,
-    PDF = "four_panels.pdf",
-    OUTDIR = tempdir(),
-    JUNCTIONS = FALSE,
-    COVERAGE = NULL,
-    CODING_ONLY = FALSE,
-    VERBOSE = TRUE) {
-
-
+four_panels <- function(
+        REGION,
+        PDF = "four_panels.pdf",
+        OUTDIR = tempdir(),
+        JUNCTIONS = FALSE,
+        COVERAGE = NULL,
+        CODING_ONLY = FALSE,
+        VERBOSE = TRUE) {
     ## For R CMD check
     BrNum <- Cell_type <- Cov <- DegradationTime <- Label <- LabelFrac <-
         LibraryProtocol <- Shortlabels <- NULL

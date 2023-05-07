@@ -70,6 +70,6 @@ A list of four phenotype data frames used throughput the package.
 }
 \seealso{
 \link{four_panels} \link{brainflowprobes_cov}
-\url{https://github.com/LieberInstitute/brainflowprobes/blob/master/data-raw/create_sysdata.R}
+\url{https://github.com/LieberInstitute/brainflowprobes/blob/devel/data-raw/create_sysdata.R}
 }
 \keyword{datasets}

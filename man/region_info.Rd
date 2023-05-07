@@ -61,12 +61,13 @@ head(x)
 ## You can easily transform this data.frame to a GRanges object
 GenomicRanges::GRanges(x)
 
-y <- region_info(c(
-    "chr20:10286777-10288069:+",
-    "chr18:74690788-74692427:-",
-    "chr19:49932861-49933829:-"
-),
-CSV = FALSE, SEQ = FALSE
+y <- region_info(
+    c(
+        "chr20:10286777-10288069:+",
+        "chr18:74690788-74692427:-",
+        "chr19:49932861-49933829:-"
+    ),
+    CSV = FALSE, SEQ = FALSE
 )
 head(y)
 

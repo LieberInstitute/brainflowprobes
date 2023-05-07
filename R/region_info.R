@@ -37,12 +37,13 @@
 #' ## You can easily transform this data.frame to a GRanges object
 #' GenomicRanges::GRanges(x)
 #'
-#' y <- region_info(c(
-#'     "chr20:10286777-10288069:+",
-#'     "chr18:74690788-74692427:-",
-#'     "chr19:49932861-49933829:-"
-#' ),
-#' CSV = FALSE, SEQ = FALSE
+#' y <- region_info(
+#'     c(
+#'         "chr20:10286777-10288069:+",
+#'         "chr18:74690788-74692427:-",
+#'         "chr19:49932861-49933829:-"
+#'     ),
+#'     CSV = FALSE, SEQ = FALSE
 #' )
 #' head(y)
 #'
@@ -68,9 +69,9 @@
 #' @author Amanda J Price
 
 
-region_info <- function(REGION, CSV = TRUE, SEQ = TRUE, OUTDIR = tempdir(),
-    CODING_ONLY = FALSE) {
-
+region_info <- function(
+        REGION, CSV = TRUE, SEQ = TRUE, OUTDIR = tempdir(),
+        CODING_ONLY = FALSE) {
     ## Define the region(s)
     gr <- GenomicRanges::GRanges(REGION)
 
@@ -103,12 +104,12 @@ region_info <- function(REGION, CSV = TRUE, SEQ = TRUE, OUTDIR = tempdir(),
             "region_info.csv"
         )
         if (file.exists(csv_path)) {
-              stop(paste(
-                  "The file",
-                  csv_path,
-                  "already exists! Rename or erase it before proceeding."
-              ))
-          }
+            stop(paste(
+                "The file",
+                csv_path,
+                "already exists! Rename or erase it before proceeding."
+            ))
+        }
         utils::write.csv(df,
             file = csv_path,
             quote = FALSE,

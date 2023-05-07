@@ -63,7 +63,7 @@
 #'
 #' @keywords datasets
 #' @seealso [four_panels] [brainflowprobes_cov]
-#' <https://github.com/LieberInstitute/brainflowprobes/blob/master/data-raw/create_sysdata.R>
+#' <https://github.com/LieberInstitute/brainflowprobes/blob/devel/data-raw/create_sysdata.R>
 #' @examples
 #' ##  pd <- list(Sep = pdSep, Deg = pdDeg, Cell = pdCell, Sort = pdSort)
 NULL

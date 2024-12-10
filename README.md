@@ -24,7 +24,7 @@ dependencies](https://bioconductor.org/shields/dependencies/release/brainflowpro
 [![Codecov test
 coverage](https://codecov.io/gh/LieberInstitute/brainflowprobes/branch/devel/graph/badge.svg)](https://codecov.io/gh/LieberInstitute/brainflowprobes?branch=devel)
 [![R build
-status](https://github.com/LieberInstitute/brainflowprobes/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/LieberInstitute/brainflowprobes/actions)
+status](https://github.com/LieberInstitute/brainflowprobes/actions/workflows/check-bioc.yml/badge.svg)](https://github.com/LieberInstitute/brainflowprobes/actions/workflows/check-bioc.yml)
 [![GitHub
 issues](https://img.shields.io/github/issues/LieberInstitute/brainflowprobes)](https://github.com/LieberInstitute/brainflowprobes/issues)
 [![GitHub
